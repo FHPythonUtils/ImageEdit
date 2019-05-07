@@ -8,7 +8,9 @@ Round the corners of an image
 '''
 
 from PIL import Image, ImageDraw
-import argparse
+import argparse, glob
+
+FILE_EXTS = ["png", "PNG", "jpg"]
 
 '''
 Function by fraxel: https://stackoverflow.com/users/1175101/fraxel
@@ -40,19 +42,35 @@ parser.add_argument("-o", "--output", help="specify the path to an output image"
                     action="store")
 parser.add_argument("-r", "--radius", help="specify the corner radius (image w/l /2 for a round image)",
                     action="store")
+parser.add_argument("-b", "--batch", help="batch process files. requires input and output directories",
+                    action="store_true")
 
 args = parser.parse_args()
 
 
-im = Image.open(args.image)
-if args.radius is not None:
-    im = add_corners(im, int(args.radius))
-else:
-    im = add_corners(im, int(im.width/2))
+if args.batch:
+    for index in range (len(FILE_EXTS)):
+        for file in glob.glob("input/*." + FILE_EXTS[index]):
+            print(file)
+            im = Image.open(file)
+            if args.radius is not None:
+                im = add_corners(im, int(args.radius))
+            else:
+                im = add_corners(im, int(im.width/2))
+            im.save("output/out-" + file.split("\\")[1])
 
 
-if args.output is not None:
-    outFileName = args.output
 else:
-    outFileName = args.image
-im.save(outFileName)
+
+    im = Image.open(args.image)
+    if args.radius is not None:
+        im = add_corners(im, int(args.radius))
+    else:
+        im = add_corners(im, int(im.width/2))
+
+
+    if args.output is not None:
+        outFileName = args.output
+    else:
+        outFileName = args.image
+    im.save(outFileName)
