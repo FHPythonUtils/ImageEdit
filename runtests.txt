@@ -1,0 +1,1 @@
+py.test test\test_lib_imageEdit.py --cov=lib

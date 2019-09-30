@@ -1,5 +1,5 @@
 '''
-Author FredHappyface 20190918
+Author FredHappyface 20190930
 
 Lib containing various image editing operations
 '''
@@ -15,14 +15,14 @@ roundCornersPercentAntiAlias
 '''
 def roundCornersPercent(image, radius):
     w, h = image.size
-    size = min([w.h])
+    size = min([w,h])
     rad = int(size*radius/100)
     return roundCorners(image, rad)
 
 
 '''
 Round the corners by a number of pixels. May be preferable to use
-roundCornersAntiAlias
+roundCornersAntiAlias. Use with caution as it modifies the image param
 
 Function by fraxel: https://stackoverflow.com/users/1175101/fraxel
 https://stackoverflow.com/questions/11287402/how-to-round-corner-a-logo-without-white-backgroundtransparent-on-it-using-pi
@@ -46,7 +46,7 @@ image: base image to give a drop shadow
 offset: offset of the shadow as [x,y]
 '''
 def addDropShadowSimple(image, offset):
-    border = max(offset)
+    border = max(map(abs, offset))
     return addDropShadowComplex(image, 11, border, offset, "#ffffff00", "#00000055")
 
 '''
@@ -62,7 +62,7 @@ from https://en.wikibooks.org/wiki/Python_Imaging_Library/Drop_Shadows
 def addDropShadowComplex(image, iterations, border, offset, backgroundColour, shadowColour):
     originalSize = image.size
 
-    #Calculate the size of the shadow's image
+    #Calculate the size of the intermediate image
     fullWidth  = image.size[0] + abs(offset[0]) + 2*border
     fullHeight = image.size[1] + abs(offset[1]) + 2*border
 
@@ -171,3 +171,20 @@ def createDirsIfRequired(filepath):
     for x in tok[:-1]:
         checkfile += x + '\\'
     os.makedirs(checkfile, exist_ok=True)
+
+'''
+Takes an image and preforms a centre crop and removes the padding
+'''
+def removeImagePadding(image, padding):
+    return image.crop((padding, padding, image.width -padding, image.height -padding))
+
+'''
+Gets an image description returns [icon/mask]
+
+Likely more useful for my specific use case than in the general lib
+'''
+def getImageDesc(image):
+    if (image.width == 640 and image.height == 640):
+        return "mask"
+    elif (image.width == 512 and image.height == 512):
+        return "icon"
