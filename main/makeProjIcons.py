@@ -14,28 +14,28 @@ import imageEdit
 
 if __name__ == "__main__": # pragma: no cover
 
-    # Image in should be 512px
-    images = imageEdit.openImagesInDir(THISDIR + "/input/*")
-    for imageRef in images:
-        fileName, squareImage = imageRef
-        fileNameParts = fileName.split("\\")
-        fileName = fileNameParts[len(fileNameParts)-1]
-        print(fileName)
-        outputDir = THISDIR + "/output/" + fileName + "/proj-icon"
+	# Image in should be 512px
+	images = imageEdit.openImagesInDir(THISDIR + "/input/*")
+	for imageRef in images:
+		fileName, squareImage = imageRef
+		fileNameParts = fileName.split("\\")
+		fileName = fileNameParts[len(fileNameParts)-1]
+		print(fileName)
+		outputDir = THISDIR + "/output/" + fileName + "/proj-icon"
 
-        # Proj-icon does not want to be a mask
-        if (imageEdit.getImageDesc(squareImage) == "mask"):
-            squareImage = imageEdit.removeImagePadding(squareImage, 64)
+		# Proj-icon does not want to be a mask
+		if (imageEdit.getImageDesc(squareImage) == "mask"):
+			squareImage = imageEdit.removeImagePadding(squareImage, 64)
 
-        roundImage = imageEdit.roundCornersAntiAlias(squareImage, 256)
-        squircleImage = imageEdit.roundCornersAntiAlias(squareImage, 102) # Google Play Rounding
+		roundImage = imageEdit.roundCornersAntiAlias(squareImage, 256)
+		squircleImage = imageEdit.roundCornersAntiAlias(squareImage, 102) # Google Play Rounding
 
-        # store-google-play-raster - Drop shadow, radius 20% (102,51)
-        googlePlay = imageEdit.addDropShadowSimple(squircleImage, [-10,10])
-        imageEdit.saveImage(outputDir + "/proj-icon.png", imageEdit.resizeImageSquare(googlePlay, 256))
+		# store-google-play-raster - Drop shadow, radius 20% (102,51)
+		googlePlay = imageEdit.addDropShadowSimple(squircleImage, [-10, 10])
+		imageEdit.saveImage(outputDir + "/proj-icon.png", imageEdit.resizeImageSquare(googlePlay, 256))
 
-        '''
-        imageEdit.saveImage(outputDir + "/proj-icon.png", imageEdit.resizeImageSquare(squircleImage, 256))
-        imageEdit.saveImage(outputDir + "/proj-icon.png", imageEdit.resizeImageSquare(roundImage, 256))
-        imageEdit.saveImage(outputDir + "/proj-icon.png", imageEdit.resizeImageSquare(squareImage, 256))
-        '''
+		'''
+		imageEdit.saveImage(outputDir + "/proj-icon.png", imageEdit.resizeImageSquare(squircleImage, 256))
+		imageEdit.saveImage(outputDir + "/proj-icon.png", imageEdit.resizeImageSquare(roundImage, 256))
+		imageEdit.saveImage(outputDir + "/proj-icon.png", imageEdit.resizeImageSquare(squareImage, 256))
+		'''
