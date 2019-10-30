@@ -34,6 +34,7 @@ if __name__ == "__main__": # pragma: no cover
 		'''
 		Store Images
 		'''
+
 		# store-windows - Size 300px
 		imageEdit.saveImage(storeDir + "/store-windows.png",
 			imageEdit.resizeImage(squareImage, 0.5859375))
@@ -44,19 +45,16 @@ if __name__ == "__main__": # pragma: no cover
 
 		# store-google-play-raster - Drop shadow, radius 20% (102,51)
 		googlePlay = imageEdit.addDropShadowSimple(squircleImage, [-10, 10])
-		imageEdit.saveImage(storeDir + "/store-google-play-raster.png", googlePlay)
-		imageEdit.saveImage(storeDir + "/store-google-play-raster-small.png",
+		imageEdit.saveImage(storeDir + "/store-google-play-raster.png",
 			imageEdit.resizeImage(googlePlay, 0.5))
 
 		# store-ios-raster - Radius 17.5% (90,45)
 		ios = imageEdit.roundCornersAntiAlias(squareImage, 90)
-		imageEdit.saveImage(storeDir + "/store-ios-raster.png", ios)
-		imageEdit.saveImage(storeDir + "/store-ios-raster-small.png",
+		imageEdit.saveImage(storeDir + "/store-ios-raster.png",
 			imageEdit.resizeImage(ios, 0.5))
 
 		# store-windows-raster
-		imageEdit.saveImage(storeDir + "/store-windows-raster.png", squareImage)
-		imageEdit.saveImage(storeDir + "/store-windows-raster-small.png",
+		imageEdit.saveImage(storeDir + "/store-windows-raster.png",
 			imageEdit.resizeImage(squareImage, 0.5))
 
 

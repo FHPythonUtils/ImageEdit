@@ -43,17 +43,18 @@ def roundCorners(image, radius):
 	Returns:
 		PIL.Image.Image: A PIL Image
 	"""
-	circle = Image.new('L', (radius * 2, radius * 2), 0)
+	circle = Image.new('RGBA', (radius * 2, radius * 2), "#00000000")
 	draw = ImageDraw.Draw(circle)
-	draw.ellipse((0, 0, radius * 2, radius * 2), fill=255)
-	alpha = Image.new('L', image.size, 255)
+	draw.ellipse((0, 0, radius * 2, radius * 2), "#ffffffff")
+	alpha = Image.new('RGBA', image.size, "#ffffffff")
+	background = Image.new('RGBA', image.size, "#00000000")
 	w, h = image.size
 	alpha.paste(circle.crop((0, 0, radius, radius)), (0, 0))
 	alpha.paste(circle.crop((0, radius, radius, radius * 2)), (0, h - radius))
 	alpha.paste(circle.crop((radius, 0, radius * 2, radius)), (w - radius, 0))
 	alpha.paste(circle.crop((radius, radius, radius * 2, radius * 2)), (w - radius, h - radius))
-	image.putalpha(alpha)
-	return image
+	background.paste(image, (0, 0), alpha.convert("RGBA"))
+	return background
 
 
 def addDropShadowSimple(image, offset):
@@ -90,27 +91,26 @@ def addDropShadowComplex(image, iterations, border, offset, backgroundColour, sh
 	fullHeight = image.size[1] + abs(offset[1]) + 2*border
 
 	# Create the shadow's image. Match the parent image's mode.
-	shadow = Image.new("RGBA", (fullWidth, fullHeight), backgroundColour)
+	background = Image.new("RGBA", (fullWidth, fullHeight), backgroundColour)
+	shadow = Image.new("RGBA", (originalSize[0], originalSize[1]), shadowColour)
 
 	# Place the shadow, with the required offset
 	shadowLeft = border + max(offset[0], 0)
 	shadowTop = border + max(offset[1], 0)
 	# Paste in the constant colour
-	shadow.paste(shadowColour,
-				[shadowLeft, shadowTop,
-				 shadowLeft + image.size[0],
-				 shadowTop  + image.size[1]], image)
+	background.paste(shadow.convert("RGBA"),
+				(shadowLeft, shadowTop), image.convert("RGBA"))
 
 	# Apply the BLUR filter repeatedly
 	for _ in range(iterations):
-		shadow = shadow.filter(ImageFilter.BLUR)
+		background = background.filter(ImageFilter.BLUR)
 
 	# Paste the original image on top of the shadow
 	imgLeft = border - min(offset[0], 0)
 	imgTop = border - min(offset[1], 0)
-	shadow.paste(image, (imgLeft, imgTop), image)
+	background.paste(image.convert("RGBA"), (imgLeft, imgTop), image.convert("RGBA"))
 
-	return resizeImageAbs(shadow, originalSize[0], originalSize[1])
+	return resizeImageAbs(background, originalSize[0], originalSize[1])
 
 
 def resizeImageAbs(image, width, height):
@@ -189,7 +189,7 @@ def roundCornersPercentAntiAlias(image, radius):
 	"""
 	FACTOR = 2
 	imageTemp = resizeImage(image, FACTOR)
-	imageTemp = roundCornersPercent(imageTemp, radius * FACTOR)
+	imageTemp = roundCornersPercent(imageTemp, radius)
 	return resizeImage(imageTemp, 1/FACTOR)
 
 
@@ -232,11 +232,11 @@ def saveImage(fileName, image, optimise=True):
 	Args:
 		fileName (string): full file path or file path relative to /lib
 		image (PIL.Image.Image): A PIL Image
-		optimise (bool, optional): OPtimise the image?. Defaults to True.
+		optimise (bool, optional): Optimise the image?. Defaults to True.
 	"""
 	createDirsIfRequired(fileName)
 	if optimise:
-		image = image.convert('P', palette=Image.ADAPTIVE, colors=255)
+		image = image.quantize(colors=255, method=2, kmeans=1, dither=None)
 	image.save(fileName, optimize=optimise, quality=75)
 
 
