@@ -18,7 +18,9 @@
 
 No longer just rounds the corners of an image. Create various icon masks and
 shading effects with the imageEdit library. Three example files: round.py,
-makeProjIcons and makePWAImages.
+makeProjIcons.py and makePWAImages.py. Now includes a tracing component. Now you can
+make all of the SVGs! (Note capped to 180x180px to prevent hanging on test
+machine. And note that it will take 1-2 mins per trace at that resolution)
 
 ## Comparison to similar solutions
 
@@ -37,9 +39,11 @@ variants in a relatively short amount of time
 - Customisable: write your own scripts to leverage imageEdit (python knowledge
 required)
 - Produce a PWA mask icon out of the box
+- SVG tracing lib doesn't require potrace/ pypotrace which can be challenging to
+set up on Windows
 
 ### Disadvantages of this solution
-- No SVG tracing: something that I would like to add
+- SVG tracing isn't great, but it's not too bad given it doesn't use a tracing lib
 - Specific image dimensions needed out of the box: whilst this is something that
 could be changed, maskable icons are 640x640 and regular icons are 512x512
 
@@ -87,19 +91,17 @@ More information can be found at
 2. Extract the zip archive
 3. Copy/ move to the desired location
 
-
 ## Language information
 ### Built for
 This program has been written for Python 3 and has been tested with
-Python version 3.8 <https://www.python.org/downloads/release/python-380/>
-on a Windows 10 PC.
+Python version 3.8.0 <https://www.python.org/downloads/release/python-380/>.
 ### Other versions
 To install Python, go to <https://www.python.org/> and download the latest
 version.
 ## How to run
-1. Open the .py file in IDLE or vscode
-2. Run by pressing F5 or by selecting Run> Run Module
-
+1. Open the .py file in vscode
+2. Ensure a python 3.8 interpreter is selected (Ctrl+Shift+P > Python:Select Interpreter > Python 3.8)
+3. Run by pressing Ctrl+F5 (if you are prompted to install any modules, accept)
 
 ## Licence
 MIT License
@@ -107,10 +109,6 @@ Copyright (c) fredhappyface
 (See the [LICENSE](/LICENSE.md) for more information.)
 
 
-<!--
-TODO: Add screenshots to readme-assets/screenshots/desktop/ named
-screenshot-[number].png
--->
 ## Screenshots
 
 ### Desktop
@@ -118,13 +116,4 @@ screenshot-[number].png
 |:-:                                                                                          |
 |<img src="readme-assets/screenshots/desktop/screenshot-1.png" alt="Screenshot 1" width="600">|
 |<img src="readme-assets/screenshots/desktop/screenshot-2.png" alt="Screenshot 2" width="600">|
-|<img src="readme-assets/screenshots/desktop/screenshot-3.png" alt="Screenshot 3" width="600">|
-
-
-
-## Limited Support
-Expect this project to be supported for approximately 6 months (for bug-fixes
-only). Note that this is not guaranteed. Create an issue for bugs (as this
-project is carried out in spare time, you may have to wait for a few days)
-
-<img src="readme-assets/support/partial.png" alt="Limited Support" width="600">
+|<img src="readme-assets/screenshots/desktop/screenshot-4.png" alt="Screenshot 3" width="600">|

@@ -7,7 +7,7 @@ Make Images for PWAs
 import os, sys, inspect
 THISDIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
-import imageEdit
+import imageEdit, imageTrace
 
 if __name__ == "__main__": # pragma: no cover
 
@@ -65,12 +65,7 @@ if __name__ == "__main__": # pragma: no cover
 		imageEdit.saveImage(pwaDir + "/round-512.png", roundImage)
 		imageEdit.saveImage(pwaDir + "/round-192.png", imageEdit.resizeImageSquare(roundImage, 192))
 		# imageEdit.saveImage(pwaDir + "/square-512.png", squareImage) # 'raw'
-		imageEdit.saveImage(pwaDir + "/square-180.png", imageEdit.resizeImageSquare(squareImage, 180))
+		smallSquare = imageEdit.resizeImageSquare(squareImage, 180)
+		imageEdit.saveImage(pwaDir + "/square-180.png", smallSquare)
 
-		'''
-		Proposals:
-
-		squircle image is used for favicons so can be smaller: 128px
-		imageEdit.saveImage(pwaDir + "/squircle-128.png", imageEdit.resizeImageSquare(squircleImage, 128))
-
-		'''
+		open(pwaDir + "/safari.svg", "w").write(imageTrace.imageToSVG(smallSquare, True))
