@@ -1,8 +1,8 @@
 
 <p float="left">
 <img src="https://img.shields.io/github/languages/top/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="Github top language">
-<img src="https://img.shields.io/codacy/grade/:codacy-proj-id:.svg?style=flat-square" alt="Codacy grade">
-<img src="https://img.shields.io/codacy/coverage/:codacy-proj-id:.svg?style=flat-square" alt="Codacy coverage">
+<img src="https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square" alt="Codacy grade">
+<img src="https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square" alt="Codacy coverage">
 <img src="https://img.shields.io/github/repo-size/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="Repository size">
 <img src="https://img.shields.io/github/issues/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="Issues">
 <img src="https://img.shields.io/github/license/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="License">
@@ -20,7 +20,9 @@ No longer just rounds the corners of an image. Create various icon masks and
 shading effects with the imageEdit library. Three example files: round.py,
 makeProjIcons.py and makePWAImages.py. Now includes a tracing component. Now you can
 make all of the SVGs! (Note capped to 180x180px to prevent hanging on test
-machine. And note that it will take 1-2 mins per trace at that resolution)
+machine. And note that it will take 1-2 mins per trace at that resolution).
+Includes a second tracing component using js that is much faster. Takes a few
+seconds and has no cap.
 
 ## Comparison to similar solutions
 
@@ -41,9 +43,10 @@ required)
 - Produce a PWA mask icon out of the box
 - SVG tracing lib doesn't require potrace/ pypotrace which can be challenging to
 set up on Windows
+- SVG tracing using imageTracerJs.py (https://github.com/jankovicsandras/imagetracerjs)
+is pretty good (requires pyppeteer: https://github.com/miyakogi/pyppeteer)
 
 ### Disadvantages of this solution
-- SVG tracing isn't great, but it's not too bad given it doesn't use a tracing lib
 - Specific image dimensions needed out of the box: whilst this is something that
 could be changed, maskable icons are 640x640 and regular icons are 512x512
 
@@ -115,5 +118,5 @@ Copyright (c) fredhappyface
 |Screenshots                                                                                  |
 |:-:                                                                                          |
 |<img src="readme-assets/screenshots/desktop/screenshot-1.png" alt="Screenshot 1" width="600">|
-|<img src="readme-assets/screenshots/desktop/screenshot-2.png" alt="Screenshot 2" width="600">|
+|<img src="readme-assets/screenshots/desktop/screenshot-3.png" alt="Screenshot 2" width="600">|
 |<img src="readme-assets/screenshots/desktop/screenshot-4.png" alt="Screenshot 3" width="600">|

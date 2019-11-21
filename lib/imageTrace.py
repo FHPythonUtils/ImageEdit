@@ -3,7 +3,6 @@ efficient but works ok for this
 
 """
 
-import sys
 import operator
 from collections import deque
 from io import StringIO
@@ -83,18 +82,12 @@ def joinedEdges(assorted_edges):
 	return pieces
 
 
-def doImageToSVG(im, blackAndWhite=False, backgroundColour=None, threshold=None):
+def doImageToSVG(im, blackAndWhite=False):
 	"""_doImage to svg function. Take a PIL Image and some args and return an svg string
 
 	Args:
 		im (PIL.Image): A PIL Image to convert to svg
 		blackAndWhite (bool, optional): Black and white. Defaults to False.
-		backgroundColour (tuple (r,g,b,a), optional): Specified by the calling
-		function if a threshold is not specified. Defaults to None.
-		threshold (dict{"darker": bool, "brightness": int}, optional): A threshold
-		'object' allowing the user to set instructions for a black and white image.
-		If darker is true then only shapes darker than the threshold are added to
-		the svg. Brightness is the sum of (r,g,b). Defaults to None.
 
 	Returns:
 		string: svg string. Save with file = open(filename, 'w'). then file.write(svg)
@@ -136,7 +129,7 @@ def doImageToSVG(im, blackAndWhite=False, backgroundColour=None, threshold=None)
 					visited.putpixel(neighbour, 1)
 				piece.append(here)
 
-			if not rgba in color_pixel_lists:
+			if rgba not in color_pixel_lists:
 				color_pixel_lists[rgba] = []
 			color_pixel_lists[rgba].append(piece)
 	print("]")
@@ -176,7 +169,7 @@ def doImageToSVG(im, blackAndWhite=False, backgroundColour=None, threshold=None)
 					if neighbour in piece_pixel_list:
 						continue
 					edge_set.add(edge)
-			if not rgba in color_edge_lists:
+			if rgba not in color_edge_lists:
 				color_edge_lists[rgba] = []
 			color_edge_lists[rgba].append(edge_set)
 	print("]")
@@ -206,19 +199,7 @@ def doImageToSVG(im, blackAndWhite=False, backgroundColour=None, threshold=None)
 
 	for color, shapes in color_joined_pieces.items():
 		for shape in shapes:
-			skip = True
-			if not blackAndWhite:
-				skip = False
-			if threshold:
-				if skip and (threshold['darker'] and sum(color[0:3]) < threshold['brightness']):
-					skip = False
-				if skip and (sum(color[0:3]) > threshold['brightness']):
-					skip = False
-			if backgroundColour:
-				if skip and (color[0:3] != backgroundColour[0:3]):
-					skip = False
-
-			if not skip:
+			if not blackAndWhite or (blackAndWhite and sum(color[0:3]) < 255):
 				s.write(""" <path d=" """)
 				for sub_shape in shape:
 					here = sub_shape.pop(0)[0]
@@ -227,9 +208,9 @@ def doImageToSVG(im, blackAndWhite=False, backgroundColour=None, threshold=None)
 						here = edge[0]
 						s.write(""" L %d,%d """ % here)
 					s.write(""" Z """)
-			if not skip and blackAndWhite:
+			if blackAndWhite and sum(color[0:3]) < 255:
 				s.write("\" />\n")
-			elif not skip:
+			elif not blackAndWhite:
 				s.write(""" " style="fill:rgb%s; fill-opacity:%.3f; stroke:none;" />\n""" %
 				(color[0:3], float(color[3]) / 255))
 
@@ -237,7 +218,7 @@ def doImageToSVG(im, blackAndWhite=False, backgroundColour=None, threshold=None)
 	return s.getvalue()
 
 
-def imageToSVG(image, blackAndWhite=False, threshold=None):
+def imageToSVG(image, blackAndWhite=False):
 	"""Image to svg function. Take a PIL Image and some args and return an svg string
 
 	Args:
@@ -255,21 +236,8 @@ def imageToSVG(image, blackAndWhite=False, threshold=None):
 	w, h = image.size
 	if w*h > 180*180:
 		image = image.resize((180, 180))
-	# Option Black and White
-	if blackAndWhite:
-		image = image.quantize(4)
+
 	rgbaImage = image.convert('RGBA')
-	# Get background color if no threshold set
-	backgroundColour = None
-	if blackAndWhite and threshold is None:
-		colors = rgbaImage.getcolors()
-		maximum = 0
-		for color in colors:
-			if color[0] > maximum:
-				maximum = color[0]
-		for color in colors:
-			if color[0] == maximum:
-				backgroundColour = color[1]
-		print(backgroundColour)
+
 	# Generate SVG
-	return doImageToSVG(rgbaImage, blackAndWhite, backgroundColour, threshold)
+	return doImageToSVG(rgbaImage, blackAndWhite)

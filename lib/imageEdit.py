@@ -280,3 +280,67 @@ def getImageDesc(image):
 		return "mask"
 	elif (image.width == 512 and image.height == 512):
 		return "icon"
+
+def convertBlackAndWhite(image, mode="filter-darker"):
+	"""Convert a PIL Image to black and white from a colour image. Some
+	implementations use numpy but im not going to include the extra import
+
+	Args:
+		image (PIL.Image.Image): A PIL Image to act on
+		mode (str, optional): Any of ["filter-darker", "filter-lighter",
+		"background", "foreground"] Specify the mode for the function to use.
+		filter-darker and lighter respectively make pixels darker than the
+		average black and pixels that are lighter than the average black.
+		background sets the most dominant colour to white and foreground sets
+		the second most dominant color to black. Defaults to "filter-darker".
+
+	Returns:
+		PIL.Image.Image: The black and white image
+	"""
+	if (mode == "background" or mode == "foreground"):
+		rgbaImage = image.convert('RGBA')
+		colors = rgbaImage.getcolors()
+
+		def getKey(item):
+			return item[0]
+
+		def cmpTup(tupleA, tupleB):
+			for index in range(len(tupleA)):
+				if (tupleA[index] > tupleB[index] + 10 or tupleA[index] < tupleB[index] - 10):
+					return False
+			return True
+
+
+		if (mode == "background"):
+			filterColour = sorted(colors, key=getKey, reverse=True)[0][1]
+		if (mode == "foreground"):
+			filterColour = sorted(colors, key=getKey, reverse=True)[1][1]
+
+	im = image.convert('L')
+	im.thumbnail((1, 1))
+	averageColour = im.getpixel((0, 0))
+
+	if (mode == "filter-darker"):
+		threshold = lambda pixel: 0 if pixel < averageColour else 255
+	if (mode == "filter-lighter"):
+		threshold = lambda pixel: 0 if pixel > averageColour else 255
+
+	if (mode == "background" or mode == "foreground"):
+		converted = image.convert('RGBA')
+		pixels = converted.load()
+		for i in range(image.size[0]):
+			for j in range(image.size[1]):
+				if (mode == "background"):
+					if cmpTup(pixels[i, j], filterColour):
+						pixels[i, j] = (255, 255, 255, 255)
+					else:
+						pixels[i, j] = (0, 0, 0, 255)
+
+				else:
+					if not cmpTup(pixels[i, j], filterColour):
+						pixels[i, j] = (255, 255, 255, 255)
+					else:
+						pixels[i, j] = (0, 0, 0, 255)
+	else:
+		converted = image.convert('L').point(threshold, mode='1')
+	return converted.convert("RGBA")

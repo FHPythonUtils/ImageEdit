@@ -7,7 +7,7 @@ Make Images for PWAs
 import os, sys, inspect
 THISDIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
-import imageEdit, imageTrace
+import imageEdit, imageTrace, imageTracerJs
 
 if __name__ == "__main__": # pragma: no cover
 
@@ -68,4 +68,7 @@ if __name__ == "__main__": # pragma: no cover
 		smallSquare = imageEdit.resizeImageSquare(squareImage, 180)
 		imageEdit.saveImage(pwaDir + "/square-180.png", smallSquare)
 
-		open(pwaDir + "/safari.svg", "w").write(imageTrace.imageToSVG(smallSquare, True))
+		logoBW = imageEdit.convertBlackAndWhite(squareImage, "foreground")
+		imageEdit.saveImage(pwaDir + "/logo-bw.png", logoBW)
+		# open(pwaDir + "/safariOld.svg", "w").write(imageTrace.imageToSVG(logoBW, True))
+		open(pwaDir + "/safari.svg", "w").write(imageTracerJs.trace(pwaDir + "/logo-bw.png", True))
