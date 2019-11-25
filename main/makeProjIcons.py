@@ -25,6 +25,17 @@ if __name__ == "__main__": # pragma: no cover
 
 		# Proj-icon does not want to be a mask
 		if (imageEdit.getImageDesc(squareImage) == "mask"):
+			textName = fileName.split('.')[0]
+			imageEdit.saveImage(outputDir + "/name.png",
+				imageEdit.addDropShadowSimple(
+					imageEdit.roundCornersAntiAlias(
+						imageEdit.resizeImage(
+							imageEdit.addText(squareImage, textName),
+						0.5),
+					64),
+				[-10, 10])
+			)
+
 			squareImage = imageEdit.removeImagePadding(squareImage, 64)
 
 		roundImage = imageEdit.roundCornersAntiAlias(squareImage, 256)

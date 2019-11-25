@@ -247,3 +247,30 @@ def test_getImageDesc_mask():
 
 def test_getImageDesc_null():
 	assert(isinstance(imageEdit.getImageDesc(imageEdit.resizeImageSquare(IMAGE, 256)), type(None)))
+
+
+def test_convertBlackAndWhite_background():
+	imageEdit.saveImage(OUTPUT+ "/test_convertBlackAndWhite_background.png", imageEdit.convertBlackAndWhite(IMAGE, "background"))
+
+def test_convertBlackAndWhite_foreground():
+	imageEdit.saveImage(OUTPUT+ "/test_convertBlackAndWhite_foreground.png", imageEdit.convertBlackAndWhite(IMAGE, "foreground"))
+
+def test_convertBlackAndWhite_filterLighter():
+	imageEdit.saveImage(OUTPUT+ "/test_convertBlackAndWhite_filter-lighter.png", imageEdit.convertBlackAndWhite(IMAGE, "filter-lighter"))
+
+def test_convertBlackAndWhite_filterDarker():
+	imageEdit.saveImage(OUTPUT+ "/test_convertBlackAndWhite_filter-darker.png", imageEdit.convertBlackAndWhite(IMAGE, "filter-darker"))
+
+def test_convertBlackAndWhite_edges():
+	imageEdit.saveImage(OUTPUT+ "/test_convertBlackAndWhite_edges.png", imageEdit.convertBlackAndWhite(IMAGE, "edges"))
+
+
+def test_addText_under16():
+	imageEdit.saveImage(OUTPUT+ "/test_addText_under16.png", imageEdit.addText(IMAGE, "01234"))
+
+def test_addText_16():
+	imageEdit.saveImage(OUTPUT+ "/test_addText_16.png", imageEdit.addText(IMAGE, "012345689ABCDEF"))
+
+
+def test_addText_over16():
+	imageEdit.saveImage(OUTPUT+ "/test_addText_over16.png", imageEdit.addText(IMAGE, "012345689ABCDEFG"))

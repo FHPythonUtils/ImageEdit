@@ -14,7 +14,7 @@
 # Python.ImageRound
 
 
-<img src="readme-assets/icons/proj-icon.png" alt="Project Icon" width="100">
+<img src="readme-assets/icons/name.png" alt="Project Icon" width="750">
 
 No longer just rounds the corners of an image. Create various icon masks and
 shading effects with the imageEdit library. Three example files: round.py,

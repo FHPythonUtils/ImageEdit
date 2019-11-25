@@ -3,7 +3,7 @@ Requires imagetracer.html and imagetracer.js along with the modules below
 """
 import asyncio
 from pyppeteer import launch
-import os, sys, inspect
+import os, inspect
 THISDIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
 async def doTrace(filename, mode="default"):

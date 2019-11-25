@@ -4,10 +4,12 @@ Author FredHappyface 20190930
 Lib containing various image editing operations
 '''
 
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 import glob
 import re
-import os
+import os, inspect
+THISDIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+
 
 FILE_EXTS = ["png", "jpg"]
 
@@ -288,34 +290,37 @@ def convertBlackAndWhite(image, mode="filter-darker"):
 	Args:
 		image (PIL.Image.Image): A PIL Image to act on
 		mode (str, optional): Any of ["filter-darker", "filter-lighter",
-		"background", "foreground"] Specify the mode for the function to use.
+		"background", "foreground", "edges"] Specify the mode for the function to use.
 		filter-darker and lighter respectively make pixels darker than the
 		average black and pixels that are lighter than the average black.
 		background sets the most dominant colour to white and foreground sets
-		the second most dominant color to black. Defaults to "filter-darker".
+		the second most dominant color to black. edges finds the edges and sets
+		them to black. non edges are white. Defaults to "filter-darker".
 
 	Returns:
 		PIL.Image.Image: The black and white image
 	"""
 	if (mode == "background" or mode == "foreground"):
-		rgbaImage = image.convert('RGBA')
-		colors = rgbaImage.getcolors()
+		return doConvertBlackAndWhiteBGFG(image, mode)
+	if (mode == "filter-darker" or mode == "filter-lighter"):
+		return doConvertBlackAndWhiteFilter(image, mode)
+	if (mode == "edges"):
+		return doConvertBlackAndWhiteFilter(image.convert("RGB").filter(ImageFilter.FIND_EDGES), "filter-lighter")
 
-		def getKey(item):
-			return item[0]
+def doConvertBlackAndWhiteFilter(image, mode):
+	"""Low level
+	Convert an image to black and white based on a filter: filter-darker and
+	lighter respectively make pixels darker than the average black and pixels
+	that are lighter than the average black.
 
-		def cmpTup(tupleA, tupleB):
-			for index in range(len(tupleA)):
-				if (tupleA[index] > tupleB[index] + 10 or tupleA[index] < tupleB[index] - 10):
-					return False
-			return True
+	Args:
+		image (PIL.Image.Image): A PIL Image to act on
+		mode (str): filter-darker and lighter respectively make pixels darker
+		than the average black and pixels that are lighter than the average black.
 
-
-		if (mode == "background"):
-			filterColour = sorted(colors, key=getKey, reverse=True)[0][1]
-		if (mode == "foreground"):
-			filterColour = sorted(colors, key=getKey, reverse=True)[1][1]
-
+	Returns:
+		PIL.Image.Image: The black and white image
+	"""
 	im = image.convert('L')
 	im.thumbnail((1, 1))
 	averageColour = im.getpixel((0, 0))
@@ -325,22 +330,95 @@ def convertBlackAndWhite(image, mode="filter-darker"):
 	if (mode == "filter-lighter"):
 		threshold = lambda pixel: 0 if pixel > averageColour else 255
 
-	if (mode == "background" or mode == "foreground"):
-		converted = image.convert('RGBA')
-		pixels = converted.load()
-		for i in range(image.size[0]):
-			for j in range(image.size[1]):
-				if (mode == "background"):
-					if cmpTup(pixels[i, j], filterColour):
-						pixels[i, j] = (255, 255, 255, 255)
-					else:
-						pixels[i, j] = (0, 0, 0, 255)
-
-				else:
-					if not cmpTup(pixels[i, j], filterColour):
-						pixels[i, j] = (255, 255, 255, 255)
-					else:
-						pixels[i, j] = (0, 0, 0, 255)
-	else:
-		converted = image.convert('L').point(threshold, mode='1')
+	converted = image.convert('L').point(threshold, mode='1')
 	return converted.convert("RGBA")
+
+
+def doConvertBlackAndWhiteBGFG(image, mode):
+	"""Low level
+	Convert an image to black and white based on the foreground/ background:
+	background sets the most dominant colour to white and foreground sets the
+	second most dominant color to black.
+
+	Args:
+		image (PIL.Image.Image): A PIL Image to act on
+		mode (str): background sets the most dominant colour to white and
+		foreground sets the second most dominant color to black.
+
+	Returns:
+		PIL.Image.Image: The black and white image
+	"""
+
+
+	def cmpTup(tupleA, tupleB):
+		for index in range(len(tupleA)):
+			if (tupleA[index] > tupleB[index] + 10 or tupleA[index] < tupleB[index] - 10):
+				return False
+		return True
+
+	if (mode == "background"):
+		filterColour = getSortedColours(image)[0][1]
+	if (mode == "foreground"):
+		filterColour = getSortedColours(image)[1][1]
+
+	converted = image.convert('RGBA')
+	pixels = converted.load()
+	for i in range(image.size[0]):
+		for j in range(image.size[1]):
+			if (mode == "background"):
+				if cmpTup(pixels[i, j], filterColour):
+					pixels[i, j] = (255, 255, 255, 255)
+				else:
+					pixels[i, j] = (0, 0, 0, 255)
+
+			else:
+				if not cmpTup(pixels[i, j], filterColour):
+					pixels[i, j] = (255, 255, 255, 255)
+				else:
+					pixels[i, j] = (0, 0, 0, 255)
+
+	return converted.convert("RGBA")
+
+
+def getSortedColours(image):
+	"""Get the list of colours in an image sorted by 'popularity'
+
+	Args:
+		image (PIL.Image.Image): Image to get colours from
+
+	Returns:
+		(colour_count, colour)[]: list of tuples in the form pixel_count, colour
+	"""
+	rgbaImage = image.convert('RGBA')
+	colors = rgbaImage.getcolors()
+
+	def getKey(item):
+		return item[0]
+
+	return sorted(colors, key=getKey, reverse=True)
+
+
+def addText(image, text):
+	"""Add text to an image such that the resultant image is in the form
+	[img]|text. The text is in fira code and has a maximum length of 16 chars
+	(text longer than this is truncated with "...")
+
+	Args:
+		image (PIL.Image.Image): A PIL Image to add text to
+		text (str): A string containing text to add to the image
+
+	Returns:
+		PIL.Image.Image: Image with text
+	"""
+	if len(text) > 15:
+		text = text[:13] + ".."
+	width, height = image.size
+	font = ImageFont.truetype(THISDIR + "/FiraCode-Light.ttf", int(height/2 * 0.8))
+	colours = getSortedColours(image)
+	backgroundColour = colours[0][1]
+	foregroundColour = colours[1][1]
+	background = Image.new("RGBA", (width * 5, height), backgroundColour)
+	imageText = ImageDraw.Draw(background)
+	imageText.text((int(width * 0.9), int(height/4)), "|"+text, font=font, fill=foregroundColour)
+	background.paste(image.convert("RGBA"), (0, 0), image.convert("RGBA"))
+	return background
