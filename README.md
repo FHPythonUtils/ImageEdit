@@ -16,13 +16,13 @@
 
 <img src="readme-assets/icons/name.png" alt="Project Icon" width="750">
 
-No longer just rounds the corners of an image. Create various icon masks and
-shading effects with the imageEdit library. Three example files: round.py,
-makeProjIcons.py and makePWAImages.py. Now includes a tracing component. Now you can
-make all of the SVGs! (Note capped to 180x180px to prevent hanging on test
-machine. And note that it will take 1-2 mins per trace at that resolution).
-Includes a second tracing component using js that is much faster. Takes a few
-seconds and has no cap.
+No longer just rounds the corners of an image. Create various icon masks 
+and shading effects with the imageEdit library. Three example files: round.py, 
+makeProjIcons.py and makePWAImages.py. Includes two tracing components: 
+imageTrace.py and imageTracerJs.py. imageTracerJs.py uses JS and is much faster. 
+Takes a few seconds and has no cap. (imageTrace.py is capped to 180x180px to 
+prevent hanging on test machine. And note that it will take 1-2 mins per trace 
+at that resolution)
 
 ## Comparison to similar solutions
 
