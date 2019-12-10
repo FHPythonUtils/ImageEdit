@@ -278,10 +278,12 @@ def getImageDesc(image):
 	Returns:
 		string|none: description of image
 	"""
+	desc = "unknown"
 	if (image.width == 640 and image.height == 640):
-		return "mask"
+		desc = "mask"
 	elif (image.width == 512 and image.height == 512):
-		return "icon"
+		desc = "icon"
+	return desc
 
 def convertBlackAndWhite(image, mode="filter-darker"):
 	"""Convert a PIL Image to black and white from a colour image. Some
@@ -300,9 +302,9 @@ def convertBlackAndWhite(image, mode="filter-darker"):
 	Returns:
 		PIL.Image.Image: The black and white image
 	"""
-	if (mode == "background" or mode == "foreground"):
+	if (mode in ["background", "foreground"]):
 		return doConvertBlackAndWhiteBGFG(image, mode)
-	if (mode == "filter-darker" or mode == "filter-lighter"):
+	if (mode in ["filter-darker", "filter-lighter"]):
 		return doConvertBlackAndWhiteFilter(image, mode)
 	if (mode == "edges"):
 		return doConvertBlackAndWhiteFilter(image.convert("RGB").filter(ImageFilter.FIND_EDGES), "filter-lighter")
@@ -348,36 +350,10 @@ def doConvertBlackAndWhiteBGFG(image, mode):
 	Returns:
 		PIL.Image.Image: The black and white image
 	"""
-
-
-	def cmpTup(tupleA, tupleB):
-		for index in range(len(tupleA)):
-			if (tupleA[index] > tupleB[index] + 10 or tupleA[index] < tupleB[index] - 10):
-				return False
-		return True
-
 	if (mode == "background"):
-		filterColour = getSortedColours(image)[0][1]
+		return findAndReplace(image, getSortedColours(image)[0][1], (255, 255, 255, 255), (0, 0, 0, 255))
 	if (mode == "foreground"):
-		filterColour = getSortedColours(image)[1][1]
-
-	converted = image.convert('RGBA')
-	pixels = converted.load()
-	for i in range(image.size[0]):
-		for j in range(image.size[1]):
-			if (mode == "background"):
-				if cmpTup(pixels[i, j], filterColour):
-					pixels[i, j] = (255, 255, 255, 255)
-				else:
-					pixels[i, j] = (0, 0, 0, 255)
-
-			else:
-				if not cmpTup(pixels[i, j], filterColour):
-					pixels[i, j] = (255, 255, 255, 255)
-				else:
-					pixels[i, j] = (0, 0, 0, 255)
-
-	return converted.convert("RGBA")
+		return findAndReplace(image, getSortedColours(image)[1][1], (0, 0, 0, 255), (255, 255, 255, 255))
 
 
 def getSortedColours(image):
@@ -422,3 +398,33 @@ def addText(image, text):
 	imageText.text((int(width * 0.9), int(height/4)), "|"+text, font=font, fill=foregroundColour)
 	background.paste(image.convert("RGBA"), (0, 0), image.convert("RGBA"))
 	return background
+
+def findAndReplace(image, find, replace, noMatch=None):
+	"""Find and replace colour in PIL Image
+
+	Args:
+		image (PIL.Image.Image): The Image
+		find ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
+		replace ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
+		noMatch ((r,g,b,a) default=None): A tuple containing values for rgba
+		from 0-255 inclusive. Optional, set pixel colour if not matched
+
+	Returns:
+		PIL.Image.Image: The result
+	"""
+	def cmpTup(tupleA, tupleB):
+		for index, _ in enumerate(tupleA):
+			if (tupleA[index] > tupleB[index] + 10 or tupleA[index] < tupleB[index] - 10):
+				return False
+		return True
+
+	converted = image.convert('RGBA')
+	pixels = converted.load()
+	for i in range(image.size[0]):
+		for j in range(image.size[1]):
+			if cmpTup(pixels[i, j], find):
+				pixels[i, j] = replace
+			elif noMatch is not None:
+				pixels[i, j] = noMatch
+
+	return converted.convert("RGBA")
