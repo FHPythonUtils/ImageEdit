@@ -8,8 +8,9 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 import glob
 import re
 import os, inspect
-THISDIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+from pathlib import Path
 
+THISDIR = str(Path(__file__).resolve().parent)
 
 FILE_EXTS = ["png", "jpg"]
 
@@ -248,10 +249,10 @@ def createDirsIfRequired(filepath):
 	Args:
 		filepath (string): full file path or file path relative to /lib
 	"""
-	tok = re.split('/|\\\\', filepath)
+	tok = re.split(os.sep, filepath)
 	checkfile = ''
 	for x in tok[:-1]:
-		checkfile += x + '\\'
+		checkfile += x + os.sep
 	os.makedirs(checkfile, exist_ok=True)
 
 
@@ -371,7 +372,10 @@ def getSortedColours(image):
 	def getKey(item):
 		return item[0]
 
-	return sorted(colors, key=getKey, reverse=True)
+	if colors is not None:
+		return sorted(colors, key=getKey, reverse=True)
+	else:
+		return [(1, (255, 255, 255, 255)), (1, (1, 1, 1, 255))]
 
 
 def addText(image, text):
