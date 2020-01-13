@@ -5,7 +5,8 @@ Make Images for PWAs
 '''
 
 import os, sys, inspect
-THISDIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+from pathlib import Path
+THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
 import imageEdit, imageTrace, imageTracerJs
 
@@ -15,9 +16,9 @@ if __name__ == "__main__": # pragma: no cover
 	images = imageEdit.openImagesInDir(THISDIR + "/input/*")
 	for imageRef in images:
 		fileName, squareImage = imageRef
-		fileNameParts = fileName.split("\\")
+		fileNameParts = fileName.split(os.sep)
 		fileName = fileNameParts[len(fileNameParts)-1]
-		print(fileName)
+		imageEdit.logPrint(fileName, "bold")
 		outputDir = THISDIR + "/output/" + fileName
 		storeDir = outputDir + "/store"
 		pwaDir = outputDir + "/pwa"
@@ -37,25 +38,26 @@ if __name__ == "__main__": # pragma: no cover
 
 		# store-windows - Size 300px
 		imageEdit.saveImage(storeDir + "/store-windows.png",
-			imageEdit.resizeImage(squareImage, 0.5859375))
+			imageEdit.resizeImageSquare(squareImage, "0.5859375x"))
 		# store-google-play - Size 512, png32
 		imageEdit.saveImage(storeDir + "/store-google-play.png", squareImage, False)
 		# store-ios - Size 180px
-		imageEdit.saveImage(storeDir + "/store-ios.png", imageEdit.resizeImage(squareImage, 0.3515625))
+		imageEdit.saveImage(storeDir + "/store-ios.png",
+		imageEdit.resizeImageSquare(squareImage, "0.3515625x"))
 
 		# store-google-play-raster - Drop shadow, radius 20% (102,51)
 		googlePlay = imageEdit.addDropShadowSimple(squircleImage, [-10, 10])
 		imageEdit.saveImage(storeDir + "/store-google-play-raster.png",
-			imageEdit.resizeImage(googlePlay, 0.5))
+			imageEdit.resizeImageSquare(googlePlay, "0.5x"))
 
 		# store-ios-raster - Radius 17.5% (90,45)
 		ios = imageEdit.roundCornersAntiAlias(squareImage, 90)
 		imageEdit.saveImage(storeDir + "/store-ios-raster.png",
-			imageEdit.resizeImage(ios, 0.5))
+			imageEdit.resizeImageSquare(ios, "0.5x"))
 
 		# store-windows-raster
 		imageEdit.saveImage(storeDir + "/store-windows-raster.png",
-			imageEdit.resizeImage(squareImage, 0.5))
+			imageEdit.resizeImageSquare(squareImage, "0.5x"))
 
 
 		'''

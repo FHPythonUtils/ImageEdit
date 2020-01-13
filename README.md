@@ -1,27 +1,26 @@
 
 <p float="left">
-<img src="https://img.shields.io/github/languages/top/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="Github top language">
-<img src="https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square" alt="Codacy grade">
-<img src="https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square" alt="Codacy coverage">
-<img src="https://img.shields.io/github/repo-size/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="Repository size">
-<img src="https://img.shields.io/github/issues/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="Issues">
-<img src="https://img.shields.io/github/license/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="License">
-<img src="https://img.shields.io/github/commit-activity/m/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="Commit activity">
-<img src="https://img.shields.io/github/last-commit/fredhappyface/Python.ImageRound.svg?style=flat-square" alt="Last commit">
+<a href="../../"><img src="https://img.shields.io/github/languages/top/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Github top language"></a>
+<a href="https://www.codacy.com/manual/FredHappyface/Python.ImageRound"><img src="https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square" alt="Codacy grade"></a>
+<a href="https://www.codacy.com/manual/FredHappyface/Python.ImageRound"><img src="https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square" alt="Codacy coverage"></a>
+<a href="../../"><img src="https://img.shields.io/github/repo-size/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Repository size"></a>
+<a href="../../issues"><img src="https://img.shields.io/github/issues/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Issues"></a>
+<a href="/LICENSE.md"><img src="https://img.shields.io/github/license/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="License"></a>
+<a href="../../commits/master"><img src="https://img.shields.io/github/commit-activity/m/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Commit activity"></a>
+<a href="../../commits/master"><img src="https://img.shields.io/github/last-commit/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Last commit"></a>
 </p>
-
 
 # Python.ImageRound
 
 
 <img src="readme-assets/icons/name.png" alt="Project Icon" width="750">
 
-No longer just rounds the corners of an image. Create various icon masks 
-and shading effects with the imageEdit library. Three example files: round.py, 
-makeProjIcons.py and makePWAImages.py. Includes two tracing components: 
-imageTrace.py and imageTracerJs.py. imageTracerJs.py uses JS and is much faster. 
-Takes a few seconds and has no cap. (imageTrace.py is capped to 180x180px to 
-prevent hanging on test machine. And note that it will take 1-2 mins per trace 
+No longer just rounds the corners of an image. Create various icon masks
+and shading effects with the imageEdit library. Three example files: round.py,
+makeProjIcons.py and makePWAImages.py. Includes two tracing components:
+imageTrace.py and imageTracerJs.py. imageTracerJs.py uses JS and is much faster.
+Takes a few seconds and has no cap. (imageTrace.py is capped to 180x180px to
+prevent hanging on test machine. And note that it will take 1-2 mins per trace
 at that resolution)
 
 ## Comparison to similar solutions
@@ -66,6 +65,28 @@ example I am using lightfox.png
 <img src="readme-assets/examples/squircle-256.png" alt="LightFox" width="52">
 
 
+## Language information
+### Built for
+This program has been written for Python 3 and has been tested with
+Python version 3.8.0 <https://www.python.org/downloads/release/python-380/>.
+
+Install with chocolatey
+```powershell
+choco install python
+```
+### Other versions
+To install Python, go to <https://www.python.org/> and download the latest
+version.
+## How to run
+1. Open the .py file in vscode
+2. Ensure a python 3.8 interpreter is selected (Ctrl+Shift+P > Python:Select Interpreter > Python 3.8)
+3. Run by pressing Ctrl+F5 (if you are prompted to install any modules, accept)
+
+
+## Changelog
+See the [CHANGELOG](/CHANGELOG.md) for more information.
+
+
 ## Download
 ### Clone
 #### Using The Command Line
@@ -93,18 +114,6 @@ More information can be found at
 1. Download this GitHub repository
 2. Extract the zip archive
 3. Copy/ move to the desired location
-
-## Language information
-### Built for
-This program has been written for Python 3 and has been tested with
-Python version 3.8.0 <https://www.python.org/downloads/release/python-380/>.
-### Other versions
-To install Python, go to <https://www.python.org/> and download the latest
-version.
-## How to run
-1. Open the .py file in vscode
-2. Ensure a python 3.8 interpreter is selected (Ctrl+Shift+P > Python:Select Interpreter > Python 3.8)
-3. Run by pressing Ctrl+F5 (if you are prompted to install any modules, accept)
 
 ## Licence
 MIT License

@@ -7,11 +7,14 @@ each test
 '''
 
 import os, sys, inspect
-THISDIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from pathlib import Path
+THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
 
 import imageEdit
 from PIL import Image
+from io import StringIO
 
 INPUT = THISDIR + "/test_lib_imageEdit/i"
 OUTPUT = THISDIR + "/test_lib_imageEdit/o"
@@ -19,12 +22,114 @@ OUTPUT = THISDIR + "/test_lib_imageEdit/o"
 IMAGE = imageEdit.openImage(INPUT + "/test.png")
 
 
+def test_logPrint_standard():
+	savedStdout = sys.stdout
+	try:
+		out = StringIO()
+		sys.stdout = out
+		imageEdit.logPrint("test", "standard")
+		output = out.getvalue().strip()
+		assert output == "test"
+	finally:
+		sys.stdout = savedStdout
+
+def test_logPrint_success():
+	savedStdout = sys.stdout
+	try:
+		out = StringIO()
+		sys.stdout = out
+		imageEdit.logPrint("test", "success")
+		output = out.getvalue().strip()
+		assert output == "[\033[92m+ Success\033[00m] test"
+	finally:
+		sys.stdout = savedStdout
+
+def test_logPrint_warning():
+	savedStdout = sys.stdout
+	try:
+		out = StringIO()
+		sys.stdout = out
+		imageEdit.logPrint("test", "warning")
+		output = out.getvalue().strip()
+		assert output == "[\033[93m/ Warning\033[00m] test"
+	finally:
+		sys.stdout = savedStdout
+
+def test_logPrint_error():
+	savedStdout = sys.stdout
+	try:
+		out = StringIO()
+		sys.stdout = out
+		imageEdit.logPrint("test", "error")
+		output = out.getvalue().strip()
+		assert output == "[\033[91m- Error\033[00m] test"
+	finally:
+		sys.stdout = savedStdout
+
+def test_logPrint_info():
+	savedStdout = sys.stdout
+	try:
+		out = StringIO()
+		sys.stdout = out
+		imageEdit.logPrint("test", "info")
+		output = out.getvalue().strip()
+		assert output == "[\033[96m* Info\033[00m] test"
+	finally:
+		sys.stdout = savedStdout
+
+def test_logPrint_bold():
+	savedStdout = sys.stdout
+	try:
+		out = StringIO()
+		sys.stdout = out
+		imageEdit.logPrint("test", "bold")
+		output = out.getvalue().strip()
+		assert output == "\033[01mtest\033[00m"
+	finally:
+		sys.stdout = savedStdout
+
+def test_reduceColours_optimised():
+	"""
+	Won't be able to see difference but will be able to .getcolors with maxcolors 256
+	"""
+	assert(not isinstance(imageEdit.reduceColours(imageEdit.openImage(INPUT + "/test_field.png"), "optimised").getcolors(maxcolors=256), type(None)))
+
+def test_reduceColours_logo():
+	"""
+	.getcolors with maxcolors 16
+	"""
+	assert(not isinstance(imageEdit.reduceColours(imageEdit.openImage(INPUT + "/test_field.png"), "logo").getcolors(maxcolors=16), type(None)))
+
+def test_cropCentre():
+	'''
+	Manual Check
+	Desired Output: A square image 256x256 pixels
+	'''
+	imageEdit.saveImage(OUTPUT+ "/test_cropCentre.png", imageEdit.cropCentre(IMAGE, 256, 256))
+
+def test_uncrop():
+	'''
+	Manual Check
+	Desired Output: An 'uncropped' image of a field
+	'''
+	imageEdit.saveImage(OUTPUT + "/test_uncrop.png", imageEdit.uncrop(imageEdit.openImage(INPUT + "/test_field.png"), 64))
+
+def test_getPixelDimens_px():
+	assert(imageEdit.getPixelDimens(IMAGE, [256]), [256])
+
+def test_getPixelDimens_scale():
+	assert(imageEdit.getPixelDimens(IMAGE, ["0.5x"]), [256])
+
+def test_getPixelDimens_percent():
+	assert(imageEdit.getPixelDimens(IMAGE, ["50%"]), [256])
+
+
 def test_roundCornersPercent_0():
 	'''
 	Manual Check
 	Desired Output: A square image 512x512 pixels
 	'''
-	imageEdit.saveImage(OUTPUT+ "/test_roundCornersPercent_0.png", imageEdit.roundCornersPercent(IMAGE, 0))
+	imageEdit.saveImage(OUTPUT+ "/test_roundCornersPercent_0.png", imageEdit.roundCorners(IMAGE, "0%"))
 
 
 def test_roundCornersPercent_50():
@@ -32,7 +137,7 @@ def test_roundCornersPercent_50():
 	Manual Check
 	Desired Output: A circular image 512x512 pixels
 	'''
-	imageEdit.saveImage(OUTPUT+ "/test_roundCornersPercent_50.png", imageEdit.roundCornersPercent(IMAGE, 50))
+	imageEdit.saveImage(OUTPUT+ "/test_roundCornersPercent_50.png", imageEdit.roundCorners(IMAGE, "50%"))
 
 
 def test_roundCorners_0():
@@ -161,15 +266,15 @@ def test_addDropShadowComplex_ShadowGreen():
 
 
 def test_resizeImageAbs_256x256():
-	assert(imageEdit.resizeImageAbs(IMAGE, 256, 256).size == (256, 256))
+	assert(imageEdit.resizeImage(IMAGE, 256, 256).size == (256, 256))
 
 
 def test_resizeImageAbs_512x256():
-	assert(imageEdit.resizeImageAbs(IMAGE, 512, 256).size == (512, 256))
+	assert(imageEdit.resizeImage(IMAGE, 512, 256).size == (512, 256))
 
 
 def test_resizeImageAbs_256x512():
-	assert(imageEdit.resizeImageAbs(IMAGE, 256, 512).size == (256, 512))
+	assert(imageEdit.resizeImage(IMAGE, 256, 512).size == (256, 512))
 
 
 def test_resizeImageSquare_1024():
@@ -181,11 +286,11 @@ def test_resizeImageSquare_256():
 
 
 def test_resizeImage_x2():
-	assert(imageEdit.resizeImage(IMAGE, 2).size == (1024, 1024))
+	assert(imageEdit.resizeImageSquare(IMAGE, "2x").size == (1024, 1024))
 
 
 def test_resizeImage_x0_5():
-	assert(imageEdit.resizeImage(IMAGE, 0.5).size == (256, 256))
+	assert(imageEdit.resizeImageSquare(IMAGE, "0.5x").size == (256, 256))
 
 
 '''
@@ -202,16 +307,22 @@ Manual Check
 Desired Output: A circular image 512x512 pixels edges look smooth
 '''
 def test_roundCornersPercentAntiAlias():
-	imageEdit.saveImage(OUTPUT+ "/test_roundCornersPercentAntiAlias.png", imageEdit.roundCornersPercentAntiAlias(IMAGE, 50))
+	imageEdit.saveImage(OUTPUT+ "/test_roundCornersPercentAntiAlias.png", imageEdit.roundCornersAntiAlias(IMAGE, "50%"))
 
 
 
 def test_openImagesInDir():
 	assert(len(imageEdit.openImagesInDir(INPUT + "/*")) == 2)
 
+def test_openImagesInDir_optimised():
+	assert(len(imageEdit.openImagesInDir(INPUT + "/*")) == 2)
+
 
 def test_openImage():
 	assert(isinstance(imageEdit.openImage(INPUT + "/test.png"), Image.Image))
+
+def test_openImage_optimised():
+	assert(isinstance(imageEdit.openImage(INPUT + "/test.png", "optimised"), Image.Image))
 
 
 def test_saveImage():
@@ -246,7 +357,7 @@ def test_getImageDesc_mask():
 
 
 def test_getImageDesc_null():
-	assert(isinstance(imageEdit.getImageDesc(imageEdit.resizeImageSquare(IMAGE, 256)), type(None)))
+	assert(imageEdit.getImageDesc(imageEdit.resizeImageSquare(IMAGE, 256)) == "unknown")
 
 
 def test_convertBlackAndWhite_background():
@@ -263,6 +374,12 @@ def test_convertBlackAndWhite_filterDarker():
 
 def test_convertBlackAndWhite_edges():
 	imageEdit.saveImage(OUTPUT+ "/test_convertBlackAndWhite_edges.png", imageEdit.convertBlackAndWhite(IMAGE, "edges"))
+
+
+def test_getSortedColours_none():
+	assert(imageEdit.getSortedColours(imageEdit.openImage(INPUT+ "/test_field.png")) == [(1, (255, 255, 255, 255)), (1, (1, 1, 1, 255))])
+
+
 
 
 def test_addText_under16():

@@ -17,14 +17,13 @@ import imageEdit
 if __name__ == "__main__": # pragma: no cover
 
 	# Image in should be 512px
-	images = imageEdit.openImagesInDir(THISDIR + "/input/*")
+	images = imageEdit.openImagesInDir(THISDIR + "/input/*", "logo")
 	for imageRef in images:
 		fileName, squareImage = imageRef
 		fileNameParts = fileName.split(os.sep)
 		fileName = fileNameParts[len(fileNameParts)-1]
-		print(fileName)
+		imageEdit.logPrint(fileName, "bold")
 		outputDir = THISDIR + "/output/" + fileName + "/proj-icon"
-		print(outputDir)
 
 		# Proj-icon does not want to be a mask
 
@@ -33,9 +32,9 @@ if __name__ == "__main__": # pragma: no cover
 			imageEdit.saveImage(outputDir + "/name.png",
 				imageEdit.addDropShadowSimple(
 					imageEdit.roundCornersAntiAlias(
-						imageEdit.resizeImage(
+						imageEdit.resizeImageSquare(
 							imageEdit.addText(squareImage, textName),
-						0.5),
+						"0.5x"),
 					64),
 				[-10, 10])
 			)
