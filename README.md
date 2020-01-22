@@ -17,11 +17,15 @@
 
 No longer just rounds the corners of an image. Create various icon masks
 and shading effects with the imageEdit library. Three example files: round.py,
-makeProjIcons.py and makePWAImages.py. Includes two tracing components:
-imageTrace.py and imageTracerJs.py. imageTracerJs.py uses JS and is much faster.
-Takes a few seconds and has no cap. (imageTrace.py is capped to 180x180px to
-prevent hanging on test machine. And note that it will take 1-2 mins per trace
-at that resolution)
+makeProjIcons.py and makePWAImages.py. Includes imageTracerJs.py.
+imageTracerJs.py uses JS and is much faster. Takes a few seconds and has no cap.
+
+## Library Files
+See the [Docs](/Docs.md) for more information.
+## Example Files
+- makeProjIcons.py
+- makePWAImages.py
+- round.py
 
 ## Comparison to similar solutions
 
@@ -74,6 +78,7 @@ Install with chocolatey
 ```powershell
 choco install python
 ```
+####
 ### Other versions
 To install Python, go to <https://www.python.org/> and download the latest
 version.
@@ -97,6 +102,7 @@ See the [CHANGELOG](/CHANGELOG.md) for more information.
 ```bash
 $ git clone https://github.com/[user-name]/[repository]
 ```
+####
 
 More information can be found at
 <https://help.github.com/en/articles/cloning-a-repository>

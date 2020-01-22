@@ -1,14 +1,13 @@
 '''
 Author FredHappyface 20190918
-
 Make Images for PWAs
 '''
 
-import os, sys, inspect
+import os, sys
 from pathlib import Path
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
-import imageEdit, imageTrace, imageTracerJs
+import imageEdit, imageTracerJs
 
 if __name__ == "__main__": # pragma: no cover
 
@@ -72,5 +71,4 @@ if __name__ == "__main__": # pragma: no cover
 
 		logoBW = imageEdit.convertBlackAndWhite(squareImage, "foreground")
 		imageEdit.saveImage(pwaDir + "/logo-bw.png", logoBW)
-		# open(pwaDir + "/safariOld.svg", "w").write(imageTrace.imageToSVG(logoBW, True))
 		open(pwaDir + "/safari.svg", "w").write(imageTracerJs.trace(pwaDir + "/logo-bw.png", True))

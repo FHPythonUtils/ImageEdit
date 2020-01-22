@@ -1,10 +1,13 @@
-"""Uses pyppeteer to leverage a headless version of Chromium
+"""
+Author FredHappyface 2020
+Uses pyppeteer to leverage a headless version of Chromium
 Requires imagetracer.html and imagetracer.js along with the modules below
 """
 import asyncio
 from pyppeteer import launch
-import os, inspect
-THISDIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+from pathlib import Path
+
+THISDIR = str(Path(__file__).resolve().parent)
 
 async def doTrace(filename, mode="default"):
 	"""Main method to call web code
@@ -31,7 +34,7 @@ def trace(filename, blackAndWhite=False, mode="default"):
 		for more information. Defaults to "default".
 
 	Returns:
-		[type]: [description]
+		str: SVG string
 	"""
 	if (mode.find('black') >= 0 or blackAndWhite):
 		mode = 'posterized1'

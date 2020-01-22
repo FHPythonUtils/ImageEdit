@@ -1,14 +1,10 @@
 '''
-Author FredHappyface 20190930
-
+Author FredHappyface 2020
 Lib containing various image editing operations
 '''
-
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 import glob
-import re
 import os
-import inspect
 from pathlib import Path
 
 THISDIR = str(Path(__file__).resolve().parent)
@@ -16,7 +12,7 @@ FILE_EXTS = ["png", "jpg"]
 
 
 def logPrint(printText, printType="standard"):
-	"""Print in the style of metasploit ("[*] infomation"). printType
+	"""Print in the style of Metasploit ("[* Info]"). printType
 	"standard", "success", "warning", "error", "info"
 
 	Args:
@@ -38,7 +34,7 @@ def reduceColours(image, mode="optimised"):
 		"optimised".
 
 	Returns:
-		PIL.Image.Image: A PIl Image
+		PIL.Image.Image: A PIL Image
 	"""
 	modes = {"logo": 16, "optimised": 256}
 	return image.quantize(colors=modes[mode.lower()], method=2, kmeans=1, dither=None)
@@ -100,8 +96,9 @@ def getPixelDimens(image, dimens):
 	Args:
 		image (PIL.Image.Image): Input image
 		dimens ([int|str]): One of pixel, percent, scale
+
 	Returns:
-		[int]: outDimens in pixels
+		int: outDimens in pixels
 	"""
 	outDimens = []
 	for index, dimen in enumerate(dimens):
@@ -313,7 +310,7 @@ def createDirsIfRequired(filepath):
 	Args:
 		filepath (string): full file path or file path relative to /lib
 	"""
-	tok = re.split(os.sep, filepath)
+	tok = filepath.split(os.sep)
 	checkfile = ''
 	for x in tok[:-1]:
 		checkfile += x + os.sep

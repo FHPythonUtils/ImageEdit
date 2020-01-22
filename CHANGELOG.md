@@ -2,6 +2,14 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2020.1 - 2020/01/22
+- Removed imageTrace.py as it was slow and I honestly don't see why anyone
+  would use it over imageTracerJs.py
+- Added imageGrab.py
+- Added Docs.md for library documentation
+- Updated README
+- Tidied up libraries and scripts
+
 ## Add New functions to imageEdit.py - 2020/01/13
 ```python
 logPrint(printText, printType="standard"):

@@ -1,12 +1,11 @@
 '''
 Author Kieran W 2019-05-07
-
 Round the corners of an image
-
 '''
 
-import os, sys, inspect
-THISDIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+import os, sys
+from pathlib import Path
+THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
 import argparse, imageEdit
 
