@@ -298,23 +298,11 @@ def saveImage(fileName, image, optimise=True):
 		image (PIL.Image.Image): A PIL Image
 		optimise (bool, optional): Optimise the image?. Defaults to True.
 	"""
-	createDirsIfRequired(fileName)
+	os.makedirs(Path(fileName).parent, exist_ok=True)
 	if optimise:
 		image = reduceColours(image)
 	image.save(fileName, optimize=optimise, quality=75)
 
-
-def createDirsIfRequired(filepath):
-	"""Create directories if required when writing a file
-
-	Args:
-		filepath (string): full file path or file path relative to /lib
-	"""
-	tok = filepath.split(os.sep)
-	checkfile = ''
-	for x in tok[:-1]:
-		checkfile += x + os.sep
-	os.makedirs(checkfile, exist_ok=True)
 
 
 def removeImagePadding(image, padding):

@@ -335,11 +335,6 @@ def test_saveImage():
 	assert(Optimised < NotOptimised * 0.67)
 
 
-def test_createDirsIfRequired():
-	imageEdit.createDirsIfRequired(OUTPUT + "/newdir/test_createDirsIfRequired")
-	assert(os.path.isdir(OUTPUT + "/newdir"))
-
-
 def test_removeImagePadding_0():
 	assert(imageEdit.removeImagePadding(IMAGE, 0).size == (512, 512))
 

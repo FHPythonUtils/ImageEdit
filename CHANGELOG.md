@@ -2,6 +2,10 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2020.2 - 2020/01/27
+- Removed function **createDirsIfRequired** from imageEdit.py and replaced with
+  a one-liner that does the same thing
+
 ## 2020.1 - 2020/01/22
 - Removed imageTrace.py as it was slow and I honestly don't see why anyone
   would use it over imageTracerJs.py
