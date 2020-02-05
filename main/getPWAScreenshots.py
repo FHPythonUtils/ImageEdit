@@ -22,12 +22,13 @@ if __name__ == "__main__": # pragma: no cover
 		"PWA.BlackC4t/": ["2kotp.html", "index.html", "password.html", "public.html"],
 		"PWA.Brainf/": ["index.html"],
 		"PWA.HappyShibe/": ["index.html"],
+		"PWA.PasswordGen/": ["index.html", "advanced.html"],
 	}
 
 	scripts = [
-	"document.getElementById('theme').innerHTML = '<link rel=\"stylesheet\" href=\"https://fredhappyface.github.io/css/theme/light.css\" id=\"theme\">'",
-	"document.getElementById('theme').innerHTML = '<link rel=\"stylesheet\" href=\"https://fredhappyface.github.io/css/theme/dark.css\" id=\"theme\">'",
-	"document.getElementById('theme').innerHTML = '<link rel=\"stylesheet\" href=\"https://fredhappyface.github.io/css/theme/black.css\" id=\"theme\">'",
+		"const rootStylesAuto = document.styleSheets[0].cssRules[0].style; const darkStylesAuto = document.styleSheets[0].cssRules[1].cssRules[0].style; rootStylesAuto.setProperty(\"--var-c-primary\", \"#FAFAFA\"); rootStylesAuto.setProperty(\"--var-c-secondary\", \"#EAEAEB\"); rootStylesAuto.setProperty(\"--var-c-text\", \"#383A42\"); darkStylesAuto.setProperty(\"--var-c-primary\", \"#FAFAFA\"); darkStylesAuto.setProperty(\"--var-c-secondary\", \"#EAEAEB\"); darkStylesAuto.setProperty(\"--var-c-text\", \"#383A42\"); rootStylesAuto.setProperty(\"--var-c-black\", \"0\")",
+		"const rootStylesAuto = document.styleSheets[0].cssRules[0].style; const darkStylesAuto = document.styleSheets[0].cssRules[1].cssRules[0].style; rootStylesAuto.setProperty(\"--var-c-primary\", \"#181A1F\"); rootStylesAuto.setProperty(\"--var-c-secondary\", \"#282C34\"); rootStylesAuto.setProperty(\"--var-c-text\", \"#ABB2BF\"); darkStylesAuto.setProperty(\"--var-c-primary\", \"#181A1F\"); darkStylesAuto.setProperty(\"--var-c-secondary\", \"#282C34\"); darkStylesAuto.setProperty(\"--var-c-text\", \"#ABB2BF\"); rootStylesAuto.setProperty(\"--var-c-black\", \"0\")",
+		"const rootStylesAuto = document.styleSheets[0].cssRules[0].style; const darkStylesAuto = document.styleSheets[0].cssRules[1].cssRules[0].style; rootStylesAuto.setProperty(\"--var-c-primary\", \"#000000\"); rootStylesAuto.setProperty(\"--var-c-secondary\", \"#000000\"); rootStylesAuto.setProperty(\"--var-c-text\", \"#ABB2BF\"); darkStylesAuto.setProperty(\"--var-c-primary\", \"#181A1F\"); darkStylesAuto.setProperty(\"--var-c-secondary\", \"#282C34\"); darkStylesAuto.setProperty(\"--var-c-text\", \"#ABB2BF\"); rootStylesAuto.setProperty(\"--var-c-black\", \"1\")"
 	]
 
 

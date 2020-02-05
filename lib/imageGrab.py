@@ -33,5 +33,8 @@ def grabWebpage(url, resolution=(800, 600), evalJs=None):
 	"""
 	asyncio.get_event_loop().run_until_complete(doGrabWebpage(url, resolution, evalJs))
 	image = Image.open("temp.png")
-	remove("temp.png")
+	try:
+		remove("temp.png")
+	except:
+		print("[\033[93m/ Warning\033[00m] {}".format("Unable to clean up, manually remove temp.png from project root or ignore"))
 	return image
