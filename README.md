@@ -1,4 +1,3 @@
-
 <p float="left">
 <a href="../../"><img src="https://img.shields.io/github/languages/top/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Github top language"></a>
 <a href="https://www.codacy.com/manual/FredHappyface/Python.ImageRound"><img src="https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square" alt="Codacy grade"></a>
@@ -8,6 +7,7 @@
 <a href="/LICENSE.md"><img src="https://img.shields.io/github/license/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="License"></a>
 <a href="../../commits/master"><img src="https://img.shields.io/github/commit-activity/m/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Commit activity"></a>
 <a href="../../commits/master"><img src="https://img.shields.io/github/last-commit/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Last commit"></a>
+<a href="https://app.fossa.io/projects/git%2Bgithub.com%2FFredHappyface%2FPython.ImageRound?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2FFredHappyface%2FPython.ImageRound.svg?type=shield"/></a>
 </p>
 
 # Python.ImageRound
@@ -126,6 +126,9 @@ MIT License
 Copyright (c) fredhappyface
 (See the [LICENSE](/LICENSE.md) for more information.)
 
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FFredHappyface%2FPython.ImageRound.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FFredHappyface%2FPython.ImageRound?ref=badge_large)
 
 ## Screenshots
 
