@@ -1,17 +1,13 @@
-
-<p float="left">
-<a href="../../"><img src="https://img.shields.io/github/languages/top/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Github top language"></a>
-<a href="https://www.codacy.com/manual/FredHappyface/Python.ImageRound"><img src="https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square" alt="Codacy grade"></a>
-<a href="https://www.codacy.com/manual/FredHappyface/Python.ImageRound"><img src="https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square" alt="Codacy coverage"></a>
-<a href="../../"><img src="https://img.shields.io/github/repo-size/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Repository size"></a>
-<a href="../../issues"><img src="https://img.shields.io/github/issues/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Issues"></a>
-<a href="/LICENSE.md"><img src="https://img.shields.io/github/license/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="License"></a>
-<a href="../../commits/master"><img src="https://img.shields.io/github/commit-activity/m/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Commit activity"></a>
-<a href="../../commits/master"><img src="https://img.shields.io/github/last-commit/FredHappyface/Python.ImageRound.svg?style=flat-square" alt="Last commit"></a>
-</p>
+[![Github top language](https://img.shields.io/github/languages/top/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../)
+[![Codacy grade](https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square)](https://www.codacy.com/manual/FredHappyface/Python.ImageRound)
+[![Codacy coverage](https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square)](https://www.codacy.com/manual/FredHappyface/Python.ImageRound)
+[![Repository size](https://img.shields.io/github/repo-size/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../)
+[![Issues](https://img.shields.io/github/issues/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../issues)
+[![License](https://img.shields.io/github/license/FredHappyface/Python.ImageRound.svg?style=flat-square)](/LICENSE.md)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../commits/master)
+[![Last commit](https://img.shields.io/github/last-commit/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../commits/master)
 
 # Python.ImageRound
-
 
 <img src="readme-assets/icons/name.png" alt="Project Icon" width="750">
 
@@ -62,12 +58,13 @@ example I am using lightfox.png
 
 2. Run ```makePWAImages.py``` and navigate to main/output/lightfox.png/pwa
 
+<div>
 <img src="readme-assets/examples/mask.png" alt="LightFox" width="128">
 <img src="readme-assets/examples/round-192.png" alt="LightFox" width="38">
 <img src="readme-assets/examples/round-512.png" alt="LightFox" width="102">
 <img src="readme-assets/examples/square-180.png" alt="LightFox" width="36">
 <img src="readme-assets/examples/squircle-256.png" alt="LightFox" width="52">
-
+</div>
 
 ## Language information
 ### Built for
@@ -130,7 +127,7 @@ Copyright (c) fredhappyface
 ## Screenshots
 
 ### Desktop
-<div align="center">
+<div>
 <img src="readme-assets/screenshots/desktop/screenshot-0.png" alt="Screenshot 1" width="600">
 <img src="readme-assets/screenshots/desktop/screenshot-1.png" alt="Screenshot 2" width="600">
 <img src="readme-assets/screenshots/desktop/screenshot-2.png" alt="Screenshot 3" width="600">
