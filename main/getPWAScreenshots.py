@@ -33,6 +33,7 @@ if __name__ == "__main__": # pragma: no cover
 
 
 	for project in projects:
+		imageEdit.logPrint(project, "info")
 		pages = projects[project]
 		for index, script in enumerate(scripts):
 			imageEdit.saveImage(outputDir+project+"themes/theme-"+str(index)+".png", imageEdit.resizeImage(imageGrab.grabWebpage(baseUrl+project+pages[0], (375, 667), evalJs=script), "2x", "2x"))
