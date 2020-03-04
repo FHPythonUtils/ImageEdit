@@ -1,11 +1,11 @@
-[![Github top language](https://img.shields.io/github/languages/top/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../)
-[![Codacy grade](https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square)](https://www.codacy.com/manual/FredHappyface/Python.ImageRound)
-[![Codacy coverage](https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=flat-square)](https://www.codacy.com/manual/FredHappyface/Python.ImageRound)
-[![Repository size](https://img.shields.io/github/repo-size/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../)
-[![Issues](https://img.shields.io/github/issues/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../issues)
-[![License](https://img.shields.io/github/license/FredHappyface/Python.ImageRound.svg?style=flat-square)](/LICENSE.md)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../commits/master)
-[![Last commit](https://img.shields.io/github/last-commit/FredHappyface/Python.ImageRound.svg?style=flat-square)](../../commits/master)
+[![Github top language](https://img.shields.io/github/languages/top/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../)
+[![Codacy grade](https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/manual/FredHappyface/Python.ImageRound)
+[![Codacy coverage](https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/manual/FredHappyface/Python.ImageRound)
+[![Repository size](https://img.shields.io/github/repo-size/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../)
+[![Issues](https://img.shields.io/github/issues/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../issues)
+[![License](https://img.shields.io/github/license/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](/LICENSE.md)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../commits/master)
+[![Last commit](https://img.shields.io/github/last-commit/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../commits/master)
 
 # Python.ImageRound
 
@@ -71,19 +71,30 @@ example I am using lightfox.png
 This program has been written for Python 3 and has been tested with
 Python version 3.8.0 <https://www.python.org/downloads/release/python-380/>.
 
-Install with chocolatey
+## Install Python on Windows
+### Chocolatey
 ```powershell
 choco install python
 ```
-####
-### Other versions
+### Download
 To install Python, go to <https://www.python.org/> and download the latest
 version.
+
+## Install Python on Linux
+### Apt
+```bash
+sudo apt install python3.8
+```
+
 ## How to run
+### With VSCode
 1. Open the .py file in vscode
 2. Ensure a python 3.8 interpreter is selected (Ctrl+Shift+P > Python:Select Interpreter > Python 3.8)
 3. Run by pressing Ctrl+F5 (if you are prompted to install any modules, accept)
-
+### From the Terminal
+```bash
+./[file].py
+```
 
 ## Changelog
 See the [CHANGELOG](/CHANGELOG.md) for more information.
