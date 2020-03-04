@@ -89,7 +89,8 @@ sudo apt install python3.8
 ## How to run
 ### With VSCode
 1. Open the .py file in vscode
-2. Ensure a python 3.8 interpreter is selected (Ctrl+Shift+P > Python:Select Interpreter > Python 3.8)
+2. Ensure a python 3.8 interpreter is selected (Ctrl+Shift+P > Python:Select
+Interpreter > Python 3.8)
 3. Run by pressing Ctrl+F5 (if you are prompted to install any modules, accept)
 ### From the Terminal
 ```bash
@@ -98,7 +99,6 @@ sudo apt install python3.8
 
 ## Changelog
 See the [CHANGELOG](/CHANGELOG.md) for more information.
-
 
 ## Download
 ### Clone
@@ -133,7 +133,6 @@ More information can be found at
 MIT License
 Copyright (c) fredhappyface
 (See the [LICENSE](/LICENSE.md) for more information.)
-
 
 ## Screenshots
 

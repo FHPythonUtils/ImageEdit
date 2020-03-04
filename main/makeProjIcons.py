@@ -7,7 +7,8 @@ fancy using images in a similar style to those used in the google play store.
 Other commented alternatives are, square, squircle (no shadow) and circle
 '''
 
-import os, sys
+import sys
+import os
 from pathlib import Path
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")

@@ -6,15 +6,14 @@ validation. Look at each test for a brief description of the deired outcome for
 each test
 '''
 
-import os, sys, inspect
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+import sys
+import os
 from pathlib import Path
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
-
-import imageEdit
-from PIL import Image
 from io import StringIO
+from PIL import Image
+import imageEdit
 
 INPUT = THISDIR + "/test_lib_imageEdit/i"
 OUTPUT = THISDIR + "/test_lib_imageEdit/o"

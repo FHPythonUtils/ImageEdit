@@ -5,8 +5,8 @@ Uses pyppeteer to leverage a headless version of Chromium
 """
 import asyncio
 from os import remove
-from pyppeteer import launch
 from pathlib import Path
+from pyppeteer import launch
 from PIL import Image
 
 THISDIR = str(Path(__file__).resolve().parent)
@@ -35,6 +35,7 @@ def grabWebpage(url, resolution=(800, 600), evalJs=None):
 	image = Image.open("temp.png")
 	try:
 		remove("temp.png")
-	except:
-		print("[\033[93m/ Warning\033[00m] {}".format("Unable to clean up, manually remove temp.png from project root or ignore"))
+	except Exception:
+		print("[\033[93m/ Warning\033[00m] Unable to clean up, manually " +
+			"remove temp.png from project root or ignore")
 	return image

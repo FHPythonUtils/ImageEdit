@@ -4,8 +4,8 @@ Uses pyppeteer to leverage a headless version of Chromium
 Requires imagetracer.html and imagetracer.js along with the modules below
 """
 import asyncio
-from pyppeteer import launch
 from pathlib import Path
+from pyppeteer import launch
 
 THISDIR = str(Path(__file__).resolve().parent)
 
@@ -15,7 +15,9 @@ async def doTrace(filename, mode="default"):
 	browser = await launch(options={'args': ['--no-sandbox', '--disable-web-security']})
 	page = await browser.newPage()
 	await page.goto('file:///'+THISDIR+'/imagetracer.html')
-	await page.evaluate("ImageTracer.imageToSVG('file:///"+filename+"',function(svgstr){ ImageTracer.appendSVGString( svgstr, 'svg-container' ); },'"+mode+"');")
+	await page.evaluate("ImageTracer.imageToSVG('file:///" + filename +
+		"',function(svgstr){ ImageTracer.appendSVGString( svgstr, 'svg-container' ); },'"
+		+ mode + "');")
 	element = await page.querySelector('div')
 	svg = await page.evaluate('(element) => element.innerHTML', element)
 

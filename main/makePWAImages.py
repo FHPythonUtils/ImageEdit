@@ -2,12 +2,13 @@
 Author FredHappyface 20190918
 Make Images for PWAs
 '''
-
-import os, sys
+import sys
+import os
 from pathlib import Path
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
-import imageEdit, imageTracerJs
+import imageTracerJs
+import imageEdit
 
 if __name__ == "__main__": # pragma: no cover
 

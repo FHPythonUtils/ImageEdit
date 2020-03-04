@@ -6,11 +6,13 @@ Grab some screenshots for my pwas - obviously, you can set these to your own
 urls and set your own scripts
 '''
 
-import os, sys
+import sys
+import os
 from pathlib import Path
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
-import imageGrab, imageEdit
+import imageGrab
+import imageEdit
 
 if __name__ == "__main__": # pragma: no cover
 

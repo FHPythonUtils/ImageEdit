@@ -2,10 +2,10 @@
 Author FredHappyface 2020
 Lib containing various image editing operations
 '''
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
 import glob
 import os
 from pathlib import Path
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 THISDIR = str(Path(__file__).resolve().parent)
 FILE_EXTS = ["png", "jpg"]

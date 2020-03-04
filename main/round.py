@@ -3,11 +3,13 @@ Author Kieran W 2019-05-07
 Round the corners of an image
 '''
 
-import os, sys
+import sys
+import os
 from pathlib import Path
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
-import argparse, imageEdit
+import argparse
+import imageEdit
 
 if __name__ == "__main__": # pragma: no cover
 	# Command line arguments. Author Kieran
