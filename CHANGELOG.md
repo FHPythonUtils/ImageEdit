@@ -2,6 +2,9 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2020.3 - 2020/03/16
+- Release to pypi.org. Rename library files
+
 ## 2020.2 - 2020/01/27
 - Removed function **createDirsIfRequired** from imageEdit.py and replaced with
   a one-liner that does the same thing

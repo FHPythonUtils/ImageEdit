@@ -6,22 +6,26 @@
 [![License](https://img.shields.io/github/license/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](/LICENSE.md)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../commits/master)
 [![Last commit](https://img.shields.io/github/last-commit/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../commits/master)
+[![PyPI](https://img.shields.io/pypi/dm/imageedit.svg?style=for-the-badge)](https://pypi.org/project/imageedit/)
 
-# Python.ImageRound
+# Python.ImageEdit
 
 <img src="readme-assets/icons/name.png" alt="Project Icon" width="750">
 
-No longer just rounds the corners of an image. Create various icon masks
-and shading effects with the imageEdit library. Three example files: round.py,
-makeProjIcons.py and makePWAImages.py. Includes imageTracerJs.py.
-imageTracerJs.py uses JS and is much faster. Takes a few seconds and has no cap.
+[**Now available on pypi.org!**](https://pypi.org/project/imageedit/)
+
+Create various icon masks and shading effects with the imageedit library.
+Four example files: round.py, makeProjIcons.py, makePWAImages.py and
+getPWAScreenshots.py. Includes imagetracer.py. imagetracer.py uses JS and is
+much faster than previous implementations. Takes a few seconds and has no cap.
 
 ## Library Files
 See the [Docs](/Docs.md) for more information.
 ## Example Files
+- round.py
 - makeProjIcons.py
 - makePWAImages.py
-- round.py
+- getPWAScreenshots.py
 
 ## Comparison to similar solutions
 
@@ -65,6 +69,16 @@ example I am using lightfox.png
 <img src="readme-assets/examples/square-180.png" alt="LightFox" width="36">
 <img src="readme-assets/examples/squircle-256.png" alt="LightFox" width="52">
 </div>
+
+## Install With PIP
+
+```python
+pip install imageedit
+```
+
+Head to https://pypi.org/project/imageedit/ for more info
+
+See python files under main for example usage
 
 ## Language information
 ### Built for

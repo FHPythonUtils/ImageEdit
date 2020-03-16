@@ -10,9 +10,9 @@ import sys
 import os
 from pathlib import Path
 THISDIR = str(Path(__file__).resolve().parent)
-sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
-import imageGrab
-import imageEdit
+sys.path.insert(0, os.path.dirname(THISDIR))
+from imageedit import imagegrab
+from imageedit import imageedit
 
 if __name__ == "__main__": # pragma: no cover
 
@@ -35,10 +35,10 @@ if __name__ == "__main__": # pragma: no cover
 
 
 	for project in projects:
-		imageEdit.logPrint(project, "info")
+		imageedit.logPrint(project, "info")
 		pages = projects[project]
 		for index, script in enumerate(scripts):
-			imageEdit.saveImage(outputDir+project+"themes/theme-"+str(index)+".png", imageEdit.resizeImage(imageGrab.grabWebpage(baseUrl+project+pages[0], (375, 667), evalJs=script), "2x", "2x"))
+			imageedit.saveImage(outputDir+project+"themes/theme-"+str(index)+".png", imageedit.resizeImage(imagegrab.grabWebpage(baseUrl+project+pages[0], (375, 667), evalJs=script), "2x", "2x"))
 		for index, page in enumerate(pages):
-			imageEdit.saveImage(outputDir+project+"mobile/screenshot-"+str(index)+".png", imageEdit.resizeImage(imageGrab.grabWebpage(baseUrl+project+page, (375, 667), evalJs=scripts[0]), "2x", "2x"))
-			imageEdit.saveImage(outputDir+project+"desktop/screenshot-"+str(index)+".png", imageGrab.grabWebpage(baseUrl+project+page, (1920, 1080), evalJs=scripts[0]))
+			imageedit.saveImage(outputDir+project+"mobile/screenshot-"+str(index)+".png", imageedit.resizeImage(imagegrab.grabWebpage(baseUrl+project+page, (375, 667), evalJs=scripts[0]), "2x", "2x"))
+			imageedit.saveImage(outputDir+project+"desktop/screenshot-"+str(index)+".png", imagegrab.grabWebpage(baseUrl+project+page, (1920, 1080), evalJs=scripts[0]))

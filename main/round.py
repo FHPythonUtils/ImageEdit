@@ -9,7 +9,7 @@ from pathlib import Path
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR) + "/lib")
 import argparse
-import imageEdit
+from imageedit import imageedit
 
 if __name__ == "__main__": # pragma: no cover
 	# Command line arguments. Author Kieran
@@ -29,7 +29,7 @@ if __name__ == "__main__": # pragma: no cover
 
 
 	if args.batch:
-		images = imageEdit.openImagesInDir(THISDIR + "/input/*")
+		images = imageedit.openImagesInDir(THISDIR + "/input/*")
 		print(images)
 		for imageRef in images:
 			fileName, image = imageRef
@@ -37,21 +37,21 @@ if __name__ == "__main__": # pragma: no cover
 			fileName = fileNameParts[len(fileNameParts)-1]
 			print(fileName)
 			if args.radius is not None:
-				image = imageEdit.roundCorners(image, int(args.radius))
+				image = imageedit.roundCorners(image, int(args.radius))
 			else:
-				image = imageEdit.roundCorners(image, int(image.width/2))
-			imageEdit.saveImage(THISDIR + "/output/out-" + fileName, image)
+				image = imageedit.roundCorners(image, int(image.width/2))
+			imageedit.saveImage(THISDIR + "/output/out-" + fileName, image)
 
 	else:
-		im = imageEdit.openImage(THISDIR + "/" + args.image)
+		im = imageedit.openImage(THISDIR + "/" + args.image)
 		if args.radius is not None:
-			im = imageEdit.roundCorners(im, int(args.radius))
+			im = imageedit.roundCorners(im, int(args.radius))
 		else:
-			im = imageEdit.roundCorners(im, int(im.width/2))
+			im = imageedit.roundCorners(im, int(im.width/2))
 
 
 		if args.output is not None:
 			outFileName = args.output
 		else:
 			outFileName = args.image
-		imageEdit.saveImage(THISDIR + "/" + outFileName, im)
+		imageedit.saveImage(THISDIR + "/" + outFileName, im)
