@@ -6,8 +6,10 @@
 [![License](https://img.shields.io/github/license/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](/LICENSE.md)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../commits/master)
 [![Last commit](https://img.shields.io/github/last-commit/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../commits/master)
-[![PyPI](https://img.shields.io/pypi/dm/imageedit.svg?style=for-the-badge)](https://pypi.org/project/imageedit/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/imageedit.svg?style=for-the-badge)](https://pypi.org/project/imageedit/)
+[![PyPI Version](https://img.shields.io/pypi/v/imageedit.svg?style=for-the-badge)](https://pypi.org/project/imageedit/)
 
+<!-- omit in toc -->
 # Python.ImageEdit
 
 <img src="readme-assets/icons/name.png" alt="Project Icon" width="750">
@@ -18,6 +20,35 @@ Create various icon masks and shading effects with the imageedit library.
 Four example files: round.py, makeProjIcons.py, makePWAImages.py and
 getPWAScreenshots.py. Includes imagetracer.py. imagetracer.py uses JS and is
 much faster than previous implementations. Takes a few seconds and has no cap.
+
+- [Library Files](#library-files)
+- [Example Files](#example-files)
+- [Comparison to similar solutions](#comparison-to-similar-solutions)
+	- [GUI](#gui)
+	- [Web](#web)
+	- [Advantages of this solution](#advantages-of-this-solution)
+	- [Disadvantages of this solution](#disadvantages-of-this-solution)
+- [How to use out of the box (makePWAImages)](#how-to-use-out-of-the-box-makepwaimages)
+- [Install With PIP](#install-with-pip)
+- [Language information](#language-information)
+	- [Built for](#built-for)
+- [Install Python on Windows](#install-python-on-windows)
+	- [Chocolatey](#chocolatey)
+	- [Download](#download)
+- [Install Python on Linux](#install-python-on-linux)
+	- [Apt](#apt)
+- [How to run](#how-to-run)
+	- [With VSCode](#with-vscode)
+	- [From the Terminal](#from-the-terminal)
+- [Changelog](#changelog)
+- [Download](#download-1)
+	- [Clone](#clone)
+		- [Using The Command Line](#using-the-command-line)
+		- [Using GitHub Desktop](#using-github-desktop)
+	- [Download Zip File](#download-zip-file)
+- [Licence](#licence)
+- [Screenshots](#screenshots)
+	- [Desktop](#desktop)
 
 ## Library Files
 See the [Docs](/Docs.md) for more information.
