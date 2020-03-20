@@ -1,16 +1,16 @@
-[![Github top language](https://img.shields.io/github/languages/top/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../)
-[![Codacy grade](https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/manual/FredHappyface/Python.ImageRound)
-[![Codacy coverage](https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/manual/FredHappyface/Python.ImageRound)
-[![Repository size](https://img.shields.io/github/repo-size/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../)
-[![Issues](https://img.shields.io/github/issues/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../issues)
-[![License](https://img.shields.io/github/license/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](/LICENSE.md)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../commits/master)
-[![Last commit](https://img.shields.io/github/last-commit/FredHappyface/Python.ImageRound.svg?style=for-the-badge)](../../commits/master)
+[![Github top language](https://img.shields.io/github/languages/top/FHPythonUtils/ImageRound.svg?style=for-the-badge)](../../)
+[![Codacy grade](https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/manual/FHPythonUtils/ImageRound)
+[![Codacy coverage](https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/manual/FHPythonUtils/ImageRound)
+[![Repository size](https://img.shields.io/github/repo-size/FHPythonUtils/ImageRound.svg?style=for-the-badge)](../../)
+[![Issues](https://img.shields.io/github/issues/FHPythonUtils/ImageRound.svg?style=for-the-badge)](../../issues)
+[![License](https://img.shields.io/github/license/FHPythonUtils/ImageRound.svg?style=for-the-badge)](/LICENSE.md)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/FHPythonUtils/ImageRound.svg?style=for-the-badge)](../../commits/master)
+[![Last commit](https://img.shields.io/github/last-commit/FHPythonUtils/ImageRound.svg?style=for-the-badge)](../../commits/master)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/imageedit.svg?style=for-the-badge)](https://pypi.org/project/imageedit/)
 [![PyPI Version](https://img.shields.io/pypi/v/imageedit.svg?style=for-the-badge)](https://pypi.org/project/imageedit/)
 
 <!-- omit in toc -->
-# Python.ImageEdit
+# ImageEdit
 
 <img src="readme-assets/icons/name.png" alt="Project Icon" width="750">
 
