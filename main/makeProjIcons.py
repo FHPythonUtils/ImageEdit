@@ -10,46 +10,41 @@ Other commented alternatives are, square, squircle (no shadow) and circle
 import sys
 import os
 from pathlib import Path
+from metprint import Logger, LogType, FHFormatter
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR))
-from imageedit import imageedit
+from imageedit import io, transform, effects
 
 if __name__ == "__main__": # pragma: no cover
 
 	# Image in should be 512px
-	images = imageedit.openImagesInDir(THISDIR + "/input/*", "logo")
+	images = io.openImagesInDir(THISDIR + "/input/*", "logo")
 	for imageRef in images:
 		fileName, squareImage = imageRef
 		fileNameParts = fileName.split(os.sep)
-		fileName = fileNameParts[len(fileNameParts)-1]
-		imageedit.logPrint(fileName, "bold")
+		fileName = fileNameParts[len(fileNameParts) - 1]
+		Logger(FHFormatter()).logPrint(fileName, LogType.BOLD)
 		outputDir = THISDIR + "/output/" + fileName + "/proj-icon"
 
 		# Proj-icon does not want to be a mask
 
-		if (imageedit.getImageDesc(squareImage) == "mask"):
+		if (io.getImageDesc(squareImage) == "mask"):
 			textName = fileName.split('.')[0]
-			imageedit.saveImage(outputDir + "/name.png",
-				imageedit.addDropShadowSimple(
-					imageedit.roundCornersAntiAlias(
-						imageedit.resizeImageSquare(
-							imageedit.addText(squareImage, textName),
-						"0.5x"),
-					64),
-				[-10, 10])
-			)
+			io.saveImage(
+			outputDir + "/name.png",
+			effects.addDropShadowSimple(
+			effects.roundCornersAntiAlias(
+			transform.resizeSquare(effects.addText(squareImage, textName), "0.5x"), 64),
+			[-10, 10]))
 
+			squareImage = transform.removePadding(squareImage, 64)
 
-			squareImage = imageedit.removeImagePadding(squareImage, 64)
-
-
-		roundImage = imageedit.roundCornersAntiAlias(squareImage, 256)
-		squircleImage = imageedit.roundCornersAntiAlias(squareImage, 102) # Google Play Rounding
+		roundImage = effects.roundCornersAntiAlias(squareImage, 256)
+		squircleImage = effects.roundCornersAntiAlias(squareImage, 102) # Google Play Rounding
 
 		# store-google-play-raster - Drop shadow, radius 20% (102,51)
-		googlePlay = imageedit.addDropShadowSimple(squircleImage, [-10, 10])
-		imageedit.saveImage(outputDir + "/proj-icon.png", imageedit.resizeImageSquare(googlePlay, 256))
-
+		googlePlay = effects.addDropShadowSimple(squircleImage, [-10, 10])
+		io.saveImage(outputDir + "/proj-icon.png", transform.resizeSquare(googlePlay, 256))
 		'''
 		imageedit.saveImage(outputDir + "/proj-icon.png", imageedit.resizeImageSquare(squircleImage, 256))
 		imageedit.saveImage(outputDir + "/proj-icon.png", imageedit.resizeImageSquare(roundImage, 256))

@@ -5,13 +5,13 @@ Uses pyppeteer to leverage a headless version of Chromium
 """
 import asyncio
 from os import remove
-from pathlib import Path
 from pyppeteer import launch
 from PIL import Image
-
-THISDIR = str(Path(__file__).resolve().parent)
+from metprint import LogType, Logger, FHFormatter
 
 async def doGrabWebpage(url, resolution, evalJs):
+	''' Go to a URL, with a browser with a set resolution and run some js
+	then take a screenshot'''
 	browser = await launch(options={'args': ['--no-sandbox', '--disable-web-security']})
 	page = await browser.newPage()
 	await page.setViewport({"width": resolution[0], "height": resolution[1]})
@@ -27,6 +27,7 @@ def grabWebpage(url, resolution=(800, 600), evalJs=None):
 	Args:
 		url (string): The url of the webpage in question
 		resolution ((int,int)), optional): Set the page resolution
+		evalJs (string): Javascript to run on the page
 
 	Returns:
 		PIL.Image.Image: A PIL Image
@@ -35,7 +36,7 @@ def grabWebpage(url, resolution=(800, 600), evalJs=None):
 	image = Image.open("temp.png")
 	try:
 		remove("temp.png")
-	except Exception:
-		print("[\033[93m/ Warning\033[00m] Unable to clean up, manually " +
-			"remove temp.png from project root or ignore")
+	except PermissionError:
+		Logger(FHFormatter).logPrint("Unable to clean up, manually " +
+			"remove temp.png from project root or ignore", LogType.WARNING)
 	return image

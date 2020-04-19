@@ -29,6 +29,7 @@ much faster than previous implementations. Takes a few seconds and has no cap.
 	- [Advantages of this solution](#advantages-of-this-solution)
 	- [Disadvantages of this solution](#disadvantages-of-this-solution)
 - [How to use out of the box (makePWAImages)](#how-to-use-out-of-the-box-makepwaimages)
+- [Example usage and docs for layered images](#example-usage-and-docs-for-layered-images)
 - [Install With PIP](#install-with-pip)
 - [Language information](#language-information)
 	- [Built for](#built-for)
@@ -40,22 +41,32 @@ much faster than previous implementations. Takes a few seconds and has no cap.
 - [How to run](#how-to-run)
 	- [With VSCode](#with-vscode)
 	- [From the Terminal](#from-the-terminal)
-- [Changelog](#changelog)
 - [Download](#download-1)
 	- [Clone](#clone)
 		- [Using The Command Line](#using-the-command-line)
 		- [Using GitHub Desktop](#using-github-desktop)
 	- [Download Zip File](#download-zip-file)
-- [Licence](#licence)
+- [Community Files](#community-files)
+	- [Licence](#licence)
+	- [Changelog](#changelog)
+	- [Code of Conduct](#code-of-conduct)
+	- [Contributing](#contributing)
+	- [Security](#security)
 - [Screenshots](#screenshots)
 	- [Desktop](#desktop)
 
 ## Library Files
+Generate docs with
+```bash
+pydocmd simple imageedit.effects++ imageedit.imagegrab++ imageedit.imagetracer++ imageedit.io++ imageedit.transform++ > Docs.md
+```
+
 See the [Docs](/Docs.md) for more information.
 ## Example Files
 - round.py
 - makeProjIcons.py
 - makePWAImages.py
+- readWriteLayered.py
 - getPWAScreenshots.py
 
 ## Comparison to similar solutions
@@ -89,7 +100,7 @@ could be changed, maskable icons are 640x640 and regular icons are 512x512
 1. Put regular 512x512 image or mask 640x640 image under main/input in this
 example I am using lightfox.png
 
-<img src="readme-assets/examples/lightfox.png" alt="LightFox" width="128">
+	<img src="readme-assets/examples/lightfox.png" alt="LightFox" width="128">
 
 2. Run ```makePWAImages.py``` and navigate to main/output/lightfox.png/pwa
 
@@ -100,6 +111,72 @@ example I am using lightfox.png
 <img src="readme-assets/examples/square-180.png" alt="LightFox" width="36">
 <img src="readme-assets/examples/squircle-256.png" alt="LightFox" width="52">
 </div>
+
+## Example usage and docs for layered images
+
+Layered images are supported but offsets are very wonky at this stage. Therefore,
+when manually adding and inserting layers, use the `addLayerRaster` and
+`insertLayerRaster` functions to add a PIL Image as a layer.
+
+```python
+class Layer:
+	""" A representation of an image layer """
+	def __init__(self, image, name, offsets, opacity, visible, dimensions):
+		self.image = image
+		self.name = name
+		self.offsets = offsets # Doesn't look to be required
+		self.opacity = opacity
+		self.visible = visible
+		self.dimensions = dimensions
+
+
+class LayeredImage:
+	""" A representation of a layered image such as an ora """
+	def __init__(self, layers, dimensions):
+		self.layers = layers
+		self.dimensions = dimensions
+
+	def addLayerRaster(self, image, name, offsets=(0, 0)):
+		""" The recommended way to add a layer """
+
+	def insertLayerRaster(self, image, name, index, offsets=(0, 0)):
+		""" The recommended way to insert a layer """
+
+	def getLayer(self, index):
+		""" Get a layer """
+
+	def addLayer(self, layer):
+		""" Add a layer """
+
+	def insertLayer(self, layer, index):
+		""" Insert a layer at a specific index """
+
+	def removeLayer(self, index):
+		""" Remove a layer at a specific index """
+
+	def getFlattenLayers(self, ignoreHidden=True):
+		""" Return an image for all flattened layers """
+
+	def getFlattenTwoLayers(self, background, foreground, ignoreHidden=True):
+		""" Return an image for two flattened layers """
+
+	def flattenTwoLayers(self, background, foreground, ignoreHidden=True):
+		""" Flatten two layers """
+
+	def flattenLayers(self, ignoreHidden=True):
+		""" Flatten all layers """
+```
+
+To modify a layer you would need to do something like:
+```python
+# Grab the PIL Image from a layer and do stuff
+layer = layeredImage.getLayer(1).image
+crop = imageedit.transform.cropCentre(layer, 100, 100)
+# Remove the old layer 1 and raster the new layer 1
+layeredImage.removeLayer(1)
+layeredImage.insertLayerRaster(crop, "Cropped Layer @1", 1, offsets=(50, 0))
+```
+
 
 ## Install With PIP
 
@@ -142,9 +219,6 @@ Interpreter > Python 3.8)
 ./[file].py
 ```
 
-## Changelog
-See the [CHANGELOG](/CHANGELOG.md) for more information.
-
 ## Download
 ### Clone
 #### Using The Command Line
@@ -155,7 +229,7 @@ See the [CHANGELOG](/CHANGELOG.md) for more information.
 ```bash
 $ git clone https://github.com/[user-name]/[repository]
 ```
-####
+
 
 More information can be found at
 <https://help.github.com/en/articles/cloning-a-repository>
@@ -174,10 +248,27 @@ More information can be found at
 2. Extract the zip archive
 3. Copy/ move to the desired location
 
-## Licence
+## Community Files
+### Licence
 MIT License
-Copyright (c) fredhappyface
+Copyright (c) FredHappyface
 (See the [LICENSE](/LICENSE.md) for more information.)
+
+### Changelog
+See the [Changelog](/CHANGELOG.md) for more information.
+
+### Code of Conduct
+In the interest of fostering an open and welcoming environment, we
+as contributors and maintainers pledge to make participation in our
+project and our community a harassment-free experience for everyone.
+Please see the
+[Code of Conduct](https://github.com/FHPythonUtils/.github/blob/master/CODE_OF_CONDUCT.md) for more information.
+
+### Contributing
+Contributions are welcome, please see the [Contributing Guidelines](https://github.com/FHPythonUtils/.github/blob/master/CONTRIBUTING.md) for more information.
+
+### Security
+Thank you for improving the security of the project, please see the [Security Policy](https://github.com/FHPythonUtils/.github/blob/master/SECURITY.md) for more information.
 
 ## Screenshots
 

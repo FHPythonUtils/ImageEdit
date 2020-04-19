@@ -6,6 +6,7 @@ Requires imagetracer.html and imagetracer.js along with the modules below
 import asyncio
 from pathlib import Path
 from pyppeteer import launch
+from metprint import LogType, Logger, FHFormatter
 
 THISDIR = str(Path(__file__).resolve().parent)
 
@@ -14,7 +15,7 @@ async def doTrace(filename, mode="default"):
 	"""
 	browser = await launch(options={'args': ['--no-sandbox', '--disable-web-security']})
 	page = await browser.newPage()
-	await page.goto('file:///'+THISDIR+'/imagetracer.html')
+	await page.goto('file:///'+THISDIR+'/resources/imagetracer.html')
 	await page.evaluate("ImageTracer.imageToSVG('file:///" + filename +
 		"',function(svgstr){ ImageTracer.appendSVGString( svgstr, 'svg-container' ); },'"
 		+ mode + "');")
@@ -40,4 +41,9 @@ def trace(filename, blackAndWhite=False, mode="default"):
 	"""
 	if (mode.find('black') >= 0 or blackAndWhite):
 		mode = 'posterized1'
-	return asyncio.get_event_loop().run_until_complete(doTrace(filename.replace('\\', '/'), mode))
+	try:
+		return asyncio.get_event_loop().run_until_complete(doTrace(filename.replace('\\', '/'), mode))
+	except ConnectionResetError:
+		Logger(FHFormatter).logPrint("ConnectionResetError - probably just a hiccup " +
+		"retrying", LogType.WARNING)
+		return asyncio.get_event_loop().run_until_complete(doTrace(filename.replace('\\', '/'), mode))

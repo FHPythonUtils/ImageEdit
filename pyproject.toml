@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "imageedit"
+version = "2020.4"
+description = "Create various icon masks and shading effects with the imageedit library"
+authors = ["FredHappyface"]
+classifiers = [
+	"Programming Language :: Python :: 3.5",
+	"Programming Language :: Python :: 3.6",
+	"Programming Language :: Python :: 3.7",
+	"Programming Language :: Python :: 3.8",
+	"Operating System :: OS Independent"
+]
+homepage = "https://github.com/FredHappyface/Python.ImageEdit"
+repository = "https://github.com/FredHappyface/Python.ImageEdit"
+documentation = "https://github.com/FredHappyface/Python.ImageEdit/blob/master/README.md"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.5"
+metprint = "^2020.5"
+pyppeteer = "^0.0.25"
+pillow = "^7.1.1"
+pyora = {version = "^0.3.0", optional = true}
+psd-tools3 = {version = "^1.8.2", optional = true}
+
+
+[tool.dephell.main]
+from = "pyproject.toml"
+to = "requirements.txt"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

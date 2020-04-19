@@ -2,6 +2,70 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2020.4 - 2020/04/19
+- Basic layered image support
+```python
+class Layer:
+	""" A representation of an image layer """
+	def __init__(self, image, name, offsets, opacity, visible, dimensions):
+		self.image = image
+		self.name = name
+		self.offsets = offsets # Doesn't look to be required
+		self.opacity = opacity
+		self.visible = visible
+		self.dimensions = dimensions
+
+
+class LayeredImage:
+	""" A representation of a layered image such as an ora """
+	def __init__(self, layers, dimensions):
+		self.layers = layers
+		self.dimensions = dimensions
+	def addLayerRaster(self, image, name, offsets=(0, 0)):
+		""" The recommended way to add a layer """
+
+	def insertLayerRaster(self, image, name, index, offsets=(0, 0)):
+		""" The recommended way to insert a layer """
+
+	def getLayer(self, index):
+		""" Get a layer """
+
+	def addLayer(self, layer):
+		""" Add a layer """
+
+	def insertLayer(self, layer, index):
+		""" Insert a layer at a specific index """
+
+	def removeLayer(self, index):
+		""" Remove a layer at a specific index """
+
+	def getFlattenLayers(self, ignoreHidden=True):
+		""" Return an image for all flattened layers """
+
+	def getFlattenTwoLayers(self, background, foreground, ignoreHidden=True):
+		""" Return an image for two flattened layers """
+
+	def flattenTwoLayers(self, background, foreground, ignoreHidden=True):
+		""" Flatten two layers """
+
+	def flattenLayers(self, ignoreHidden=True):
+		""" Flatten all layers """
+```
+
+To modify a layer you would need to do something like:
+```python
+# Grab the PIL Image from a layer and do stuff
+layer = layeredImage.getLayer(1).image
+crop = imageedit.transform.cropCentre(layer, 100, 100)
+# Remove the old layer 1 and raster the new layer 1
+layeredImage.removeLayer(1)
+layeredImage.insertLayerRaster(crop, "Cropped Layer @1", 1, offsets=(50, 0))
+```
+
+- Using poetry and dephell
+- Other significant refactoring (I guess this shows a limitation of calendar
+versioning)
+
 ## 2020.3 - 2020/03/16
 - Release to pypi.org. Rename library files
 
