@@ -20,7 +20,7 @@ class Layer:
 	def __init__(self, image, name, dimensions, offsets=(0, 0), opacity=1.0, visible=True):
 		self.image = image
 		self.name = name
-		self.offsets = offsets # Doesn't look to be required
+		self.offsets = offsets
 		self.opacity = opacity
 		self.visible = visible
 		self.dimensions = dimensions
@@ -33,12 +33,12 @@ class LayeredImage:
 		self.dimensions = dimensions
 
 	def addLayerRaster(self, image, name, offsets=(0, 0)):
-		""" The recommended way to add a layer """
+		""" Raster an image and add as a layer """
 		layer = rasterImageOA(image, self.dimensions, alpha=1.0, offsets=offsets)
 		self.addLayer(Layer(layer, name, self.dimensions))
 
 	def insertLayerRaster(self, image, name, index, offsets=(0, 0)):
-		""" The recommended way to insert a layer """
+		""" Raster an image and insert the layer """
 		layer = rasterImageOA(image, self.dimensions, alpha=1.0, offsets=offsets)
 		self.insertLayer(Layer(layer, name, self.dimensions), index)
 
@@ -47,11 +47,11 @@ class LayeredImage:
 		return self.layers[index]
 
 	def addLayer(self, layer):
-		""" Add a layer - Use addLayerRaster """
+		""" Add a layer """
 		self.layers.append(layer)
 
 	def insertLayer(self, layer, index):
-		""" Insert a layer at a specific index - Use insertLayerRaster """
+		""" Insert a layer at a specific index """
 		self.layers.insert(index, layer)
 
 	def removeLayer(self, index):
@@ -63,14 +63,14 @@ class LayeredImage:
 		if not ignoreHidden and self.layers[0].visible:
 			flattenedSoFar = Image.new("RGBA", self.dimensions)
 		else:
-			flattenedSoFar = rasterImageOA(self.layers[0].image,
-			self.dimensions, self.layers[0].opacity)
+			flattenedSoFar = rasterImageOA(self.layers[0].image, self.dimensions,
+			self.layers[0].opacity, self.layers[0].offsets)
 		for layer in range(1, len(self.layers)):
 			if not ignoreHidden and self.layers[layer].visible:
 				foregroundRaster = Image.new("RGBA", self.dimensions)
 			else:
-				foregroundRaster = rasterImageOA(self.layers[layer].image,
-				self.dimensions, self.layers[layer].opacity)
+				foregroundRaster = rasterImageOA(self.layers[layer].image, self.dimensions,
+				self.layers[layer].opacity, self.layers[layer].offsets)
 			flattenedSoFar = Image.alpha_composite(flattenedSoFar, foregroundRaster)
 		return flattenedSoFar
 
@@ -79,26 +79,29 @@ class LayeredImage:
 		if not ignoreHidden and self.layers[background].visible:
 			backgroundRaster = Image.new("RGBA", self.dimensions)
 		else:
-			backgroundRaster = rasterImageOA(self.layers[background].image,
-			self.dimensions, self.layers[background].opacity)
+			backgroundRaster = rasterImageOA(self.layers[background].image, self.dimensions,
+			self.layers[background].opacity, self.layers[background].offsets)
 		if not ignoreHidden and self.layers[background].visible:
 			foregroundRaster = Image.new("RGBA", self.dimensions)
 		else:
-			foregroundRaster = rasterImageOA(self.layers[foreground].image,
-			self.dimensions, self.layers[foreground].opacity)
+			foregroundRaster = rasterImageOA(self.layers[foreground].image, self.dimensions,
+			self.layers[foreground].opacity, self.layers[foreground].offsets)
 		return Image.alpha_composite(backgroundRaster, foregroundRaster)
 
 	def flattenTwoLayers(self, background, foreground, ignoreHidden=True):
 		""" Flatten two layers """
-		self.layers[background] = self.getFlattenTwoLayers(background, foreground, ignoreHidden)
+		image = self.getFlattenTwoLayers(background, foreground, ignoreHidden)
 		self.removeLayer(foreground)
+		self.layers[background] = Layer(image,
+		self.layers[background].name + " (flattened)", self.dimensions)
 
 	def flattenLayers(self, ignoreHidden=True):
 		""" Flatten all layers """
-		self.layers[0] = self.getFlattenLayers(ignoreHidden)
+		image = self.getFlattenLayers(ignoreHidden)
+		self.layers[0] = Layer(image,
+		self.layers[0].name + " (flattened)", self.dimensions)
 		for layer in range(1, len(self.layers)):
 			self.removeLayer(layer)
-
 
 
 def getPixelDimens(image, dimens):
@@ -174,10 +177,11 @@ def openLayerImage(file, mode=None):
 		project = Project.load(file)
 		for layer in project.iter_layers:
 			if mode is not None:
-				image = reduceColours(layer.get_image_data(), mode)
+				image = reduceColours(layer.get_image_data(True), mode)
 			else:
-				image = layer.get_image_data()
-			layers.append(Layer(image, layer.name, layer.dimensions, layer.offsets, layer.opacity,
+				image = layer.get_image_data(True)
+			layers.append(
+			Layer(image, layer.name, layer.dimensions, layer.offsets, layer.opacity,
 			layer.visible))
 		return LayeredImage(layers, project.dimensions)
 
@@ -190,13 +194,11 @@ def openLayerImage(file, mode=None):
 				image = reduceColours(layer.as_PIL(), mode)
 			else:
 				image = layer.as_PIL()
-			layers.append(Layer(
-				rasterImageOA(image, (project.width, project.height), 1.0, (layer.left, layer.top)),
-				layer.name, (layer.width, layer.height), (layer.left, layer.top), layer.opacity / 255,
-			layer.visible))
+			layers.append(
+			Layer(image, layer.name, (layer.width, layer.height), (layer.left, layer.top),
+			layer.opacity / 255, layer.visible))
 		return LayeredImage(layers, (project.width, project.height))
 	return LayeredImage([], (0, 0))
-
 
 
 
@@ -220,11 +222,12 @@ def saveLayerImage(fileName, layeredImage):
 	from pyora import Project
 	project = Project.new(layeredImage.dimensions[0], layeredImage.dimensions[1])
 	for layer in layeredImage.layers:
-		project.add_layer(layer.image, layer.name,
-		offsets=(0, 0), opacity=layer.opacity, visible=layer.visible,
-		dimensions=layer.dimensions)
+		project.add_layer(layer.image,
+		layer.name,
+		offsets=(int(layer.offsets[0] / 2), int(layer.offsets[1] / 2)),
+		opacity=layer.opacity,
+		visible=layer.visible)
 	project.save(fileName)
-
 
 
 def getImageDesc(image):
@@ -282,15 +285,18 @@ def reduceColours(image, mode="optimised"):
 	return image.quantize(colors=modes[mode.lower()], method=2, kmeans=1, dither=None)
 
 
-def combine(foregroundImage, backgroundImage, foregroundOffsets=(0, 0),
-backgroundOffsets=(0, 0), foregroundAlpha=1.0, backgroundAlpha=1.0):
+def combine(foregroundImage,
+backgroundImage,
+foregroundOffsets=(0, 0),
+backgroundOffsets=(0, 0),
+foregroundAlpha=1.0,
+backgroundAlpha=1.0):
 	""" Combine two images with alpha """
-	maxSize = (max(backgroundImage.size[0],	foregroundImage.size[0]),
-	max(backgroundImage.size[1], foregroundImage.size[1]))
+	maxSize = (max(backgroundImage.size[0],
+	foregroundImage.size[0]), max(backgroundImage.size[1], foregroundImage.size[1]))
 	return Image.alpha_composite(
-		rasterImageOA(backgroundImage, maxSize, backgroundAlpha, backgroundOffsets),
-		rasterImageOA(foregroundImage, maxSize, foregroundAlpha, foregroundOffsets)
-	)
+	rasterImageOA(backgroundImage, maxSize, backgroundAlpha, backgroundOffsets),
+	rasterImageOA(foregroundImage, maxSize, foregroundAlpha, foregroundOffsets))
 
 
 def rasterImageOA(image, size, alpha=1.0, offsets=(0, 0)):

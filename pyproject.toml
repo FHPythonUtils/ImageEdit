@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "imageedit"
-version = "2020.4"
+version = "2020.4.1"
 description = "Create various icon masks and shading effects with the imageedit library"
 authors = ["FredHappyface"]
 classifiers = [

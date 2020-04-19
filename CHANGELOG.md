@@ -2,6 +2,11 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2020.4.1 - 2020/04/19
+- First use of my updated cal versioning 😱 ... 🎉
+- Bugfixes: offset should now behave (tests seem OK, see readWriteLayered.py)
+flatten functions write a layer and no longer an image 😌
+
 ## 2020.4 - 2020/04/19
 - Basic layered image support
 ```python

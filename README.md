@@ -21,7 +21,8 @@ Four example files: round.py, makeProjIcons.py, makePWAImages.py and
 getPWAScreenshots.py. Includes imagetracer.py. imagetracer.py uses JS and is
 much faster than previous implementations. Takes a few seconds and has no cap.
 
-- [Library Files](#library-files)
+- [Documentation](#documentation)
+- [Example usage and docs for layered images](#example-usage-and-docs-for-layered-images)
 - [Example Files](#example-files)
 - [Comparison to similar solutions](#comparison-to-similar-solutions)
 	- [GUI](#gui)
@@ -29,7 +30,6 @@ much faster than previous implementations. Takes a few seconds and has no cap.
 	- [Advantages of this solution](#advantages-of-this-solution)
 	- [Disadvantages of this solution](#disadvantages-of-this-solution)
 - [How to use out of the box (makePWAImages)](#how-to-use-out-of-the-box-makepwaimages)
-- [Example usage and docs for layered images](#example-usage-and-docs-for-layered-images)
 - [Install With PIP](#install-with-pip)
 - [Language information](#language-information)
 	- [Built for](#built-for)
@@ -55,68 +55,21 @@ much faster than previous implementations. Takes a few seconds and has no cap.
 - [Screenshots](#screenshots)
 	- [Desktop](#desktop)
 
-## Library Files
+## Documentation
 Generate docs with
 ```bash
 pydocmd simple imageedit.effects++ imageedit.imagegrab++ imageedit.imagetracer++ imageedit.io++ imageedit.transform++ > Docs.md
 ```
 
 See the [Docs](/Docs.md) for more information.
-## Example Files
-- round.py
-- makeProjIcons.py
-- makePWAImages.py
-- readWriteLayered.py
-- getPWAScreenshots.py
-
-## Comparison to similar solutions
-
-Similar solutions include but are not limited to:
-
-### GUI
-https://www.getpaint.net/
-
-### Web
-https://realfavicongenerator.net/
-
-### Advantages of this solution
-- Minimal: few dependencies required (python and pillow)
-- Quick: when given a regular or mask image it can produce a large number or
-variants in a relatively short amount of time
-- Customisable: write your own scripts to leverage imageEdit (python knowledge
-required)
-- Produce a PWA mask icon out of the box
-- SVG tracing lib doesn't require potrace/ pypotrace which can be challenging to
-set up on Windows
-- SVG tracing using imageTracerJs.py (https://github.com/jankovicsandras/imagetracerjs)
-is pretty good (requires pyppeteer: https://github.com/miyakogi/pyppeteer)
-
-### Disadvantages of this solution
-- Specific image dimensions needed out of the box: whilst this is something that
-could be changed, maskable icons are 640x640 and regular icons are 512x512
-
-## How to use out of the box (makePWAImages)
-
-1. Put regular 512x512 image or mask 640x640 image under main/input in this
-example I am using lightfox.png
-
-	<img src="readme-assets/examples/lightfox.png" alt="LightFox" width="128">
-
-2. Run ```makePWAImages.py``` and navigate to main/output/lightfox.png/pwa
-
-<div>
-<img src="readme-assets/examples/mask.png" alt="LightFox" width="128">
-<img src="readme-assets/examples/round-192.png" alt="LightFox" width="38">
-<img src="readme-assets/examples/round-512.png" alt="LightFox" width="102">
-<img src="readme-assets/examples/square-180.png" alt="LightFox" width="36">
-<img src="readme-assets/examples/squircle-256.png" alt="LightFox" width="52">
-</div>
 
 ## Example usage and docs for layered images
 
-Layered images are supported but offsets are very wonky at this stage. Therefore,
-when manually adding and inserting layers, use the `addLayerRaster` and
-`insertLayerRaster` functions to add a PIL Image as a layer.
+Layered images are supported. When manually adding and inserting layers,
+one can use the `addLayerRaster` and `insertLayerRaster` functions to add a
+PIL Image as a layer.
+
+Alternatively, use `addLayer` and `insertLayer` to add a Layer object as a layer
 
 ```python
 class Layer:
@@ -176,6 +129,57 @@ crop = imageedit.transform.cropCentre(layer, 100, 100)
 layeredImage.removeLayer(1)
 layeredImage.insertLayerRaster(crop, "Cropped Layer @1", 1, offsets=(50, 0))
 ```
+
+
+## Example Files
+- round.py
+- makeProjIcons.py
+- makePWAImages.py
+- readWriteLayered.py
+- getPWAScreenshots.py
+
+## Comparison to similar solutions
+
+Similar solutions include but are not limited to:
+
+### GUI
+https://www.getpaint.net/
+
+### Web
+https://realfavicongenerator.net/
+
+### Advantages of this solution
+- Minimal: few dependencies required (python and pillow)
+- Quick: when given a regular or mask image it can produce a large number or
+variants in a relatively short amount of time
+- Customisable: write your own scripts to leverage imageEdit (python knowledge
+required)
+- Produce a PWA mask icon out of the box
+- SVG tracing lib doesn't require potrace/ pypotrace which can be challenging to
+set up on Windows
+- SVG tracing using imageTracerJs.py (https://github.com/jankovicsandras/imagetracerjs)
+is pretty good (requires pyppeteer: https://github.com/miyakogi/pyppeteer)
+
+### Disadvantages of this solution
+- Specific image dimensions needed out of the box: whilst this is something that
+could be changed, maskable icons are 640x640 and regular icons are 512x512
+
+## How to use out of the box (makePWAImages)
+
+1. Put regular 512x512 image or mask 640x640 image under main/input in this
+example I am using lightfox.png
+
+	<img src="readme-assets/examples/lightfox.png" alt="LightFox" width="128">
+
+2. Run ```makePWAImages.py``` and navigate to main/output/lightfox.png/pwa
+
+<div>
+<img src="readme-assets/examples/mask.png" alt="LightFox" width="128">
+<img src="readme-assets/examples/round-192.png" alt="LightFox" width="38">
+<img src="readme-assets/examples/round-512.png" alt="LightFox" width="102">
+<img src="readme-assets/examples/square-180.png" alt="LightFox" width="36">
+<img src="readme-assets/examples/squircle-256.png" alt="LightFox" width="52">
+</div>
 
 
 ## Install With PIP
