@@ -37,6 +37,6 @@ def grabWebpage(url, resolution=(800, 600), evalJs=None):
 	try:
 		remove("temp.png")
 	except PermissionError:
-		Logger(FHFormatter).logPrint("Unable to clean up, manually " +
+		Logger(FHFormatter()).logPrint("Unable to clean up, manually " +
 			"remove temp.png from project root or ignore", LogType.WARNING)
 	return image

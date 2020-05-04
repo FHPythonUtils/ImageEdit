@@ -1,6 +1,6 @@
 [![Github top language](https://img.shields.io/github/languages/top/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](../../)
-[![Codacy grade](https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/manual/FHPythonUtils/ImageRound)
-[![Codacy coverage](https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/manual/FHPythonUtils/ImageRound)
+[![Codacy grade](https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/gh/FHPythonUtils/ImageRound)
+[![Codacy coverage](https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/gh/FHPythonUtils/ImageRound)
 [![Repository size](https://img.shields.io/github/repo-size/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](../../)
 [![Issues](https://img.shields.io/github/issues/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](../../issues)
 [![License](https://img.shields.io/github/license/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](/LICENSE.md)

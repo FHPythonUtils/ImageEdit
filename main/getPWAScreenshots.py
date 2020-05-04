@@ -18,10 +18,10 @@ if __name__ == "__main__": # pragma: no cover
 
 	outputDir = THISDIR + "/output/pwascreenshots/"
 
-	baseUrl = "https://FHPWA.github.io/"
+	baseUrl = "https://fredhappyface.com/"
 	projects = {
 	"home/": ["index.html", "info.html", "settings.html"],
-	"blackC4t/": ["2kotp.html", "index.html", "password.html", "public.html"],
+	"blackc4t/": ["2kotp.html", "index.html", "password.html", "public.html"],
 	"brainf/": ["index.html"],
 	"happyshibe/": ["index.html"],
 	"passwordgen/": ["index.html", "advanced.html"], }
