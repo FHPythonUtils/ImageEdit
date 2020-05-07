@@ -32,7 +32,6 @@ Have a look under test/test_readWriteLayered for an example of converting an
 xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 
 - [Documentation](#documentation)
-- [Example usage and docs for layered images](#example-usage-and-docs-for-layered-images)
 - [Example Files](#example-files)
 - [Comparison to similar solutions](#comparison-to-similar-solutions)
 	- [GUI](#gui)
@@ -66,75 +65,10 @@ xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 	- [Desktop](#desktop)
 
 ## Documentation
-See the [Docs](/Docs.md) for more information.
+See the [DOCS](/DOCS.md) for more information.
 
-## Example usage and docs for layered images
-
-Layered images are supported. When manually adding and inserting layers,
-one can use the `addLayerRaster` and `insertLayerRaster` functions to add a
-PIL Image as a layer.
-
-Alternatively, use `addLayer` and `insertLayer` to add a Layer object as a layer
-
-```python
-class Layer:
-	""" A representation of an image layer """
-	def __init__(self, image, name, offsets, opacity, visible, dimensions):
-		self.image = image
-		self.name = name
-		self.offsets = offsets # Doesn't look to be required
-		self.opacity = opacity
-		self.visible = visible
-		self.dimensions = dimensions
-
-
-class LayeredImage:
-	""" A representation of a layered image such as an ora """
-	def __init__(self, layers, dimensions):
-		self.layers = layers
-		self.dimensions = dimensions
-
-	def addLayerRaster(self, image, name, offsets=(0, 0)):
-		""" The recommended way to add a layer """
-
-	def insertLayerRaster(self, image, name, index, offsets=(0, 0)):
-		""" The recommended way to insert a layer """
-
-	def getLayer(self, index):
-		""" Get a layer """
-
-	def addLayer(self, layer):
-		""" Add a layer """
-
-	def insertLayer(self, layer, index):
-		""" Insert a layer at a specific index """
-
-	def removeLayer(self, index):
-		""" Remove a layer at a specific index """
-
-	def getFlattenLayers(self, ignoreHidden=True):
-		""" Return an image for all flattened layers """
-
-	def getFlattenTwoLayers(self, background, foreground, ignoreHidden=True):
-		""" Return an image for two flattened layers """
-
-	def flattenTwoLayers(self, background, foreground, ignoreHidden=True):
-		""" Flatten two layers """
-
-	def flattenLayers(self, ignoreHidden=True):
-		""" Flatten all layers """
-```
-
-To modify a layer you would need to do something like:
-```python
-# Grab the PIL Image from a layer and do stuff
-layer = layeredImage.getLayer(1).image
-crop = imageedit.transform.cropCentre(layer, 100, 100)
-# Remove the old layer 1 and raster the new layer 1
-layeredImage.removeLayer(1)
-layeredImage.insertLayerRaster(crop, "Cropped Layer @1", 1, offsets=(50, 0))
-```
-
+See the documentation for each library for more information on things you
+can use it for.
 
 ## Example Files
 - round.py
@@ -154,10 +88,11 @@ https://www.getpaint.net/
 https://realfavicongenerator.net/
 
 ### Advantages of this solution
-- Minimal: few dependencies required (python and pillow)
-- Quick: when given a regular or mask image it can produce a large number or
+- Lightweight: few dependencies required (python, pillow, blendmodes,
+layeredimage, and svgtrace)
+- Quick: when given a regular or mask image it can produce many
 variants in a relatively short amount of time
-- Customisable: write your own scripts to leverage imageEdit (python knowledge
+- Customizable: write your own scripts to leverage imageEdit (python knowledge
 required)
 - Produce a PWA mask icon out of the box
 - SVG tracing lib doesn't require potrace/ pypotrace which can be challenging to
