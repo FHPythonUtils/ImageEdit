@@ -2,6 +2,7 @@
 white """
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from blendmodes.blend import blendLayers, BlendType as bmBlendType
 from imageedit.io import getPixelDimens, getSortedColours
 from imageedit.transform import resize, resizeSquare, findAndReplace
 
@@ -214,3 +215,51 @@ def addText(image, text):
 	fill=foregroundColour)
 	background.paste(image.convert("RGBA"), (0, 0), image.convert("RGBA"))
 	return background
+
+# Blendtype has an assortment of effects
+BlendType = bmBlendType
+
+def blend(background, foreground, blendType, opacity):
+	"""Blend layers using numpy array
+	Args:
+		background (PIL.Image): background layer
+		foreground (PIL.Image): foreground layer (must be same size as background)
+		blendType (BlendType): The blendtype
+		opacity (float): The opacity of the foreground image
+	Returns:
+		PIL.Image: combined image
+
+	Specify supported blend types
+	NORMAL
+	MULTIPLY
+	ADDITIVE
+	COLOURBURN
+	COLOURDODGE
+	REFLECT
+	GLOW
+	OVERLAY
+	DIFFERENCE
+	NEGATION
+	LIGHTEN
+	DARKEN
+	SCREEN
+	XOR
+	SOFTLIGHT
+	HARDLIGHT
+	GRAINEXTRACT
+	GRAINMERGE
+	DIVIDE
+	HUE
+	SATURATION
+	COLOUR
+	LUMINOSITY
+	PINLIGHT
+	VIVIDLIGHT
+	EXCLUSION
+	DESTIN
+	DESTOUT
+	DESTATOP
+	SRCATOP
+	"""
+
+blend = blendLayers

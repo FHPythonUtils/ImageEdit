@@ -8,100 +8,13 @@ import sys
 from pathlib import Path
 from PIL import Image
 from metprint import LogType, Logger, FHFormatter
+from layeredimage.io import (openLayerImage as liOpenLayerImage,
+saveLayerImage as liSaveLayerImage)
 
 FILE_EXTS = [
 "bmp", "dib", "eps", "gif", "ico", "im", "jpeg", "jpg", "j2k", "j2p", "j2x"
 "jfif", "msp", "pcx", "png", "pbm", "pgm", "ppm", "pnm", "sgi", "spi", "tga", "tiff", "webp",
 "xbm", "blp", "cur", "dcx", "dds", "fli", "flc", "fpx", "ftex", "gbr", "gd", "imt", "pcd", "xpm"]
-
-
-class Layer:
-	""" A representation of an image layer """
-	def __init__(self, image, name, dimensions, offsets=(0, 0), opacity=1.0, visible=True):
-		self.image = image
-		self.name = name
-		self.offsets = offsets
-		self.opacity = opacity
-		self.visible = visible
-		self.dimensions = dimensions
-
-
-class LayeredImage:
-	""" A representation of a layered image such as an ora """
-	def __init__(self, layers, dimensions):
-		self.layers = layers
-		self.dimensions = dimensions
-
-	def addLayerRaster(self, image, name, offsets=(0, 0)):
-		""" Raster an image and add as a layer """
-		layer = rasterImageOA(image, self.dimensions, alpha=1.0, offsets=offsets)
-		self.addLayer(Layer(layer, name, self.dimensions))
-
-	def insertLayerRaster(self, image, name, index, offsets=(0, 0)):
-		""" Raster an image and insert the layer """
-		layer = rasterImageOA(image, self.dimensions, alpha=1.0, offsets=offsets)
-		self.insertLayer(Layer(layer, name, self.dimensions), index)
-
-	def getLayer(self, index):
-		""" Get a layer """
-		return self.layers[index]
-
-	def addLayer(self, layer):
-		""" Add a layer """
-		self.layers.append(layer)
-
-	def insertLayer(self, layer, index):
-		""" Insert a layer at a specific index """
-		self.layers.insert(index, layer)
-
-	def removeLayer(self, index):
-		""" Remove a layer at a specific index """
-		self.layers.pop(index)
-
-	def getFlattenLayers(self, ignoreHidden=True):
-		""" Return an image for all flattened layers """
-		if not ignoreHidden and self.layers[0].visible:
-			flattenedSoFar = Image.new("RGBA", self.dimensions)
-		else:
-			flattenedSoFar = rasterImageOA(self.layers[0].image, self.dimensions,
-			self.layers[0].opacity, self.layers[0].offsets)
-		for layer in range(1, len(self.layers)):
-			if not ignoreHidden and self.layers[layer].visible:
-				foregroundRaster = Image.new("RGBA", self.dimensions)
-			else:
-				foregroundRaster = rasterImageOA(self.layers[layer].image, self.dimensions,
-				self.layers[layer].opacity, self.layers[layer].offsets)
-			flattenedSoFar = Image.alpha_composite(flattenedSoFar, foregroundRaster)
-		return flattenedSoFar
-
-	def getFlattenTwoLayers(self, background, foreground, ignoreHidden=True):
-		""" Return an image for two flattened layers """
-		if not ignoreHidden and self.layers[background].visible:
-			backgroundRaster = Image.new("RGBA", self.dimensions)
-		else:
-			backgroundRaster = rasterImageOA(self.layers[background].image, self.dimensions,
-			self.layers[background].opacity, self.layers[background].offsets)
-		if not ignoreHidden and self.layers[background].visible:
-			foregroundRaster = Image.new("RGBA", self.dimensions)
-		else:
-			foregroundRaster = rasterImageOA(self.layers[foreground].image, self.dimensions,
-			self.layers[foreground].opacity, self.layers[foreground].offsets)
-		return Image.alpha_composite(backgroundRaster, foregroundRaster)
-
-	def flattenTwoLayers(self, background, foreground, ignoreHidden=True):
-		""" Flatten two layers """
-		image = self.getFlattenTwoLayers(background, foreground, ignoreHidden)
-		self.removeLayer(foreground)
-		self.layers[background] = Layer(image,
-		self.layers[background].name + " (flattened)", self.dimensions)
-
-	def flattenLayers(self, ignoreHidden=True):
-		""" Flatten all layers """
-		image = self.getFlattenLayers(ignoreHidden)
-		self.layers[0] = Layer(image,
-		self.layers[0].name + " (flattened)", self.dimensions)
-		for layer in range(1, len(self.layers)):
-			self.removeLayer(layer)
 
 
 def getPixelDimens(image, dimens):
@@ -168,39 +81,9 @@ def openImage(file, mode=None):
 	return image
 
 
-def openLayerImage(file, mode=None):
+def openLayerImage(file):
 	""" Open a layered image """
-	checkExists(file)
-	if ".ora" in file:
-		from pyora import Project, TYPE_LAYER
-		layers = []
-		project = Project.load(file)
-		for layer in project.iter_layers:
-			if mode is not None:
-				image = reduceColours(layer.get_image_data(True), mode)
-			else:
-				image = layer.get_image_data(True)
-			layers.append(
-			Layer(image, layer.name, layer.dimensions, layer.offsets, layer.opacity,
-			layer.visible))
-		return LayeredImage(layers, project.dimensions)
-
-	if ".psd" in file:
-		from psd_tools import PSDImage
-		layers = []
-		project = PSDImage.load(file)
-		for layer in project.layers[::-1]:
-			if mode is not None:
-				image = reduceColours(layer.as_PIL(), mode)
-			else:
-				image = layer.as_PIL()
-			layers.append(
-			Layer(image, layer.name, (layer.width, layer.height), (layer.left, layer.top),
-			layer.opacity / 255, layer.visible))
-		return LayeredImage(layers, (project.width, project.height))
-	return LayeredImage([], (0, 0))
-
-
+openLayerImage = liOpenLayerImage
 
 def saveImage(fileName, image, optimise=True):
 	"""Saves a single image.
@@ -219,16 +102,7 @@ def saveImage(fileName, image, optimise=True):
 
 def saveLayerImage(fileName, layeredImage):
 	""" Save a layered image """
-	from pyora import Project
-	project = Project.new(layeredImage.dimensions[0], layeredImage.dimensions[1])
-	for layer in layeredImage.layers:
-		project.add_layer(layer.image,
-		layer.name,
-		offsets=(int(layer.offsets[0] / 2), int(layer.offsets[1] / 2)),
-		opacity=layer.opacity,
-		visible=layer.visible)
-	project.save(fileName)
-
+saveLayerImage = liSaveLayerImage
 
 def getImageDesc(image):
 	"""Gets an image description returns [icon/mask]. Likely more useful for

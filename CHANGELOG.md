@@ -2,6 +2,13 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2020.4.2 - 2020/05/06
+- Updated classifiers
+- Added blendmodes
+- Use svgtrace to do the imagetracing
+- Use layeredimage to deal with more layered image formats such as xcf
+- Added make.py
+
 ## 2020.4.1 - 2020/04/19
 - First use of my updated cal versioning 😱 ... 🎉
 - Bugfixes: offset should now behave (tests seem OK, see readWriteLayered.py)

@@ -17,9 +17,19 @@
 [**Now available on pypi.org!**](https://pypi.org/project/imageedit/)
 
 Create various icon masks and shading effects with the imageedit library.
-Four example files: round.py, makeProjIcons.py, makePWAImages.py and
-getPWAScreenshots.py. Includes imagetracer.py. imagetracer.py uses JS and is
-much faster than previous implementations. Takes a few seconds and has no cap.
+Five example files under main: round.py, makeProjIcons.py, makePWAImages.py,
+getPWAScreenshots.py and readWriteLayered.py.
+
+Leverages the following libraries to do the heavy lifting:
+```none
+pillow
+layeredimage
+svgtrace
+blendmodes
+```
+
+Have a look under test/test_readWriteLayered for an example of converting an
+xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 
 - [Documentation](#documentation)
 - [Example usage and docs for layered images](#example-usage-and-docs-for-layered-images)
@@ -56,11 +66,6 @@ much faster than previous implementations. Takes a few seconds and has no cap.
 	- [Desktop](#desktop)
 
 ## Documentation
-Generate docs with
-```bash
-pydocmd simple imageedit.effects++ imageedit.imagegrab++ imageedit.imagetracer++ imageedit.io++ imageedit.transform++ > Docs.md
-```
-
 See the [Docs](/Docs.md) for more information.
 
 ## Example usage and docs for layered images
