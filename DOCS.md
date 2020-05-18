@@ -181,6 +181,67 @@ Add text to an image such that the resultant image is in the form
 
 - `PIL.Image.Image` - Image with text
 
+<a name=".imageedit.effects.applySwatch"></a>
+#### applySwatch
+
+```python
+applySwatch(image, swatchFile)
+```
+
+Apply a swatch to the image using colourswatch
+
+**Arguments**:
+
+- `image` _PIL.Image.Image_ - The PIL Image
+- `swatchFile` _string_ - Path to the swatch file
+  
+
+**Returns**:
+
+- `PIL.Image` - quantized image
+
+<a name=".imageedit.effects.pixelate"></a>
+#### pixelate
+
+```python
+pixelate(image, pixelSize=4)
+```
+
+Apply a pixelate effect to an image. This might be used to create a retro
+effect.
+
+**Arguments**:
+
+- `image` _PIL.Image.Image_ - A pillow image
+- `pixelSize` _int, optional_ - X, Y pixels to merge. E.g. assuming image
+  dimensions of 256x256 and pixelSize of 4, an image with dimensions
+  256x256 will be returned with the effect of an image with size 64x64.
+  Defaults to 4.
+  
+
+**Returns**:
+
+- `PIL.Image` - pixelated image
+
+<a name=".imageedit.effects.removeBG"></a>
+#### removeBG
+
+```python
+removeBG(image)
+```
+
+Remove the background from an image or a layeredimage
+
+**Arguments**:
+
+- `image` _PIL.Image.Image|layeredimage.layeredimage.LayeredImage_ - An image or a layered
+  image
+  
+
+**Returns**:
+
+- `PIL.Image` - image without bg
+
 <a name=".imageedit.imagegrab"></a>
 ## imageedit.imagegrab
 
@@ -504,7 +565,7 @@ Takes an image and preforms a centre crop and removes the padding
 #### findAndReplace
 
 ```python
-findAndReplace(image, find, replace, noMatch=None)
+findAndReplace(image, find, replace, noMatch=None, threshold=5)
 ```
 
 Find and replace colour in PIL Image
@@ -514,8 +575,10 @@ Find and replace colour in PIL Image
 - `image` _PIL.Image.Image_ - The Image
   find ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
   replace ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
-  noMatch ((r,g,b,a) default=None): A tuple containing values for rgba
-  from 0-255 inclusive. Optional, set pixel colour if not matched
+  noMatch ((r,g,b,a), optional): A tuple containing values for rgba
+  from 0-255 inclusive. Set pixel colour if not matched. Default is None
+- `threshold` _int, optional_ - Find and replace without an exact match.
+  Default is 5
   
 
 **Returns**:

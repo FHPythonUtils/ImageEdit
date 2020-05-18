@@ -21,7 +21,7 @@ if os.path.exists(readme_path):
 setup(
     long_description=readme,
     name='imageedit',
-    version='2020.4.2',
+    version='2020.5',
     description='Create various icon masks and shading effects with the imageedit library',
     python_requires='==3.*,>=3.6.0',
     project_urls={
@@ -51,8 +51,8 @@ setup(
     package_dir={"": "."},
     package_data={"imageedit": ["resources/*.ttf"]},
     install_requires=[
-        'blendmodes==2020.*,>=2020.2.1', 'layeredimage==2020.*,>=2020.5.6',
-        'metprint==2020.*,>=2020.6.1', 'pillow==7.*,>=7.1.2',
-        'svgtrace==2020.*,>=2020.0.2'
+        'blendmodes==2020.*,>=2020.2.1', 'colourswatch==2020.*,>=2020.1.0',
+        'layeredimage==2020.*,>=2020.5.6', 'metprint==2020.*,>=2020.6.1',
+        'pillow==7.*,>=7.1.2', 'svgtrace==2020.*,>=2020.0.2'
     ],
 )

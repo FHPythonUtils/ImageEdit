@@ -3,6 +3,8 @@ white """
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 from blendmodes.blend import blendLayers, BlendType as bmBlendType
+from colourswatch.io import openColourSwatch
+from layeredimage.layeredimage import LayeredImage
 from imageedit.io import getPixelDimens, getSortedColours
 from imageedit.transform import resize, resizeSquare, findAndReplace
 
@@ -32,11 +34,10 @@ def roundCorners(image, radius):
 	alpha.paste(circle.crop((0, 0, radius, radius)), (0, 0))
 	alpha.paste(circle.crop((0, radius, radius, radius * 2)), (0, h - radius))
 	alpha.paste(circle.crop((radius, 0, radius * 2, radius)), (w - radius, 0))
-	alpha.paste(circle.crop((radius, radius, radius * 2, radius * 2)), (w - radius, h - radius))
+	alpha.paste(circle.crop((radius, radius, radius * 2, radius * 2)),
+	(w - radius, h - radius))
 	background.paste(image, (0, 0), alpha.convert("RGBA"))
 	return background
-
-
 
 
 def addDropShadowSimple(image, offset):
@@ -49,10 +50,12 @@ def addDropShadowSimple(image, offset):
 		PIL.Image.Image: A PIL Image
 	"""
 	border = max(map(abs, offset))
-	return addDropShadowComplex(image, 11, border, offset, "#ffffff00", "#00000055")
+	return addDropShadowComplex(image, 11, border, offset, "#ffffff00",
+	"#00000055")
 
 
-def addDropShadowComplex(image, iterations, border, offset, backgroundColour, shadowColour):
+def addDropShadowComplex(image, iterations, border, offset, backgroundColour,
+shadowColour):
 	"""From https://en.wikibooks.org/wiki/Python_Imaging_Library/Drop_Shadows
 
 	Args:
@@ -67,30 +70,26 @@ def addDropShadowComplex(image, iterations, border, offset, backgroundColour, sh
 		PIL.Image.Image: A PIL Image
 	"""
 	originalSize = image.size
-
 	# Calculate the size of the intermediate image
-	fullWidth = image.size[0] + abs(offset[0]) + 2 * border
-	fullHeight = image.size[1] + abs(offset[1]) + 2 * border
-
+	fullWidth = image.size[0] + abs(offset[0]) + 2*border
+	fullHeight = image.size[1] + abs(offset[1]) + 2*border
 	# Create the shadow's image. Match the parent image's mode.
 	background = Image.new("RGBA", (fullWidth, fullHeight), backgroundColour)
 	shadow = Image.new("RGBA", (originalSize[0], originalSize[1]), shadowColour)
-
 	# Place the shadow, with the required offset
 	shadowLeft = border + max(offset[0], 0)
 	shadowTop = border + max(offset[1], 0)
 	# Paste in the constant colour
-	background.paste(shadow.convert("RGBA"), (shadowLeft, shadowTop), image.convert("RGBA"))
-
+	background.paste(shadow.convert("RGBA"), (shadowLeft, shadowTop),
+	image.convert("RGBA"))
 	# Apply the BLUR filter repeatedly
 	for _ in range(iterations):
 		background = background.filter(ImageFilter.BLUR)
-
 	# Paste the original image on top of the shadow
 	imgLeft = border - min(offset[0], 0)
 	imgTop = border - min(offset[1], 0)
-	background.paste(image.convert("RGBA"), (imgLeft, imgTop), image.convert("RGBA"))
-
+	background.paste(image.convert("RGBA"), (imgLeft, imgTop),
+	image.convert("RGBA"))
 	return resize(background, originalSize[0], originalSize[1])
 
 
@@ -155,12 +154,10 @@ def doConvertBlackAndWhiteFilter(image, mode):
 	im = image.convert('L')
 	im.thumbnail((1, 1))
 	averageColour = im.getpixel((0, 0))
-
 	if (mode == "filter-darker"):
 		threshold = lambda pixel: 0 if pixel < averageColour else 255
 	if (mode == "filter-lighter"):
 		threshold = lambda pixel: 0 if pixel > averageColour else 255
-
 	converted = image.convert('L').point(threshold, mode='1')
 	return converted.convert("RGBA")
 
@@ -203,21 +200,22 @@ def addText(image, text):
 	if len(text) > 15:
 		text = text[:13] + ".."
 	width, height = image.size
-	font = ImageFont.truetype(THISDIR + "/resources/FiraCode-Light.ttf", int(height / 2 * 0.8))
+	font = ImageFont.truetype(THISDIR + "/resources/FiraCode-Light.ttf",
+	int(height / 2 * 0.8))
 	colours = getSortedColours(image)
 	backgroundColour = colours[0][1]
 	foregroundColour = colours[1][1]
 	background = Image.new("RGBA", (width * 5, height), backgroundColour)
 	imageText = ImageDraw.Draw(background)
-	imageText.text((int(width * 0.9), int(height / 4)),
-	"|" + text,
-	font=font,
+	imageText.text((int(width * 0.9), int(height / 4)), "|" + text, font=font,
 	fill=foregroundColour)
 	background.paste(image.convert("RGBA"), (0, 0), image.convert("RGBA"))
 	return background
 
+
 # Blendtype has an assortment of effects
 BlendType = bmBlendType
+
 
 def blend(background, foreground, blendType, opacity):
 	"""Blend layers using numpy array
@@ -261,5 +259,57 @@ def blend(background, foreground, blendType, opacity):
 	DESTATOP
 	SRCATOP
 	"""
+blend = blendLayers # yapf: disable
 
-blend = blendLayers
+
+def applySwatch(image, swatchFile):
+	"""Apply a swatch to the image using colourswatch
+
+	Args:
+		image (PIL.Image.Image): The PIL Image
+		swatchFile (string): Path to the swatch file
+
+	Returns:
+		PIL.Image: quantized image
+	"""
+	pal = Image.new('P', (1, 1))
+	pal.putpalette(openColourSwatch(swatchFile).toPILPalette())
+	rgbImage = image.convert("RGB").quantize(palette=pal, method=2, dither=0)
+	background = Image.new('RGBA', image.size, "#00000000")
+	background.paste(rgbImage.convert("RGBA"), (0, 0), image.convert("RGBA"))
+	return background
+
+
+def pixelate(image, pixelSize=4):
+	"""Apply a pixelate effect to an image. This might be used to create a retro
+	effect.
+
+	Args:
+		image (PIL.Image.Image): A pillow image
+		pixelSize (int, optional): X, Y pixels to merge. E.g. assuming image
+		dimensions of 256x256 and pixelSize of 4, an image with dimensions
+		256x256 will be returned with the effect of an image with size 64x64.
+		Defaults to 4.
+
+	Returns:
+		PIL.Image: pixelated image
+	"""
+	originalSize = image.size
+	width, height = int(image.size[0] / pixelSize), int(image.size[1] / pixelSize)
+	downsize = image.resize((width, height), Image.NEAREST)
+	return downsize.resize(originalSize, Image.NEAREST)
+
+
+def removeBG(image):
+	"""Remove the background from an image or a layeredimage
+
+	Args:
+		image (PIL.Image.Image|layeredimage.layeredimage.LayeredImage): An image or a layered
+		image
+
+	Returns:
+		PIL.Image: image without bg
+	"""
+	if isinstance(image, Image.Image):
+		return findAndReplace(image, getSortedColours(image)[0][1], (0, 0, 0, 0))
+	return LayeredImage(image.extractLayers()[1:]).getFlattenLayers()

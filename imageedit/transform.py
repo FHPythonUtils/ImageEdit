@@ -3,6 +3,7 @@
 from PIL import Image
 from imageedit.io import getPixelDimens
 
+
 def cropCentre(image, width, height):
 	"""Crops the centre part of the image with a width and height
 	width, height can be one of the following:
@@ -34,8 +35,8 @@ def expand(image, padding):
 		PIL.Image.Image: A PIL Image
 	"""
 	[padding] = getPixelDimens(image, [padding])
-	fullWidth = image.size[0] + 2 * padding
-	fullHeight = image.size[1] + 2 * padding
+	fullWidth = image.size[0] + 2*padding
+	fullHeight = image.size[1] + 2*padding
 	background = Image.new("RGBA", (fullWidth, fullHeight))
 	# Corners
 	background.paste(image.convert("RGBA"))
@@ -50,7 +51,6 @@ def expand(image, padding):
 	# Centre
 	background.paste(image.convert("RGBA"), (padding, padding))
 	return background
-
 
 
 def resize(image, width, height):
@@ -87,7 +87,6 @@ def resizeSquare(image, size):
 	return resize(image, size, size)
 
 
-
 def removePadding(image, padding):
 	"""Takes an image and preforms a centre crop and removes the padding
 
@@ -98,25 +97,29 @@ def removePadding(image, padding):
 	Returns:
 		PIL.Image.Image: Image
 	"""
-	return image.crop((padding, padding, image.width - padding, image.height - padding))
+	return image.crop(
+	(padding, padding, image.width - padding, image.height - padding))
 
 
-def findAndReplace(image, find, replace, noMatch=None):
+def findAndReplace(image, find, replace, noMatch=None, threshold=5):
 	"""Find and replace colour in PIL Image
 
 	Args:
 		image (PIL.Image.Image): The Image
 		find ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
 		replace ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
-		noMatch ((r,g,b,a) default=None): A tuple containing values for rgba
-		from 0-255 inclusive. Optional, set pixel colour if not matched
+		noMatch ((r,g,b,a), optional): A tuple containing values for rgba
+		from 0-255 inclusive. Set pixel colour if not matched. Default is None
+		threshold (int, optional): Find and replace without an exact match.
+		Default is 5
 
 	Returns:
 		PIL.Image.Image: The result
 	"""
 	def cmpTup(tupleA, tupleB):
 		for index, _ in enumerate(tupleA):
-			if (tupleA[index] > tupleB[index] + 10 or tupleA[index] < tupleB[index] - 10):
+			if (tupleA[index] > tupleB[index] + threshold or
+			tupleA[index] < tupleB[index] - threshold):
 				return False
 		return True
 

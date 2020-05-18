@@ -17,8 +17,8 @@
 [**Now available on pypi.org!**](https://pypi.org/project/imageedit/)
 
 Create various icon masks and shading effects with the imageedit library.
-Five example files under main: round.py, makeProjIcons.py, makePWAImages.py,
-getPWAScreenshots.py and readWriteLayered.py.
+Six example files under main: round.py, makeProjIcons.py, makePWAImages.py,
+makeRetro.py, getPWAScreenshots.py and readWriteLayered.py.
 
 Leverages the following libraries to do the heavy lifting:
 ```none
@@ -38,7 +38,9 @@ xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 	- [Web](#web)
 	- [Advantages of this solution](#advantages-of-this-solution)
 	- [Disadvantages of this solution](#disadvantages-of-this-solution)
-- [How to use out of the box (makePWAImages)](#how-to-use-out-of-the-box-makepwaimages)
+- [How to use out of the box](#how-to-use-out-of-the-box)
+	- [makePWAImages](#makepwaimages)
+	- [makeRetro](#makeretro)
 - [Install With PIP](#install-with-pip)
 - [Language information](#language-information)
 	- [Built for](#built-for)
@@ -71,11 +73,12 @@ See the documentation for each library for more information on things you
 can use it for.
 
 ## Example Files
-- round.py
+- getPWAScreenshots.py
 - makeProjIcons.py
 - makePWAImages.py
+- makeRetro.py
 - readWriteLayered.py
-- getPWAScreenshots.py
+- round.py
 
 ## Comparison to similar solutions
 
@@ -104,7 +107,9 @@ is pretty good (requires pyppeteer: https://github.com/miyakogi/pyppeteer)
 - Specific image dimensions needed out of the box: whilst this is something that
 could be changed, maskable icons are 640x640 and regular icons are 512x512
 
-## How to use out of the box (makePWAImages)
+## How to use out of the box
+
+### makePWAImages
 
 1. Put regular 512x512 image or mask 640x640 image under main/input in this
 example I am using lightfox.png
@@ -113,14 +118,47 @@ example I am using lightfox.png
 
 2. Run ```makePWAImages.py``` and navigate to main/output/lightfox.png/pwa
 
-<div>
-<img src="readme-assets/examples/mask.png" alt="LightFox" width="128">
-<img src="readme-assets/examples/round-192.png" alt="LightFox" width="38">
-<img src="readme-assets/examples/round-512.png" alt="LightFox" width="102">
-<img src="readme-assets/examples/square-180.png" alt="LightFox" width="36">
-<img src="readme-assets/examples/squircle-256.png" alt="LightFox" width="52">
-</div>
+	<div>
+	<img src="readme-assets/examples/mask.png" alt="LightFox" width="128">
+	<img src="readme-assets/examples/round-192.png" alt="LightFox" width="38">
+	<img src="readme-assets/examples/round-512.png" alt="LightFox" width="102">
+	<img src="readme-assets/examples/square-180.png" alt="LightFox" width="36">
+	<img src="readme-assets/examples/squircle-256.png" alt="LightFox" width="52">
+	</div>
 
+### makeRetro
+1. Put regular 512x512 image or mask 640x640 image under main/input. In this
+   example I am using BlendModes.png
+
+	<img src="readme-assets/examples/blendmodes.png" alt="BlendModes" width="128">
+
+2. Run ```makeRetro.py``` and navigate to main/output/blendmodes.png/retro
+	Personal Computers
+
+	<div>
+	<img src="readme-assets/examples/3level.png" alt="BlendModes" width="128">
+	<img src="readme-assets/examples/bbc-micro.png" alt="BlendModes" width="128">
+	<img src="readme-assets/examples/zxspectrum.png" alt="BlendModes" width="128">
+	<img src="readme-assets/examples/websafe.png" alt="BlendModes" width="128">
+	</div>
+
+	Mobile Operating Systems
+
+	iOS
+
+	<div>
+	<img src="readme-assets/examples/ios1.png" alt="BlendModes" width="128">
+	<img src="readme-assets/examples/ios7.png" alt="BlendModes" width="128">
+	</div>
+
+	Android
+
+	<div>
+	<img src="readme-assets/examples/android2.png" alt="BlendModes" width="128">
+	<img src="readme-assets/examples/android6.png" alt="BlendModes" width="128">
+	<img src="readme-assets/examples/android7.png" alt="BlendModes" width="128">
+	<img src="readme-assets/examples/android8.png" alt="BlendModes" width="128">
+	</div>
 
 ## Install With PIP
 

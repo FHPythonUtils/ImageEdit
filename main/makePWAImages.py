@@ -8,6 +8,7 @@ from pathlib import Path
 from metprint import Logger, LogType, FHFormatter
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR))
+from layeredimage.layeredimage import LayeredImage, Layer
 from imageedit import io, imagetracer, transform, effects
 
 if __name__ == "__main__": # pragma: no cover

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "imageedit"
-version = "2020.4.2"
+version = "2020.5"
 description = "Create various icon masks and shading effects with the imageedit library"
 authors = ["FredHappyface"]
 classifiers = [
@@ -31,6 +31,7 @@ pillow = "^7.1.2"
 layeredimage = "^2020.5.6"
 svgtrace = "^2020.0.2"
 blendmodes = "^2020.2.1"
+colourswatch = "^2020.1"
 
 [tool.dephell.main]
 from = "pyproject.toml"

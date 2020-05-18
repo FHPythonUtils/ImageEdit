@@ -1,0 +1,63 @@
+GIMP Palette
+Name: Material Design
+Columns: 14
+#
+255 224 130		amber 200
+255 193   7		amber 500
+255 143   0		amber 800
+144 202 249		blue 200
+ 33 150 243		blue 500
+ 21 101 192		blue 800
+128 222 234		cyan 200
+  0 188 212		cyan 500
+  0 131 143		cyan 800
+255 171 145		deep-orange 200
+255  87  34		deep-orange 500
+216  67  21		deep-orange 800
+179 157 219		deep-purple 200
+103  58 183		deep-purple 500
+ 69  39 160		deep-purple 800
+165 214 167		green 200
+ 76 175  80		green 500
+ 46 125  50		green 800
+159 168 218		indigo 200
+ 63  81 181		indigo 500
+ 40  53 147		indigo 800
+129 212 250		light-blue 200
+  3 169 244		light-blue 500
+  2 119 189		light-blue 800
+197 225 165		light-green 200
+139 195  74		light-green 500
+ 85 139  47		light-green 800
+230 238 156		lime 200
+205 220  57		lime 500
+158 157  36		lime 800
+255 204 128		orange 200
+255 152   0		orange 500
+239 108   0		orange 800
+244 143 177		pink 200
+233  30  99		pink 500
+173  20  87		pink 800
+206 147 216		purple 200
+156  39 176		purple 500
+106  27 154		purple 800
+239 154 154		red 200
+244  67  54		red 500
+198  40  40		red 800
+128 203 196		teal 200
+  0 150 136		teal 500
+  0 105  92		teal 800
+255 245 157		yellow 200
+255 235  59		yellow 500
+249 168  37		yellow 800
+176 190 197		blue-grey 200
+ 96 125 139		blue-grey 500
+ 55  71  79		blue-grey 800
+188 170 164		brown 200
+121  85  72		brown 500
+ 78  52  46		brown 800
+238 238 238		grey 200
+158 158 158		grey 500
+ 66  66  66		grey 800
+  0   0   0	   	black
+255 255 255	white

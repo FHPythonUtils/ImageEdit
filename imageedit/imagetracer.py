@@ -2,6 +2,8 @@
 """
 
 import svgtrace
+
+
 def trace(filename, blackAndWhite=False, mode="default"):
 	"""Do a trace of an image on the filesystem using the svgtrace library
 
@@ -15,5 +17,4 @@ def trace(filename, blackAndWhite=False, mode="default"):
 	Returns:
 		str: SVG string
 	"""
-
-trace = svgtrace.trace
+trace = svgtrace.trace # yapf: disable
