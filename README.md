@@ -1,13 +1,12 @@
-[![Github top language](https://img.shields.io/github/languages/top/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](../../)
-[![Codacy grade](https://img.shields.io/codacy/grade/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/gh/FHPythonUtils/ImageRound)
-[![Codacy coverage](https://img.shields.io/codacy/coverage/caca6f53db3a44f08b7cbdb25284e784.svg?style=for-the-badge)](https://www.codacy.com/gh/FHPythonUtils/ImageRound)
+[![GitHub top language](https://img.shields.io/github/languages/top/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](../../)
 [![Repository size](https://img.shields.io/github/repo-size/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](../../)
 [![Issues](https://img.shields.io/github/issues/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](../../issues)
 [![License](https://img.shields.io/github/license/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](/LICENSE.md)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](../../commits/master)
 [![Last commit](https://img.shields.io/github/last-commit/FHPythonUtils/ImageEdit.svg?style=for-the-badge)](../../commits/master)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/imageedit.svg?style=for-the-badge)](https://pypi.org/project/imageedit/)
-[![PyPI Version](https://img.shields.io/pypi/v/imageedit.svg?style=for-the-badge)](https://pypi.org/project/imageedit/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/imageedit.svg?style=for-the-badge)](https://pypistats.org/packages/imageedit)
+[![PyPI Total Downloads](https://img.shields.io/badge/dynamic/json?style=for-the-badge&label=total%20downloads&query=%24.total_downloads&url=https%3A%2F%2Fapi.pepy.tech%2Fapi%2Fprojects%2Fimageedit)](https://pepy.tech/project/imageedit)
+[![PyPI Version](https://img.shields.io/pypi/v/imageedit.svg?style=for-the-badge)](https://pypi.org/project/imageedit)
 
 <!-- omit in toc -->
 # ImageEdit
@@ -31,7 +30,6 @@ blendmodes
 Have a look under test/test_readWriteLayered for an example of converting an
 xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 
-- [Documentation](#documentation)
 - [Example Files](#example-files)
 - [Comparison to similar solutions](#comparison-to-similar-solutions)
 	- [GUI](#gui)
@@ -41,6 +39,7 @@ xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 - [How to use out of the box](#how-to-use-out-of-the-box)
 	- [makePWAImages](#makepwaimages)
 	- [makeRetro](#makeretro)
+- [Documentation](#documentation)
 - [Install With PIP](#install-with-pip)
 - [Language information](#language-information)
 	- [Built for](#built-for)
@@ -52,7 +51,7 @@ xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 - [How to run](#how-to-run)
 	- [With VSCode](#with-vscode)
 	- [From the Terminal](#from-the-terminal)
-- [Download](#download-1)
+- [Download Project](#download-project)
 	- [Clone](#clone)
 		- [Using The Command Line](#using-the-command-line)
 		- [Using GitHub Desktop](#using-github-desktop)
@@ -63,11 +62,9 @@ xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 	- [Code of Conduct](#code-of-conduct)
 	- [Contributing](#contributing)
 	- [Security](#security)
-- [Screenshots](#screenshots)
-	- [Desktop](#desktop)
+	- [Support](#support)
+	- [Rationale](#rationale)
 
-## Documentation
-See the [DOCS](/DOCS.md) for more information.
 
 See the documentation for each library for more information on things you
 can use it for.
@@ -160,20 +157,21 @@ example I am using lightfox.png
 	<img src="readme-assets/examples/android8.png" alt="BlendModes" width="128">
 	</div>
 
-## Install With PIP
 
+## Documentation
+See the [Docs](/DOCS.md) for more information.
+
+## Install With PIP
 ```python
 pip install imageedit
 ```
 
 Head to https://pypi.org/project/imageedit/ for more info
 
-See python files under main for example usage
-
 ## Language information
 ### Built for
 This program has been written for Python 3 and has been tested with
-Python version 3.8.0 <https://www.python.org/downloads/release/python-380/>.
+Python version 3.9.0 <https://www.python.org/downloads/release/python-380/>.
 
 ## Install Python on Windows
 ### Chocolatey
@@ -187,31 +185,31 @@ version.
 ## Install Python on Linux
 ### Apt
 ```bash
-sudo apt install python3.8
+sudo apt install python3.9
 ```
 
 ## How to run
 ### With VSCode
 1. Open the .py file in vscode
-2. Ensure a python 3.8 interpreter is selected (Ctrl+Shift+P > Python:Select
-Interpreter > Python 3.8)
+2. Ensure a python 3.9 interpreter is selected (Ctrl+Shift+P > Python:Select
+Interpreter > Python 3.9)
 3. Run by pressing Ctrl+F5 (if you are prompted to install any modules, accept)
 ### From the Terminal
 ```bash
 ./[file].py
 ```
 
-## Download
+## Download Project
 ### Clone
 #### Using The Command Line
 1. Press the Clone or download button in the top right
 2. Copy the URL (link)
-3. Open the command line and change directory to where you wish to clone to
+3. Open the command line and change directory to where you wish to
+clone to
 4. Type 'git clone' followed by URL in step 2
 ```bash
-$ git clone https://github.com/[user-name]/[repository]
+$ git clone https://github.com/FHPythonUtils/ImageEdit
 ```
-
 
 More information can be found at
 <https://help.github.com/en/articles/cloning-a-repository>
@@ -240,23 +238,31 @@ Copyright (c) FredHappyface
 See the [Changelog](/CHANGELOG.md) for more information.
 
 ### Code of Conduct
-In the interest of fostering an open and welcoming environment, we
-as contributors and maintainers pledge to make participation in our
-project and our community a harassment-free experience for everyone.
-Please see the
-[Code of Conduct](https://github.com/FHPythonUtils/.github/blob/master/CODE_OF_CONDUCT.md) for more information.
+Online communities include people from many backgrounds. The *Project*
+contributors are committed to providing a friendly, safe and welcoming
+environment for all. Please see the
+[Code of Conduct](https://github.com/FHPythonUtils/.github/blob/master/CODE_OF_CONDUCT.md)
+ for more information.
 
 ### Contributing
-Contributions are welcome, please see the [Contributing Guidelines](https://github.com/FHPythonUtils/.github/blob/master/CONTRIBUTING.md) for more information.
+Contributions are welcome, please see the
+[Contributing Guidelines](https://github.com/FHPythonUtils/.github/blob/master/CONTRIBUTING.md)
+for more information.
 
 ### Security
-Thank you for improving the security of the project, please see the [Security Policy](https://github.com/FHPythonUtils/.github/blob/master/SECURITY.md) for more information.
+Thank you for improving the security of the project, please see the
+[Security Policy](https://github.com/FHPythonUtils/.github/blob/master/SECURITY.md)
+for more information.
 
-## Screenshots
+### Support
+Thank you for using this project, I hope it is of use to you. Please be aware that
+those involved with the project often do so for fun along with other commitments
+(such as work, family, etc). Please see the
+[Support Policy](https://github.com/FHPythonUtils/.github/blob/master/SUPPORT.md)
+for more information.
 
-### Desktop
-<div>
-<img src="readme-assets/screenshots/desktop/screenshot-0.png" alt="Screenshot 1" width="600">
-<img src="readme-assets/screenshots/desktop/screenshot-1.png" alt="Screenshot 2" width="600">
-<img src="readme-assets/screenshots/desktop/screenshot-2.png" alt="Screenshot 3" width="600">
-</div>
+### Rationale
+The rationale acts as a guide to various processes regarding projects such as
+the versioning scheme and the programming styles used. Please see the
+[Rationale](https://github.com/FHPythonUtils/.github/blob/master/RATIONALE.md)
+for more information.
