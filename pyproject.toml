@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "imageedit"
-version = "2020.5"
+version = "2021"
 description = "Create various icon masks and shading effects with the imageedit library"
 authors = ["FredHappyface"]
 classifiers = [
@@ -25,13 +25,13 @@ documentation = "https://github.com/FredHappyface/Python.ImageEdit/blob/master/R
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.6"
-metprint = "^2020.6.1"
-pillow = "^7.1.2"
-layeredimage = "^2020.5.6"
-svgtrace = "^2020.0.2"
-blendmodes = "^2020.2.1"
-colourswatch = "^2020.1"
+python = "^3.7"
+metprint = "<2022,>=2020.6.1"
+layeredimage = "<2022,>=2020.5.6"
+svgtrace = "<2022,>=2020.0.2"
+blendmodes = "<2022,>=2020.2.1"
+colourswatch = "<2022,>=2020.1"
+Pillow = "<10,>=8.1.2"
 
 [tool.dephell.main]
 from = "pyproject.toml"

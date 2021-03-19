@@ -1,11 +1,13 @@
-"""Apply a transformations such as crop and resize """
+"""Apply a transformations such as crop and resize."""
 
 from PIL import Image
+
 from imageedit.io import getPixelDimens
 
 
-def cropCentre(image, width, height):
-	"""Crops the centre part of the image with a width and height
+def cropCentre(image: Image.Image, width, height):
+	"""Crops the centre part of the image with a width and height.
+
 	width, height can be one of the following:
 	pixel: int, percent: "val%", scale: "valx"
 
@@ -18,8 +20,14 @@ def cropCentre(image, width, height):
 		PIL.Image.Image: A PIL Image
 	"""
 	[width, height] = getPixelDimens(image, [width, height])
-	return image.crop(((image.width - width) / 2, (image.height - height) / 2,
-	(image.width + width) / 2, (image.height + height) / 2))
+	return image.crop(
+		(
+			(image.width - width) / 2,
+			(image.height - height) / 2,
+			(image.width + width) / 2,
+			(image.height + height) / 2,
+		)
+	)
 
 
 def expand(image, padding):
@@ -35,8 +43,8 @@ def expand(image, padding):
 		PIL.Image.Image: A PIL Image
 	"""
 	[padding] = getPixelDimens(image, [padding])
-	fullWidth = image.size[0] + 2*padding
-	fullHeight = image.size[1] + 2*padding
+	fullWidth = image.size[0] + 2 * padding
+	fullHeight = image.size[1] + 2 * padding
 	background = Image.new("RGBA", (fullWidth, fullHeight))
 	# Corners
 	background.paste(image.convert("RGBA"))
@@ -97,8 +105,7 @@ def removePadding(image, padding):
 	Returns:
 		PIL.Image.Image: Image
 	"""
-	return image.crop(
-	(padding, padding, image.width - padding, image.height - padding))
+	return image.crop((padding, padding, image.width - padding, image.height - padding))
 
 
 def findAndReplace(image, find, replace, noMatch=None, threshold=5):
@@ -116,14 +123,17 @@ def findAndReplace(image, find, replace, noMatch=None, threshold=5):
 	Returns:
 		PIL.Image.Image: The result
 	"""
+
 	def cmpTup(tupleA, tupleB):
 		for index, _ in enumerate(tupleA):
-			if (tupleA[index] > tupleB[index] + threshold or
-			tupleA[index] < tupleB[index] - threshold):
+			if (
+				tupleA[index] > tupleB[index] + threshold
+				or tupleA[index] < tupleB[index] - threshold
+			):
 				return False
 		return True
 
-	converted = image.convert('RGBA')
+	converted = image.convert("RGBA")
 	pixels = converted.load()
 	for i in range(image.size[0]):
 		for j in range(image.size[1]):
