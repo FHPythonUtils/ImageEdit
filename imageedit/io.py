@@ -9,10 +9,9 @@ import os
 import sys
 from pathlib import Path
 
-from layeredimage.io import (LayeredImage,
-                             exportFlatImage as liExportFlatImage,
-                             openLayerImage as liOpenLayerImage,
-                             saveLayerImage as liSaveLayerImage)
+from layeredimage.io import (LayeredImage, exportFlatImage, openLayerImage,
+                             saveLayerImage)
+from layeredimage.layeredimage import renderWAlphaOffset
 from metprint import FHFormatter, Logger, LogType
 from PIL import Image
 
@@ -25,23 +24,23 @@ FILE_EXTS = [
 # fmt: on
 
 
-def getPixelDimens(image, dimens):
+def getPixelDimens(image: Image.Image, dimens: list[int | str]) -> list[int]:
 	"""Get the pixel dimensions for an image from one of the following.
 
 	pixel (no calculation): int, percent: "val%", scale: "valx"
 
 	Args:
-		image (PIL.Image.Image): Input image
+		image (Image.Image): Input image
 		dimens (int|str): One of pixel, percent, scale
 
 	Returns:
-		int: outDimens in pixels
+		list[int]: outDimens in pixels
 	"""
 	outDimens = []
 	for index, dimension in enumerate(dimens):
 		if isinstance(dimension, int):
 			outDimens.append(dimension)
-		if isinstance(dimension, str):
+		elif isinstance(dimension, str):
 			if len(dimens) == 1:
 				size = min(image.size)
 			else:
@@ -53,12 +52,12 @@ def getPixelDimens(image, dimens):
 	return outDimens
 
 
-def openImagesInDir(dirGlob, mode=None):
+def openImagesInDir(dirGlob: str, mode: str | None = None):
 	"""Open all images in a directory and returns them in a list along with filepath.
 
 	Args:
-		dirGlob (string): in the form "input/*."
-		mode (str|None): open image with a mode (optional)
+		dirGlob (str): in the form "input/*."
+		mode (str,None): open image with a mode (optional)
 
 	Returns:
 		PIL.Image.Image: Image
@@ -70,17 +69,17 @@ def openImagesInDir(dirGlob, mode=None):
 	return images
 
 
-def openImage(file, mode=None):
+def openImage(file: str, mode: str | None = None) -> Image.Image:
 	"""Open a single image and returns an image object.
 
 	Use full file path or file path relative to /lib
 
 	Args:
-		file (string): full file path or file path relative to /lib
-		mode (str|None): open image with a mode (optional)
+		file (str): full file path or file path relative to /lib
+		mode (str,None): open image with a mode (optional)
 
 	Returns:
-		PIL.Image.Image: Image
+		Image.Image: Image
 	"""
 	checkExists(file)
 	if mode is not None:
@@ -88,13 +87,6 @@ def openImage(file, mode=None):
 	else:
 		image = Image.open(file)
 	return image
-
-
-def openLayerImage(file: str) -> LayeredImage:
-	"""Open a layered image."""
-
-
-openLayerImage = liOpenLayerImage
 
 
 def saveImage(fileName, image, optimise=True):
@@ -112,21 +104,7 @@ def saveImage(fileName, image, optimise=True):
 	image.save(fileName, optimize=optimise, quality=75)
 
 
-def saveLayerImage(fileName: str, layeredImage: LayeredImage) -> None:
-	"""Save a layered image."""
-
-
-saveLayerImage = liSaveLayerImage
-
-
-def exportFlatImage(fileName: str, layeredImage: LayeredImage) -> None:
-	"""Export to a flat image."""
-
-
-exportFlatImage = liExportFlatImage
-
-
-def getImageDesc(image: Image.Image):
+def getImageDesc(image: Image.Image) -> str:
 	"""Get an image description returns [icon/mask]. Likely more useful for...
 
 	my specific use case than in the general lib.
@@ -135,7 +113,7 @@ def getImageDesc(image: Image.Image):
 		image (PIL.Image.Image): Image
 
 	Returns:
-		string|none: description of image
+		str: description of image
 	"""
 	desc = "unknown"
 	if image.width == 640 and image.height == 640:
@@ -147,7 +125,7 @@ def getImageDesc(image: Image.Image):
 
 def getSortedColours(
 	image: Image.Image,
-) -> list[tuple[int, tuple[int, int, int, int]]] | list[tuple[int, int]]:
+) -> list[tuple[int, tuple[int, int, int, int]]]:
 	"""Get the list of colours in an image sorted by 'popularity'.
 
 	Args:
@@ -190,16 +168,9 @@ def combine(
 		max(backgroundImage.size[1], foregroundImage.size[1]),
 	)
 	return Image.alpha_composite(
-		rasterImageOA(backgroundImage, maxSize, backgroundAlpha, backgroundOffsets),
-		rasterImageOA(foregroundImage, maxSize, foregroundAlpha, foregroundOffsets),
+		renderWAlphaOffset(backgroundImage, maxSize, backgroundAlpha, backgroundOffsets),
+		renderWAlphaOffset(foregroundImage, maxSize, foregroundAlpha, foregroundOffsets),
 	)
-
-
-def rasterImageOA(image, size, alpha=1.0, offsets=(0, 0)):
-	"""Rasterise an image with offset and alpha to a given size."""
-	imageOffset = Image.new("RGBA", size)
-	imageOffset.paste(image.convert("RGBA"), offsets, image.convert("RGBA"))
-	return Image.blend(Image.new("RGBA", size), imageOffset, alpha)
 
 
 def checkExists(file):
