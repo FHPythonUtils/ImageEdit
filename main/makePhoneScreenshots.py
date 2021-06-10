@@ -17,16 +17,16 @@ from imageedit import effects, io
 if __name__ == "__main__":  # pragma: no cover
 
 	OUTPUT_DIR = THISDIR + "/output/screenshots/"
-	OVERLAY = io.openImage(THISDIR + "/resources/pixel3aScreenshot_2.png")
+	OVERLAY = io.openImage(THISDIR + "/resources/pixel3aScreenshot_3.png")
 
-	# Create cover image
+	# Create cover image/ featureGraphic
 	coverImages = io.openImagesInDir(THISDIR + "/input/*-playstore")
 	if len(coverImages) > 0:
 		_, srcImage = coverImages[0]
 		coverImage = Image.new("RGBA", (1024, 500), srcImage.getpixel((0, 0)))
 		coverImage.paste(srcImage, (256, -6))
 		io.saveImage(
-			OUTPUT_DIR + "cover_image.png",
+			OUTPUT_DIR + "featureGraphic.png",
 			coverImage,
 		)
 		Logger(FHFormatter()).logPrint("::Created Cover Image::", LogType.BOLD)
@@ -48,7 +48,7 @@ if __name__ == "__main__":  # pragma: no cover
 							"RGBA", (OVERLAY.width, OVERLAY.height), screenshot.getpixel((50, 100))
 						),
 					),
-					Layer("screenshot", screenshot, offsets=(525, 1110)),
+					Layer("screenshot", screenshot, offsets=(525, 770)),
 					Layer("overlay", OVERLAY),
 				]
 			).getFlattenLayers(),
