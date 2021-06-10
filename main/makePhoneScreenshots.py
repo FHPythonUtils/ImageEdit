@@ -20,14 +20,16 @@ if __name__ == "__main__":  # pragma: no cover
 	OVERLAY = io.openImage(THISDIR + "/resources/pixel3aScreenshot_2.png")
 
 	# Create cover image
-	_, srcImage = io.openImagesInDir(THISDIR + "/input/*-playstore")[0]
-	coverImage = Image.new("RGBA", (1024, 500), srcImage.getpixel((0, 0)))
-	coverImage.paste(srcImage, (256, -6))
-	io.saveImage(
-		OUTPUT_DIR + "cover_image.png",
-		coverImage,
-	)
-	Logger(FHFormatter()).logPrint("::Created Cover Image::", LogType.BOLD)
+	coverImages = io.openImagesInDir(THISDIR + "/input/*-playstore")
+	if len(coverImages) > 0:
+		_, srcImage = coverImages[0]
+		coverImage = Image.new("RGBA", (1024, 500), srcImage.getpixel((0, 0)))
+		coverImage.paste(srcImage, (256, -6))
+		io.saveImage(
+			OUTPUT_DIR + "cover_image.png",
+			coverImage,
+		)
+		Logger(FHFormatter()).logPrint("::Created Cover Image::", LogType.BOLD)
 
 	# Process screenshots
 	images = io.openImagesInDir(THISDIR + "/input/*")
