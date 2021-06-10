@@ -52,7 +52,7 @@ def getPixelDimens(image: Image.Image, dimens: list[int | str]) -> list[int]:
 	return outDimens
 
 
-def openImagesInDir(dirGlob: str, mode: str | None = None):
+def openImagesInDir(dirGlob: str, mode: str | None = None) -> list[tuple[str, Image.Image]]:
 	"""Open all images in a directory and returns them in a list along with filepath.
 
 	Args:

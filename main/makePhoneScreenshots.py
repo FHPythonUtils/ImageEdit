@@ -1,97 +1,56 @@
-"""Author FredHappyface 20190918...
+"""Author FredHappyface 2021...
 
-Make Images for PWAs
+Make Android screenshots look nice and create a cover image for google play store
 """
 import os
 import sys
 from pathlib import Path
 
-from blendmodes.blend import BlendType
 from layeredimage.layeredimage import Layer, LayeredImage
 from metprint import FHFormatter, Logger, LogType
+from PIL import Image
 
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR))
-from imageedit import effects, io, transform
+from imageedit import effects, io
 
 if __name__ == "__main__":  # pragma: no cover
 
-	# Image in should be 512px
+	OUTPUT_DIR = THISDIR + "/output/screenshots/"
+	OVERLAY = io.openImage(THISDIR + "/resources/pixel3aScreenshot_2.png")
+
+	# Create cover image
+	_, srcImage = io.openImagesInDir(THISDIR + "/input/*-playstore")[0]
+	coverImage = Image.new("RGBA", (1024, 500), srcImage.getpixel((0, 0)))
+	coverImage.paste(srcImage, (256, -6))
+	io.saveImage(
+		OUTPUT_DIR + "cover_image.png",
+		coverImage,
+	)
+	Logger(FHFormatter()).logPrint("::Created Cover Image::", LogType.BOLD)
+
+	# Process screenshots
 	images = io.openImagesInDir(THISDIR + "/input/*")
 	for imageRef in images:
-		fileName, squareImage = imageRef
+		fileName, screenshot = imageRef
 		fileNameParts = fileName.split(os.sep)
 		fileName = fileNameParts[len(fileNameParts) - 1]
 		Logger(FHFormatter()).logPrint(fileName, LogType.BOLD)
-		outputDir = THISDIR + "/output/" + fileName
-		retroDir = outputDir + "/retro"
-		if io.getImageDesc(squareImage) == "mask":
-			squareImage = transform.removePadding(squareImage, 64)
-		roundImage = effects.roundCornersAntiAlias(squareImage, 256)
-		squircleImage = effects.roundCornersAntiAlias(squareImage, 102)  # Google Play Rounding
-		"""
-		Retro Images
-		"""
-		# BBC Micro (3bitrgb)
-		swatch = effects.applySwatch(
-			effects.pixelate(squareImage), THISDIR + "/resources/3bitrgb.png"
-		)
-		io.saveImage(retroDir + "/bbc-micro.png", transform.resizeSquare(swatch, "0.5x"))
-		# Pebble Smartwatch (6bitrgb)
-		swatch = effects.applySwatch(squareImage, THISDIR + "/resources/6bitrgb.png")
-		io.saveImage(retroDir + "/pebble-smartwatch.png", transform.resizeSquare(swatch, "0.5x"))
-		# ZX Spectrum (4bitrgb)
-		swatch = effects.applySwatch(
-			effects.pixelate(squareImage), THISDIR + "/resources/4bitrgb.png"
-		)
-		io.saveImage(retroDir + "/zxspectrum.png", transform.resizeSquare(swatch, "0.5x"))
-		# 3-Level RGB
-		swatch = effects.applySwatch(
-			effects.pixelate(squareImage), THISDIR + "/resources/3levelrgb.png"
-		)
-		io.saveImage(retroDir + "/3level.png", transform.resizeSquare(swatch, "0.5x"))
-		# websafe
-		swatch = effects.applySwatch(squareImage, THISDIR + "/resources/web.gpl")
-		io.saveImage(retroDir + "/websafe.png", transform.resizeSquare(swatch, "0.5x"))
-		# ios6
-		ios = effects.roundCornersAntiAlias(squareImage, 90)
-		ios6 = io.exportFlatImage(
-			retroDir + "/ios1.png",
+		os.makedirs(OUTPUT_DIR, exist_ok=True)
+		composite = effects.resize(
 			LayeredImage(
 				[
-					Layer("bg", ios),
-					Layer("overlay", io.openImage(THISDIR + "/resources/ios6_2.png")),
+					Layer(
+						"bg",
+						Image.new(
+							"RGBA", (OVERLAY.width, OVERLAY.height), screenshot.getpixel((50, 100))
+						),
+					),
+					Layer("screenshot", screenshot, offsets=(525, 1110)),
+					Layer("overlay", OVERLAY),
 				]
-			),
+			).getFlattenLayers(),
+			"50%",
+			"50%",
 		)
-		# ios7 - Radius 17.5% (90,45)
-		io.saveImage(retroDir + "/ios7.png", transform.resizeSquare(ios, "0.5x"))
-		# Android < 5
-		io.saveImage(
-			retroDir + "/android2.png",
-			transform.resizeSquare(
-				effects.blend(
-					effects.removeBG(squareImage),
-					io.openImage(THISDIR + "/resources/android_legacy.png"),
-					BlendType.SRCATOP,
-				),
-				"0.5x",
-			),
-		)
-		# Android 6
-		swatch = effects.applySwatch(squareImage, THISDIR + "/resources/material-mini.gpl")
-		io.saveImage(
-			retroDir + "/android6.png", transform.resizeSquare(effects.removeBG(swatch), "0.5x")
-		)
-		# Android 7
-		swatch = effects.applySwatch(roundImage, THISDIR + "/resources/material-mini.gpl")
-		io.saveImage(retroDir + "/android7.png", transform.resizeSquare(swatch, "0.5x"))
-		# Android 8+
-		swatch = effects.applySwatch(squareImage, THISDIR + "/resources/material-mini.gpl")
-		io.saveImage(retroDir + "/android8.png", transform.resizeSquare(swatch, "0.5x"))
-		# Papirus/ Paper Icons
-		swatch = effects.applySwatch(ios, THISDIR + "/resources/papirus.gpl")
-		io.saveImage(retroDir + "/papirus.png", transform.resizeSquare(swatch, "0.5x"))
-		# OneDark
-		swatch = effects.applySwatch(squircleImage, THISDIR + "/resources/base24.yaml")
-		io.saveImage(retroDir + "/onedark.png", transform.resizeSquare(swatch, "0.5x"))
+		io.saveImage(OUTPUT_DIR + fileName, composite)
