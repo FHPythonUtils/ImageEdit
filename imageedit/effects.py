@@ -55,7 +55,7 @@ def addDropShadowSimple(image: Image.Image, offset: list[int]) -> Image.Image:
 	Returns:
 		Image.Image: A PIL Image
 	"""
-	border = max([abs(x) for x in offset])
+	border = max(abs(x) for x in offset)
 	return addDropShadowComplex(image, 11, border, offset, "#ffffff00", "#00000055")
 
 

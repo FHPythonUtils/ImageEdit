@@ -14,10 +14,14 @@ Apply a transformations such as crop and resize.
 
 ## cropCentre
 
-[[find in source code]](../../imageedit/transform.py#L8)
+[[find in source code]](../../imageedit/transform.py#L13)
 
 ```python
-def cropCentre(image: Image.Image, width, height):
+def cropCentre(
+    image: Image.Image,
+    width: int | str,
+    height: int | str,
+) -> Image.Image:
 ```
 
 Crops the centre part of the image with a width and height.
@@ -27,48 +31,55 @@ pixel: int, percent: "val%", scale: "valx"
 
 #### Arguments
 
-- `image` *PIL.Image.Image* - Input image
-- `width` *[int|str]* - One of pixel, percent, scale
-- `height` *[int|str]* - One of pixel, percent, scale
+- `image` *Image.Image* - Input image
+- `width` *int,str* - One of pixel, percent, scale
+- `height` *int,str* - One of pixel, percent, scale
 
 #### Returns
 
-- `PIL.Image.Image` - A PIL Image
+- `Image.Image` - A PIL Image
 
 ## expand
 
-[[find in source code]](../../imageedit/transform.py#L33)
+[[find in source code]](../../imageedit/transform.py#L38)
 
 ```python
-def expand(image, padding):
+def expand(image: Image.Image, padding: int | str) -> Image.Image:
 ```
 
-Uncrops the image with a padding
+Uncrops the image with a padding...
+
 padding can be one of the following:
 pixel: int, percent: "val%", scale: "valx"
 
 #### Arguments
 
-- `image` *PIL.Image.Image* - Input image
-- `padding` *[int|str]* - One of pixel, percent, scale
+- `image` *Image.Image* - Input image
+- `padding` *int,str* - One of pixel, percent, scale
 
 #### Returns
 
-- `PIL.Image.Image` - A PIL Image
+- `Image.Image` - A PIL Image
 
 ## findAndReplace
 
-[[find in source code]](../../imageedit/transform.py#L111)
+[[find in source code]](../../imageedit/transform.py#L119)
 
 ```python
-def findAndReplace(image, find, replace, noMatch=None, threshold=5):
+def findAndReplace(
+    image: Image.Image,
+    find: Iterable[int],
+    replace: Iterable[int],
+    noMatch: Iterable[int] | None = None,
+    threshold: int = 5,
+) -> Image.Image:
 ```
 
-Find and replace colour in PIL Image
+Find and replace colour in PIL Image.
 
 #### Arguments
 
-- `image` *PIL.Image.Image* - The Image
+- `image` *Image.Image* - The Image
 - `find` *(r,g,b,a)* - A tuple containing values for rgba from 0-255 inclusive
 - `replace` *(r,g,b,a)* - A tuple containing values for rgba from 0-255 inclusive
 - `noMatch` *(r,g,b,a), optional* - A tuple containing values for rgba
@@ -78,68 +89,74 @@ Default is 5
 
 #### Returns
 
-- `PIL.Image.Image` - The result
+- `Image.Image` - The result
 
 ## removePadding
 
-[[find in source code]](../../imageedit/transform.py#L98)
+[[find in source code]](../../imageedit/transform.py#L106)
 
 ```python
-def removePadding(image, padding):
+def removePadding(image: Image.Image, padding: int) -> Image.Image:
 ```
 
-Takes an image and preforms a centre crop and removes the padding
+Take an image and preforms a centre crop and removes the padding.
 
 #### Arguments
 
-- `image` *PIL.Image.Image* - Image
+- `image` *Image.Image* - Image
 - `padding` *int* - padding in px
 
 #### Returns
 
-- `PIL.Image.Image` - Image
+- `Image.Image` - Image
 
 ## resize
 
-[[find in source code]](../../imageedit/transform.py#L64)
+[[find in source code]](../../imageedit/transform.py#L70)
 
 ```python
-def resize(image, width, height):
+def resize(
+    image: Image.Image,
+    width: int | str,
+    height: int | str,
+) -> Image.Image:
 ```
 
-Resize an image with desired dimensions. This is most suitable for resizing non
+Resize an image with desired dimensions. This is most suitable for resizing non...
+
 square images where a factor would not be sufficient.
 width, height can be one of the following:
 pixel: int, percent: "val%", scale: "valx"
 
 #### Arguments
 
-- `image` *PIL.Image.Image* - A PIL Image
-- `width` *int|str* - One of pixel, percent, scale
-- `height` *int|str* - One of pixel, percent, scale
+- `image` *Image.Image* - A PIL Image
+- `width` *int,str* - One of pixel, percent, scale
+- `height` *int,str* - One of pixel, percent, scale
 
 #### Returns
 
-- `PIL.Image.Image` - Image
+- `Image.Image` - Image
 
 ## resizeSquare
 
-[[find in source code]](../../imageedit/transform.py#L82)
+[[find in source code]](../../imageedit/transform.py#L89)
 
 ```python
-def resizeSquare(image, size):
+def resizeSquare(image: Image.Image, size: int | str) -> Image.Image:
 ```
 
-Resize a square image. Or make a non square image square (will stretch if input
+Resize a square image. Or make a non square image square (will stretch if input...
+
 image is non-square)
 size can be one of the following:
 pixel: int, percent: "val%", scale: "valx"
 
 #### Arguments
 
-- `image` *PIL.Image.Image* - A PIL Image
-- `size` *int|str* - One of pixel, percent, scale
+- `image` *Image.Image* - A PIL Image
+- `size` *int,str* - One of pixel, percent, scale
 
 #### Returns
 
-- `PIL.Image.Image` - Image
+- `Image.Image` - Image

@@ -12,8 +12,9 @@ from pathlib import Path
 
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, os.path.dirname(THISDIR))
-from imageedit import io, transform
 from PIL import Image
+
+from imageedit import io, transform
 
 INPUT = THISDIR + "/test_io/i"
 OUTPUT = THISDIR + "/test_io/o"

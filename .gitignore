@@ -1,7 +1,7 @@
 temp.png
 poetry.lock
 package-lock.json
-README.rst
+requirements_optional.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

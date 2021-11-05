@@ -9,8 +9,12 @@ import os
 import sys
 from pathlib import Path
 
-from layeredimage.io import (LayeredImage, exportFlatImage, openLayerImage,
-                             saveLayerImage)
+from layeredimage.io import (
+	LayeredImage,
+	exportFlatImage,
+	openLayerImage,
+	saveLayerImage,
+)
 from layeredimage.layeredimage import renderWAlphaOffset
 from metprint import FHFormatter, Logger, LogType
 from PIL import Image

@@ -11,7 +11,7 @@ from layeredimage.layeredimage import Layer, LayeredImage
 from metprint import FHFormatter, Logger, LogType
 
 THISDIR = str(Path(__file__).resolve().parent)
-sys.path.insert(0, os.path.dirname(THISDIR))
+sys.path.insert(0, str(Path(THISDIR).parent))
 from imageedit import effects, io, transform
 
 if __name__ == "__main__":  # pragma: no cover
