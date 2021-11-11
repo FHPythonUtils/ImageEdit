@@ -1,4 +1,5 @@
 # Changelog
+
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
@@ -41,6 +42,7 @@ flatten functions write a layer and no longer an image 😌
 ## 2020.4 - 2020/04/19
 
 - Basic layered image support
+
 ```python
 class Layer:
 	""" A representation of an image layer """
@@ -89,6 +91,7 @@ class LayeredImage:
 ```
 
 To modify a layer you would need to do something like:
+
 ```python
 # Grab the PIL Image from a layer and do stuff
 layer = layeredImage.getLayer(1).image
