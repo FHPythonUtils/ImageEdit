@@ -5,6 +5,8 @@ Make GitHub project icons, does a bit more than round.py. At the moment, I quite
 fancy using images in a similar style to those used in the google play store.
 Other commented alternatives are, square, squircle (no shadow) and circle
 """
+from __future__ import annotations
+
 import os
 import sys
 from pathlib import Path

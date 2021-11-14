@@ -3,6 +3,8 @@ Author Kieran W 2019-05-07
 Round the corners of an image
 """
 
+from __future__ import annotations
+
 import argparse
 import sys
 from pathlib import Path

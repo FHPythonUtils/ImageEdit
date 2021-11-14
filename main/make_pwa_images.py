@@ -2,6 +2,8 @@
 Author FredHappyface 20190918
 Make Images for PWAs
 """
+from __future__ import annotations
+
 import os
 import sys
 from pathlib import Path

@@ -2,6 +2,8 @@
 
 Make Android screenshots look nice and create a cover image for google play store
 """
+from __future__ import annotations
+
 import os
 import sys
 from pathlib import Path

@@ -6,6 +6,8 @@ Grab some screenshots for my pwas - obviously, you can set these to your own
 urls and set your own scripts
 """
 
+from __future__ import annotations
+
 import sys
 from pathlib import Path
 

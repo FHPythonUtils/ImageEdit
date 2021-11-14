@@ -6,6 +6,8 @@ validation. Look at each test for a brief description of the desired outcome for
 each test
 """
 
+from __future__ import annotations
+
 import os
 import sys
 from pathlib import Path
