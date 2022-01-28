@@ -47,14 +47,16 @@ if __name__ == "__main__":  # pragma: no cover
 					Layer(
 						"bg",
 						Image.new(
-							"RGBA", (OVERLAY.width, OVERLAY.height), screenshot.getpixel((50, 100))
+							"RGBA",
+							(OVERLAY.width, OVERLAY.height),
+							screenshot.getpixel((50, 100)),  # "#aa37d7"
 						),
 					),
-					Layer("screenshot", screenshot, offsets=(525, 770)),
+					Layer("screenshot", screenshot, offsets=(540, 810)),
 					Layer("overlay", OVERLAY),
 				]
 			).getFlattenLayers(),
 			"50%",
 			"50%",
 		)
-		io.saveImage(OUTPUT_DIR + fileName, composite)
+		io.saveImage(OUTPUT_DIR + fileName, composite, optimise=True)
