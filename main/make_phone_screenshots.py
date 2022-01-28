@@ -19,7 +19,7 @@ from imageedit import effects, io
 if __name__ == "__main__":  # pragma: no cover
 
 	OUTPUT_DIR = THISDIR + "/output/screenshots/"
-	OVERLAY = io.openImage(THISDIR + "/resources/pixel3aScreenshot_8colours.png")
+	OVERLAY = io.openImage(THISDIR + "/resources/pixel3aScreenshot.png")
 
 	# Create cover image/ featureGraphic
 	coverImages = io.openImagesInDir(THISDIR + "/input/*-playstore")
