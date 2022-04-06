@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "imageedit"
-version = "2022"
+version = "2022.0.1"
 license = "mit"
 description = "Create various icon masks and shading effects with the imageedit library"
 authors = ["FredHappyface"]
@@ -22,12 +22,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-metprint = "<2023,>=2021"
-layeredimage = "<2024,>=2022"
-svgtrace = "<2023,>=2021.0.2"
+layeredimage = "<2024,>=2022.0.1"
+svgtrace = "<2024,>=2022"
 blendmodes = "<2024,>=2022"
-colourswatch = "<2024,>=2022"
-Pillow = "<10,>=9.0.0"
+colourswatch = "<2024,>=2022.0.1"
+Pillow = "<10,>=9.1.0"
 
 [tool.pylint.basic]
 argument-naming-style = "camelCase"

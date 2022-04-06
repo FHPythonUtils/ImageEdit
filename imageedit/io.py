@@ -16,7 +16,6 @@ from layeredimage.io import (
 	saveLayerImage,
 )
 from layeredimage.layeredimage import renderWAlphaOffset
-from metprint import FHFormatter, Logger, LogType
 from PIL import Image
 
 # fmt: off
@@ -139,7 +138,7 @@ def getSortedColours(
 		(colour_count, colour)[]: list of tuples in the form pixel_count, colour
 	"""
 	rgbaImage = image.convert("RGBA")
-	colors = rgbaImage.getcolors(maxcolors=256 ** 3)
+	colors = rgbaImage.getcolors(maxcolors=256**3)
 	return sorted(colors, key=lambda item: item[0], reverse=True)
 
 
@@ -180,5 +179,5 @@ def combine(
 def checkExists(file):
 	"""Throw an error and abort if the path does not exist."""
 	if not os.path.exists(file):
-		Logger(FHFormatter()).logPrint(file + " does not exist", LogType.ERROR)
+		print(f"ERROR: {file} does not exist")
 		sys.exit(1)

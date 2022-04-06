@@ -1,10 +1,10 @@
-# io
+# Io
 
-> Auto-generated documentation for [imageedit.io](../../imageedit/io.py) module.
+> Auto-generated documentation for [imageedit.io](../../../imageedit/io.py) module.
 
 Author FredHappyface 2020.
 
-- [Imageedit](../README.md#imageedit-index) / [Modules](../README.md#imageedit-modules) / [imageedit](index.md#imageedit) / io
+- [Imageedit](../README.md#imageedit-index) / [Modules](../MODULES.md#imageedit-modules) / [Imageedit](index.md#imageedit) / Io
     - [checkExists](#checkexists)
     - [combine](#combine)
     - [getImageDesc](#getimagedesc)
@@ -23,7 +23,7 @@ Lib containing various image editing operations
 
 ## checkExists
 
-[[find in source code]](../../imageedit/io.py#L180)
+[[find in source code]](../../../imageedit/io.py#L179)
 
 ```python
 def checkExists(file):
@@ -33,7 +33,7 @@ Throw an error and abort if the path does not exist.
 
 ## combine
 
-[[find in source code]](../../imageedit/io.py#L161)
+[[find in source code]](../../../imageedit/io.py#L160)
 
 ```python
 def combine(
@@ -50,7 +50,7 @@ Combine two images with alpha.
 
 ## getImageDesc
 
-[[find in source code]](../../imageedit/io.py#L111)
+[[find in source code]](../../../imageedit/io.py#L110)
 
 ```python
 def getImageDesc(image: Image.Image) -> str:
@@ -70,7 +70,7 @@ my specific use case than in the general lib.
 
 ## getPixelDimens
 
-[[find in source code]](../../imageedit/io.py#L31)
+[[find in source code]](../../../imageedit/io.py#L30)
 
 ```python
 def getPixelDimens(image: Image.Image, dimens: list[int | str]) -> list[int]:
@@ -91,12 +91,12 @@ pixel (no calculation): int, percent: "val%", scale: "valx"
 
 ## getSortedColours
 
-[[find in source code]](../../imageedit/io.py#L130)
+[[find in source code]](../../../imageedit/io.py#L129)
 
 ```python
 def getSortedColours(
     image: Image.Image,
-) -> list[tuple[(int, tuple[(int, int, int, int)])]]:
+) -> list[tuple[int, tuple[int, int, int, int]]]:
 ```
 
 Get the list of colours in an image sorted by 'popularity'.
@@ -111,7 +111,7 @@ Get the list of colours in an image sorted by 'popularity'.
 
 ## openImage
 
-[[find in source code]](../../imageedit/io.py#L76)
+[[find in source code]](../../../imageedit/io.py#L75)
 
 ```python
 def openImage(file: str, mode: str | None = None) -> Image.Image:
@@ -132,13 +132,13 @@ Use full file path or file path relative to /lib
 
 ## openImagesInDir
 
-[[find in source code]](../../imageedit/io.py#L59)
+[[find in source code]](../../../imageedit/io.py#L58)
 
 ```python
 def openImagesInDir(
     dirGlob: str,
     mode: str | None = None,
-) -> list[tuple[(str, Image.Image)]]:
+) -> list[tuple[str, Image.Image]]:
 ```
 
 Open all images in a directory and returns them in a list along with filepath.
@@ -154,7 +154,7 @@ Open all images in a directory and returns them in a list along with filepath.
 
 ## reduceColours
 
-[[find in source code]](../../imageedit/io.py#L146)
+[[find in source code]](../../../imageedit/io.py#L145)
 
 ```python
 def reduceColours(image: Image.Image, mode: str = 'optimised'):
@@ -174,7 +174,7 @@ Reduces the number of colours in an image. Modes "logo", "optimised".
 
 ## saveImage
 
-[[find in source code]](../../imageedit/io.py#L96)
+[[find in source code]](../../../imageedit/io.py#L95)
 
 ```python
 def saveImage(fileName, image, optimise=True):

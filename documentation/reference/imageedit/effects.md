@@ -1,10 +1,10 @@
-# effects
+# Effects
 
-> Auto-generated documentation for [imageedit.effects](../../imageedit/effects.py) module.
+> Auto-generated documentation for [imageedit.effects](../../../imageedit/effects.py) module.
 
 Apply high level effects to images such as shadows and convert to black and white.
 
-- [Imageedit](../README.md#imageedit-index) / [Modules](../README.md#imageedit-modules) / [imageedit](index.md#imageedit) / effects
+- [Imageedit](../README.md#imageedit-index) / [Modules](../MODULES.md#imageedit-modules) / [Imageedit](index.md#imageedit) / Effects
     - [addDropShadowComplex](#adddropshadowcomplex)
     - [addDropShadowSimple](#adddropshadowsimple)
     - [addText](#addtext)
@@ -20,7 +20,7 @@ Apply high level effects to images such as shadows and convert to black and whit
 
 ## addDropShadowComplex
 
-[[find in source code]](../../imageedit/effects.py#L62)
+[[find in source code]](../../../imageedit/effects.py#L62)
 
 ```python
 def addDropShadowComplex(
@@ -50,7 +50,7 @@ offset (list[int, int]): Offset of the shadow as [x,y]
 
 ## addDropShadowSimple
 
-[[find in source code]](../../imageedit/effects.py#L48)
+[[find in source code]](../../../imageedit/effects.py#L48)
 
 ```python
 def addDropShadowSimple(image: Image.Image, offset: list[int]) -> Image.Image:
@@ -69,7 +69,7 @@ offset (list[int, int]): Offset of the shadow as [x,y]
 
 ## addText
 
-[[find in source code]](../../imageedit/effects.py#L203)
+[[find in source code]](../../../imageedit/effects.py#L203)
 
 ```python
 def addText(image: Image.Image, text: str) -> Image.Image:
@@ -91,7 +91,7 @@ Add text to an image such that the resultant image is in the form...
 
 ## applySwatch
 
-[[find in source code]](../../imageedit/effects.py#L285)
+[[find in source code]](../../../imageedit/effects.py#L285)
 
 ```python
 def applySwatch(image, swatchFile):
@@ -110,7 +110,7 @@ Apply a swatch to the image using colourswatch.
 
 ## blend
 
-[[find in source code]](../../imageedit/effects.py#L232)
+[[find in source code]](../../../imageedit/effects.py#L232)
 
 ```python
 def blend(
@@ -168,7 +168,7 @@ SRCATOP
 
 ## convertBlackAndWhite
 
-[[find in source code]](../../imageedit/effects.py#L122)
+[[find in source code]](../../../imageedit/effects.py#L122)
 
 ```python
 def convertBlackAndWhite(image: Image.Image, mode: str = 'filter-darker'):
@@ -195,7 +195,7 @@ them to black. non edges are white. Defaults to "filter-darker".
 
 ## doConvertBlackAndWhiteBGFG
 
-[[find in source code]](../../imageedit/effects.py#L177)
+[[find in source code]](../../../imageedit/effects.py#L177)
 
 ```python
 def doConvertBlackAndWhiteBGFG(image, mode):
@@ -219,7 +219,7 @@ foreground sets the second most dominant color to black.
 
 ## doConvertBlackAndWhiteFilter
 
-[[find in source code]](../../imageedit/effects.py#L151)
+[[find in source code]](../../../imageedit/effects.py#L151)
 
 ```python
 def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str):
@@ -243,7 +243,7 @@ than the average black and pixels that are lighter than the average black.
 
 ## pixelate
 
-[[find in source code]](../../imageedit/effects.py#L303)
+[[find in source code]](../../../imageedit/effects.py#L303)
 
 ```python
 def pixelate(image: Image.Image, pixelSize: int = 4):
@@ -265,7 +265,7 @@ Defaults to 4.
 
 ## removeBG
 
-[[find in source code]](../../imageedit/effects.py#L322)
+[[find in source code]](../../../imageedit/effects.py#L322)
 
 ```python
 def removeBG(image: Image.Image):
@@ -284,7 +284,7 @@ image
 
 ## roundCorners
 
-[[find in source code]](../../imageedit/effects.py#L19)
+[[find in source code]](../../../imageedit/effects.py#L19)
 
 ```python
 def roundCorners(image: Image.Image, radius: int | str) -> Image.Image:
@@ -307,7 +307,7 @@ pixel: int, percent: "val%", scale: "valx"
 
 ## roundCornersAntiAlias
 
-[[find in source code]](../../imageedit/effects.py#L105)
+[[find in source code]](../../../imageedit/effects.py#L105)
 
 ```python
 def roundCornersAntiAlias(image: Image.Image, radius: int) -> Image.Image:

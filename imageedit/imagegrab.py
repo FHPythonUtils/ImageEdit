@@ -7,7 +7,6 @@ from __future__ import annotations
 import asyncio
 from os import remove
 
-from metprint import FHFormatter, Logger, LogType
 from PIL import Image
 from pyppeteer import launch
 
@@ -40,8 +39,7 @@ def grabWebpage(url: str, resolution: tuple[int, int] = (800, 600), evalJs=None)
 	try:
 		remove("temp.png")
 	except PermissionError:
-		Logger(FHFormatter()).logPrint(
-			"Unable to clean up, manually " + "remove temp.png from project root or ignore",
-			LogType.WARNING,
+		print(
+			"WARNING: Unable to clean up, manually " + "remove temp.png from project root or ignore"
 		)
 	return image

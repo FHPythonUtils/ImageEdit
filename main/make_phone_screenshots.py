@@ -9,7 +9,6 @@ import sys
 from pathlib import Path
 
 from layeredimage.layeredimage import Layer, LayeredImage
-from metprint import FHFormatter, Logger, LogType
 from PIL import Image
 
 THISDIR = str(Path(__file__).resolve().parent)
@@ -31,7 +30,7 @@ if __name__ == "__main__":  # pragma: no cover
 			OUTPUT_DIR + "featureGraphic.png",
 			coverImage,
 		)
-		Logger(FHFormatter()).logPrint("::Created Cover Image::", LogType.BOLD)
+		print("::Created Cover Image::")
 
 	# Process screenshots
 	images = io.openImagesInDir(THISDIR + "/input/*")
@@ -39,7 +38,7 @@ if __name__ == "__main__":  # pragma: no cover
 		fileName, screenshot = imageRef
 		fileNameParts = fileName.split(os.sep)
 		fileName = fileNameParts[len(fileNameParts) - 1]
-		Logger(FHFormatter()).logPrint(fileName, LogType.BOLD)
+		print(fileName)
 		os.makedirs(OUTPUT_DIR, exist_ok=True)
 		composite = effects.resize(
 			LayeredImage(

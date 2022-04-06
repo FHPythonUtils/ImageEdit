@@ -11,8 +11,6 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from metprint import FHFormatter, Logger, LogType
-
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, str(Path(THISDIR).parent))
 from imageedit import imagegrab, io, transform
@@ -37,7 +35,7 @@ if __name__ == "__main__":  # pragma: no cover
 	]
 
 	for project in projects:
-		Logger(FHFormatter()).logPrint(project, LogType.INFO)
+		print(f"INFO: {project}")
 		pages = projects[project]
 		for index, script in enumerate(scripts):
 			io.saveImage(

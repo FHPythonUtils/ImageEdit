@@ -1,6 +1,5 @@
-Pillow<10,>=9.0.0
+Pillow<10,>=9.1.0
 blendmodes<2024,>=2022
-colourswatch<2024,>=2022
-layeredimage<2024,>=2022
-metprint<2023,>=2021
-svgtrace<2023,>=2021.0.2
+colourswatch<2024,>=2022.0.1
+layeredimage<2024,>=2022.0.1
+svgtrace<2024,>=2022

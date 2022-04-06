@@ -1,10 +1,10 @@
-# transform
+# Transform
 
-> Auto-generated documentation for [imageedit.transform](../../imageedit/transform.py) module.
+> Auto-generated documentation for [imageedit.transform](../../../imageedit/transform.py) module.
 
 Apply a transformations such as crop and resize.
 
-- [Imageedit](../README.md#imageedit-index) / [Modules](../README.md#imageedit-modules) / [imageedit](index.md#imageedit) / transform
+- [Imageedit](../README.md#imageedit-index) / [Modules](../MODULES.md#imageedit-modules) / [Imageedit](index.md#imageedit) / Transform
     - [cropCentre](#cropcentre)
     - [expand](#expand)
     - [findAndReplace](#findandreplace)
@@ -14,7 +14,7 @@ Apply a transformations such as crop and resize.
 
 ## cropCentre
 
-[[find in source code]](../../imageedit/transform.py#L13)
+[[find in source code]](../../../imageedit/transform.py#L13)
 
 ```python
 def cropCentre(
@@ -41,7 +41,7 @@ pixel: int, percent: "val%", scale: "valx"
 
 ## expand
 
-[[find in source code]](../../imageedit/transform.py#L38)
+[[find in source code]](../../../imageedit/transform.py#L38)
 
 ```python
 def expand(image: Image.Image, padding: int | str) -> Image.Image:
@@ -63,7 +63,7 @@ pixel: int, percent: "val%", scale: "valx"
 
 ## findAndReplace
 
-[[find in source code]](../../imageedit/transform.py#L119)
+[[find in source code]](../../../imageedit/transform.py#L119)
 
 ```python
 def findAndReplace(
@@ -93,7 +93,7 @@ Default is 5
 
 ## removePadding
 
-[[find in source code]](../../imageedit/transform.py#L106)
+[[find in source code]](../../../imageedit/transform.py#L106)
 
 ```python
 def removePadding(image: Image.Image, padding: int) -> Image.Image:
@@ -112,7 +112,7 @@ Take an image and preforms a centre crop and removes the padding.
 
 ## resize
 
-[[find in source code]](../../imageedit/transform.py#L70)
+[[find in source code]](../../../imageedit/transform.py#L70)
 
 ```python
 def resize(
@@ -140,7 +140,7 @@ pixel: int, percent: "val%", scale: "valx"
 
 ## resizeSquare
 
-[[find in source code]](../../imageedit/transform.py#L89)
+[[find in source code]](../../../imageedit/transform.py#L89)
 
 ```python
 def resizeSquare(image: Image.Image, size: int | str) -> Image.Image:

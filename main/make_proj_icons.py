@@ -11,8 +11,6 @@ import os
 import sys
 from pathlib import Path
 
-from metprint import FHFormatter, Logger, LogType
-
 THISDIR = str(Path(__file__).resolve().parent)
 sys.path.insert(0, str(Path(THISDIR).parent))
 from imageedit import effects, io, transform
@@ -25,7 +23,7 @@ if __name__ == "__main__":  # pragma: no cover
 		fileName, squareImage = imageRef
 		fileNameParts = fileName.split(os.sep)
 		fileName = fileNameParts[len(fileNameParts) - 1]
-		Logger(FHFormatter()).logPrint(fileName, LogType.BOLD)
+		print(fileName)
 		outputDir = THISDIR + "/output/" + fileName + "/proj-icon"
 
 		# Proj-icon does not want to be a mask
