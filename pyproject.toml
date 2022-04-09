@@ -28,6 +28,11 @@ blendmodes = "<2024,>=2022"
 colourswatch = "<2024,>=2022.0.1"
 Pillow = "<10,>=9.1.0"
 
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.1"
+pylint = "^2.13.5"
+handsdown = "^1.1.0"
+
 [tool.pylint.basic]
 argument-naming-style = "camelCase"
 attr-naming-style = "camelCase"
