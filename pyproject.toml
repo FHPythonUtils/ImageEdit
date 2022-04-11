@@ -32,6 +32,7 @@ Pillow = "<10,>=9.1.0"
 pytest = "^7.1.1"
 pylint = "^2.13.5"
 handsdown = "^1.1.0"
+coverage = "^6.3.2"
 
 [tool.pylint.basic]
 argument-naming-style = "camelCase"
