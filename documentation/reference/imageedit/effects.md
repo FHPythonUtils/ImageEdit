@@ -75,9 +75,7 @@ offset (list[int, int]): Offset of the shadow as [x,y]
 def addText(image: Image.Image, text: str) -> Image.Image:
 ```
 
-Add text to an image such that the resultant image is in the form...
-
-[img]|text. The text is in fira code and has a maximum length of 16 chars
+Add text to an image such that the resultant image is in the form [img]|text. The text is in fira code and has a maximum length of 16 chars
 (text longer than this is truncated with "...")
 
 #### Arguments
@@ -91,7 +89,7 @@ Add text to an image such that the resultant image is in the form...
 
 ## applySwatch
 
-[[find in source code]](../../../imageedit/effects.py#L285)
+[[find in source code]](../../../imageedit/effects.py#L283)
 
 ```python
 def applySwatch(image, swatchFile):
@@ -110,7 +108,7 @@ Apply a swatch to the image using colourswatch.
 
 ## blend
 
-[[find in source code]](../../../imageedit/effects.py#L232)
+[[find in source code]](../../../imageedit/effects.py#L230)
 
 ```python
 def blend(
@@ -201,7 +199,7 @@ them to black. non edges are white. Defaults to "filter-darker".
 def doConvertBlackAndWhiteBGFG(image, mode):
 ```
 
-Low level function...
+Low level function
 
 Convert an image to black and white based on the foreground/ background:
 background sets the most dominant colour to white and foreground sets the
@@ -225,7 +223,7 @@ foreground sets the second most dominant color to black.
 def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str):
 ```
 
-Low level function...
+Low level function
 
 Convert an image to black and white based on a filter: filter-darker and
 lighter respectively make pixels darker than the average black and pixels
@@ -243,7 +241,7 @@ than the average black and pixels that are lighter than the average black.
 
 ## pixelate
 
-[[find in source code]](../../../imageedit/effects.py#L303)
+[[find in source code]](../../../imageedit/effects.py#L301)
 
 ```python
 def pixelate(image: Image.Image, pixelSize: int = 4):
@@ -265,7 +263,7 @@ Defaults to 4.
 
 ## removeBG
 
-[[find in source code]](../../../imageedit/effects.py#L322)
+[[find in source code]](../../../imageedit/effects.py#L320)
 
 ```python
 def removeBG(image: Image.Image):
@@ -290,7 +288,7 @@ image
 def roundCorners(image: Image.Image, radius: int | str) -> Image.Image:
 ```
 
-Round the corners by a number of pixels. May be preferable to use...
+Round the corners by a number of pixels. May be preferable to use
 
 roundCornersAntiAlias. Use with caution as it modifies the image param.
 radius can be one of the following:

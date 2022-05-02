@@ -47,9 +47,7 @@ pixel: int, percent: "val%", scale: "valx"
 def expand(image: Image.Image, padding: int | str) -> Image.Image:
 ```
 
-Uncrops the image with a padding...
-
-padding can be one of the following:
+Uncrops the image with a padding. padding can be one of the following:
 pixel: int, percent: "val%", scale: "valx"
 
 #### Arguments
@@ -63,7 +61,7 @@ pixel: int, percent: "val%", scale: "valx"
 
 ## findAndReplace
 
-[[find in source code]](../../../imageedit/transform.py#L119)
+[[find in source code]](../../../imageedit/transform.py#L113)
 
 ```python
 def findAndReplace(
@@ -93,7 +91,7 @@ Default is 5
 
 ## removePadding
 
-[[find in source code]](../../../imageedit/transform.py#L106)
+[[find in source code]](../../../imageedit/transform.py#L100)
 
 ```python
 def removePadding(image: Image.Image, padding: int) -> Image.Image:
@@ -112,7 +110,7 @@ Take an image and preforms a centre crop and removes the padding.
 
 ## resize
 
-[[find in source code]](../../../imageedit/transform.py#L70)
+[[find in source code]](../../../imageedit/transform.py#L68)
 
 ```python
 def resize(
@@ -122,9 +120,7 @@ def resize(
 ) -> Image.Image:
 ```
 
-Resize an image with desired dimensions. This is most suitable for resizing non...
-
-square images where a factor would not be sufficient.
+Resize an image with desired dimensions. This is most suitable for resizing non square images where a factor would not be sufficient.
 width, height can be one of the following:
 pixel: int, percent: "val%", scale: "valx"
 
@@ -140,15 +136,13 @@ pixel: int, percent: "val%", scale: "valx"
 
 ## resizeSquare
 
-[[find in source code]](../../../imageedit/transform.py#L89)
+[[find in source code]](../../../imageedit/transform.py#L85)
 
 ```python
 def resizeSquare(image: Image.Image, size: int | str) -> Image.Image:
 ```
 
-Resize a square image. Or make a non square image square (will stretch if input...
-
-image is non-square)
+Resize a square image. Or make a non square image square (will stretch if input image is non-square)
 size can be one of the following:
 pixel: int, percent: "val%", scale: "valx"
 

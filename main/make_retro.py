@@ -1,4 +1,4 @@
-"""Author FredHappyface 20190918...
+"""Author FredHappyface 2019-2022
 
 Make Images for PWAs
 """
@@ -18,13 +18,13 @@ from imageedit import effects, io, transform
 if __name__ == "__main__":  # pragma: no cover
 
 	# Image in should be 512px
-	images = io.openImagesInDir(THISDIR + "/input/*")
+	images = io.openImagesInDir(f"{THISDIR}/input/*")
 	for imageRef in images:
 		fileName, squareImage = imageRef
 		fileNameParts = fileName.split(os.sep)
 		fileName = fileNameParts[len(fileNameParts) - 1]
 		print(fileName)
-		outputDir = THISDIR + "/output/" + fileName
+		outputDir = f"{THISDIR}/output/" + fileName
 		retroDir = outputDir + "/retro"
 		if io.getImageDesc(squareImage) == "mask":
 			squareImage = transform.removePadding(squareImage, 64)
@@ -35,24 +35,24 @@ if __name__ == "__main__":  # pragma: no cover
 		"""
 		# BBC Micro (3bitrgb)
 		swatch = effects.applySwatch(
-			effects.pixelate(squareImage), THISDIR + "/resources/3bitrgb.png"
+			effects.pixelate(squareImage), f"{THISDIR}/resources/3bitrgb.png"
 		)
 		io.saveImage(retroDir + "/bbc-micro.png", transform.resizeSquare(swatch, "0.5x"))
 		# Pebble Smartwatch (6bitrgb)
-		swatch = effects.applySwatch(squareImage, THISDIR + "/resources/6bitrgb.png")
+		swatch = effects.applySwatch(squareImage, f"{THISDIR}/resources/6bitrgb.png")
 		io.saveImage(retroDir + "/pebble-smartwatch.png", transform.resizeSquare(swatch, "0.5x"))
 		# ZX Spectrum (4bitrgb)
 		swatch = effects.applySwatch(
-			effects.pixelate(squareImage), THISDIR + "/resources/4bitrgb.png"
+			effects.pixelate(squareImage), f"{THISDIR}/resources/4bitrgb.png"
 		)
 		io.saveImage(retroDir + "/zxspectrum.png", transform.resizeSquare(swatch, "0.5x"))
 		# 3-Level RGB
 		swatch = effects.applySwatch(
-			effects.pixelate(squareImage), THISDIR + "/resources/3levelrgb.png"
+			effects.pixelate(squareImage), f"{THISDIR}/resources/3levelrgb.png"
 		)
 		io.saveImage(retroDir + "/3level.png", transform.resizeSquare(swatch, "0.5x"))
 		# websafe
-		swatch = effects.applySwatch(squareImage, THISDIR + "/resources/web.gpl")
+		swatch = effects.applySwatch(squareImage, f"{THISDIR}/resources/web.gpl")
 		io.saveImage(retroDir + "/websafe.png", transform.resizeSquare(swatch, "0.5x"))
 		# ios6
 		ios = effects.roundCornersAntiAlias(squareImage, 90)
@@ -61,7 +61,7 @@ if __name__ == "__main__":  # pragma: no cover
 			LayeredImage(
 				[
 					Layer("bg", ios),
-					Layer("overlay", io.openImage(THISDIR + "/resources/ios6_2.png")),
+					Layer("overlay", io.openImage(f"{THISDIR}/resources/ios6_2.png")),
 				]
 			),
 		)
@@ -73,26 +73,26 @@ if __name__ == "__main__":  # pragma: no cover
 			transform.resizeSquare(
 				effects.blend(
 					effects.removeBG(squareImage),
-					io.openImage(THISDIR + "/resources/android_legacy.png"),
+					io.openImage(f"{THISDIR}/resources/android_legacy.png"),
 					BlendType.SRCATOP,
 				),
 				"0.5x",
 			),
 		)
 		# Android 6
-		swatch = effects.applySwatch(squareImage, THISDIR + "/resources/material-mini.gpl")
+		swatch = effects.applySwatch(squareImage, f"{THISDIR}/resources/material-mini.gpl")
 		io.saveImage(
 			retroDir + "/android6.png", transform.resizeSquare(effects.removeBG(swatch), "0.5x")
 		)
 		# Android 7
-		swatch = effects.applySwatch(roundImage, THISDIR + "/resources/material-mini.gpl")
+		swatch = effects.applySwatch(roundImage, f"{THISDIR}/resources/material-mini.gpl")
 		io.saveImage(retroDir + "/android7.png", transform.resizeSquare(swatch, "0.5x"))
 		# Android 8+
-		swatch = effects.applySwatch(squareImage, THISDIR + "/resources/material-mini.gpl")
+		swatch = effects.applySwatch(squareImage, f"{THISDIR}/resources/material-mini.gpl")
 		io.saveImage(retroDir + "/android8.png", transform.resizeSquare(swatch, "0.5x"))
 		# Papirus/ Paper Icons
-		swatch = effects.applySwatch(ios, THISDIR + "/resources/papirus.gpl")
+		swatch = effects.applySwatch(ios, f"{THISDIR}/resources/papirus.gpl")
 		io.saveImage(retroDir + "/papirus.png", transform.resizeSquare(swatch, "0.5x"))
 		# OneDark
-		swatch = effects.applySwatch(squircleImage, THISDIR + "/resources/base24.yaml")
+		swatch = effects.applySwatch(squircleImage, f"{THISDIR}/resources/base24.yaml")
 		io.saveImage(retroDir + "/onedark.png", transform.resizeSquare(swatch, "0.5x"))

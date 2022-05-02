@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "imageedit"
-version = "2022.0.1"
+version = "2022.0.2"
 license = "mit"
 description = "Create various icon masks and shading effects with the imageedit library"
 authors = ["FredHappyface"]
@@ -27,6 +27,7 @@ svgtrace = "<2024,>=2022"
 blendmodes = "<2024,>=2022"
 colourswatch = "<2024,>=2022.0.1"
 Pillow = "<10,>=9.1.0"
+pyppeteer = "<2,>=1.0.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.1"

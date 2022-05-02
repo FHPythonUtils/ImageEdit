@@ -1,5 +1,5 @@
 """
-Author Kieran W 2019-05-07
+Author FredHappyface 2019-2022
 Round the corners of an image
 """
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":  # pragma: no cover
 	args = parser.parse_args()
 
 	if args.batch:
-		images = io.openImagesInDir(THISDIR + "/input/*")
+		images = io.openImagesInDir(f"{THISDIR}/input/*")
 		print(images)
 		for imageRef in images:
 			fileName, image = imageRef
@@ -48,10 +48,10 @@ if __name__ == "__main__":  # pragma: no cover
 				image = effects.roundCorners(image, int(args.radius))
 			else:
 				image = effects.roundCorners(image, int(image.width / 2))
-			io.saveImage(THISDIR + "/output/out-" + fileName, image)
+			io.saveImage(f"{THISDIR}/output/out-" + fileName, image)
 
 	else:
-		im = io.openImage(THISDIR + "/" + args.image)
+		im = io.openImage(f"{THISDIR}/" + args.image)
 		if args.radius is not None:
 			im = effects.roundCorners(im, int(args.radius))
 		else:
@@ -61,4 +61,4 @@ if __name__ == "__main__":  # pragma: no cover
 			outFileName = args.output
 		else:
 			outFileName = args.image
-		io.saveImage(THISDIR + "/" + outFileName, im)
+		io.saveImage(f"{THISDIR}/" + outFileName, im)

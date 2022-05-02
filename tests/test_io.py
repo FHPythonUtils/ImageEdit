@@ -1,5 +1,5 @@
 """
-Author FredHappyface 20190930
+Author FredHappyface 2019-2022
 
 Test io.py with a single 512x512px image. Many of these tests need manual
 validation. Look at each test for a brief description of the desired outcome for
@@ -18,8 +18,8 @@ from PIL import Image
 
 from imageedit import io, transform
 
-INPUT = THISDIR + "/test_io/i"
-OUTPUT = THISDIR + "/test_io/o"
+INPUT = f"{THISDIR}/test_io/i"
+OUTPUT = f"{THISDIR}/test_io/o"
 
 IMAGE = io.openImage(INPUT + "/test.png")
 

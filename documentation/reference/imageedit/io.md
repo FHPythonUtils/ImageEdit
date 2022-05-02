@@ -2,7 +2,7 @@
 
 > Auto-generated documentation for [imageedit.io](../../../imageedit/io.py) module.
 
-Author FredHappyface 2020.
+Author FredHappyface 2019-2022.
 
 - [Imageedit](../README.md#imageedit-index) / [Modules](../MODULES.md#imageedit-modules) / [Imageedit](index.md#imageedit) / Io
     - [checkExists](#checkexists)
@@ -23,7 +23,7 @@ Lib containing various image editing operations
 
 ## checkExists
 
-[[find in source code]](../../../imageedit/io.py#L179)
+[[find in source code]](../../../imageedit/io.py#L177)
 
 ```python
 def checkExists(file):
@@ -33,7 +33,7 @@ Throw an error and abort if the path does not exist.
 
 ## combine
 
-[[find in source code]](../../../imageedit/io.py#L160)
+[[find in source code]](../../../imageedit/io.py#L158)
 
 ```python
 def combine(
@@ -56,9 +56,7 @@ Combine two images with alpha.
 def getImageDesc(image: Image.Image) -> str:
 ```
 
-Get an image description returns [icon/mask]. Likely more useful for...
-
-my specific use case than in the general lib.
+Get an image description returns [icon/mask]. Likely more useful for my specific use case than in the general lib.
 
 #### Arguments
 
@@ -91,7 +89,7 @@ pixel (no calculation): int, percent: "val%", scale: "valx"
 
 ## getSortedColours
 
-[[find in source code]](../../../imageedit/io.py#L129)
+[[find in source code]](../../../imageedit/io.py#L127)
 
 ```python
 def getSortedColours(
@@ -154,7 +152,7 @@ Open all images in a directory and returns them in a list along with filepath.
 
 ## reduceColours
 
-[[find in source code]](../../../imageedit/io.py#L145)
+[[find in source code]](../../../imageedit/io.py#L143)
 
 ```python
 def reduceColours(image: Image.Image, mode: str = 'optimised'):

@@ -1,5 +1,5 @@
 """
-Author FredHappyface 20190930
+Author FredHappyface 2019-2022
 
 Test imageedit.py with a single 512x512px image. Many of these tests need manual
 validattransformn. Look at each test for a brief descripttransformn of the desired outcome for
@@ -17,8 +17,8 @@ sys.path.insert(0, os.path.dirname(THISDIR))
 
 from imageedit import io, transform
 
-INPUT = THISDIR + "/test_transform/i"
-OUTPUT = THISDIR + "/test_transform/o"
+INPUT = f"{THISDIR}/test_transform/i"
+OUTPUT = f"{THISDIR}/test_transform/o"
 
 IMAGE = io.openImage(INPUT + "/test.png")
 

@@ -1,5 +1,5 @@
 """
-Author FredHappyface 20190918
+Author FredHappyface 2019-2022
 Make Images for PWAs
 """
 from __future__ import annotations
@@ -15,13 +15,13 @@ from imageedit import effects, imagetracer, io, transform
 if __name__ == "__main__":  # pragma: no cover
 
 	# Image in should be 512px
-	images = io.openImagesInDir(THISDIR + "/input/*")
+	images = io.openImagesInDir(f"{THISDIR}/input/*")
 	for imageRef in images:
 		fileName, squareImage = imageRef
 		fileNameParts = fileName.split(os.sep)
 		fileName = fileNameParts[len(fileNameParts) - 1]
 		print(fileName)
-		outputDir = THISDIR + "/output/" + fileName
+		outputDir = f"{THISDIR}/output/" + fileName
 		storeDir = outputDir + "/store"
 		pwaDir = outputDir + "/pwa"
 

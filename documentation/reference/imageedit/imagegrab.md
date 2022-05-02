@@ -2,7 +2,7 @@
 
 > Auto-generated documentation for [imageedit.imagegrab](../../../imageedit/imagegrab.py) module.
 
-Author FredHappyface 2020...
+Author FredHappyface 2019-2022
 
 - [Imageedit](../README.md#imageedit-index) / [Modules](../MODULES.md#imageedit-modules) / [Imageedit](index.md#imageedit) / Imagegrab
     - [doGrabWebpage](#dograbwebpage)
@@ -12,7 +12,7 @@ Uses pyppeteer to leverage a headless version of Chromium
 
 ## doGrabWebpage
 
-[[find in source code]](../../../imageedit/imagegrab.py#L14)
+[[find in source code]](../../../imageedit/imagegrab.py#L18)
 
 ```python
 async def doGrabWebpage(url, resolution, evalJs):
@@ -22,7 +22,7 @@ Go to a URL, with a browser with a set resolution and run some js then take a sc
 
 ## grabWebpage
 
-[[find in source code]](../../../imageedit/imagegrab.py#L26)
+[[find in source code]](../../../imageedit/imagegrab.py#L37)
 
 ```python
 def grabWebpage(
@@ -32,7 +32,7 @@ def grabWebpage(
 ):
 ```
 
-Take a screenshot of a webpage...
+Take a screenshot of a webpage
 
 #### Arguments
 

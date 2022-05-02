@@ -2,4 +2,5 @@ Pillow<10,>=9.1.0
 blendmodes<2024,>=2022
 colourswatch<2024,>=2022.0.1
 layeredimage<2024,>=2022.0.1
+pyppeteer<2,>=1.0.2
 svgtrace<2024,>=2022

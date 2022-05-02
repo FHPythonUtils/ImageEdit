@@ -3,6 +3,10 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2022.0.2 - 2022/05/02
+
+- Code quality improvements
+
 ## 2022.0.1 - 2022/04/06
 
 - Remove metprint
@@ -45,7 +49,7 @@ patch-level version changes can be found in [commit messages](../../commits/mast
 
 ## 2020.4.1 - 2020/04/19
 
-- First use of my updated cal versioning 😱 ... 🎉
+- First use of my updated cal versioning 😱  🎉
 - Bugfixes: offset should now behave (tests seem OK, see readWriteLayered.py)
 flatten functions write a layer and no longer an image 😌
 

@@ -1,4 +1,4 @@
-"""Author FredHappyface 2020.
+"""Author FredHappyface 2019-2022.
 
 Lib containing various image editing operations
 """
@@ -108,9 +108,7 @@ def saveImage(fileName, image, optimise=True):
 
 
 def getImageDesc(image: Image.Image) -> str:
-	"""Get an image description returns [icon/mask]. Likely more useful for...
-
-	my specific use case than in the general lib.
+	"""Get an image description returns [icon/mask]. Likely more useful for my specific use case than in the general lib.
 
 	Args:
 		image (PIL.Image.Image): Image

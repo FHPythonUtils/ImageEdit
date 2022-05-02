@@ -23,8 +23,8 @@ if len(sys.argv) < 2:
 	)
 
 else:
-	layeredImage = io.openLayerImage(THISDIR + "/input/" + sys.argv[1])
+	layeredImage = io.openLayerImage(f"{THISDIR}/input/" + sys.argv[1])
 	io.saveImage(
-		THISDIR + "/input/" + sys.argv[1] + " (export).png", layeredImage.getFlattenLayers()
+		f"{THISDIR}/input/" + sys.argv[1] + " (export).png", layeredImage.getFlattenLayers()
 	)
-	io.saveLayerImage(THISDIR + "/input/" + sys.argv[1] + " (copy).ora", layeredImage)
+	io.saveLayerImage(f"{THISDIR}/input/" + sys.argv[1] + " (copy).ora", layeredImage)

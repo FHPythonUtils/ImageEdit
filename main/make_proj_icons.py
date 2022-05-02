@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Author FredHappyface 20190918
+"""Author FredHappyface 2019-2022
 
 Make GitHub project icons, does a bit more than round.py. At the moment, I quite
 fancy using images in a similar style to those used in the google play store.
@@ -18,13 +18,13 @@ from imageedit import effects, io, transform
 if __name__ == "__main__":  # pragma: no cover
 
 	# Image in should be 512px
-	images = io.openImagesInDir(THISDIR + "/input/*", "logo")
+	images = io.openImagesInDir(f"{THISDIR}/input/*", "logo")
 	for imageRef in images:
 		fileName, squareImage = imageRef
 		fileNameParts = fileName.split(os.sep)
 		fileName = fileNameParts[len(fileNameParts) - 1]
 		print(fileName)
-		outputDir = THISDIR + "/output/" + fileName + "/proj-icon"
+		outputDir = f"{THISDIR}/output/" + fileName + "/proj-icon"
 
 		# Proj-icon does not want to be a mask
 
