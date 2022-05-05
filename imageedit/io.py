@@ -16,7 +16,7 @@ from layeredimage.io import (
 	saveLayerImage,
 )
 from layeredimage.layeredimage import renderWAlphaOffset
-from PIL import Image
+from PIL import Image, ImageOps, ImageStat
 
 # fmt: off
 FILE_EXTS = [
@@ -179,3 +179,11 @@ def checkExists(file):
 	if not os.path.exists(file):
 		print(f"ERROR: {file} does not exist")
 		sys.exit(1)
+
+
+def getContrastRatio(image: Image.Image) -> float:
+	"""Get the contrast ratio of an image """
+	grayImage = ImageOps.grayscale(image)
+	stats = ImageStat.Stat(grayImage)
+	low, high = stats.extrema[0]
+	return (high/ low) *2

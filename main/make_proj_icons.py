@@ -24,6 +24,7 @@ if __name__ == "__main__":  # pragma: no cover
 		fileNameParts = fileName.split(os.sep)
 		fileName = fileNameParts[len(fileNameParts) - 1]
 		print(fileName)
+		print(f"getContrastRatio: {io.getContrastRatio(squareImage)}")
 		outputDir = f"{THISDIR}/output/" + fileName + "/proj-icon"
 
 		# Proj-icon does not want to be a mask
