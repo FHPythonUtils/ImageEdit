@@ -1,6 +1,7 @@
 Pillow<10,>=9.1.0
 blendmodes<2024,>=2022
 colourswatch<2024,>=2022.0.1
+install-playwright<2,>=0.0.0
 layeredimage<2024,>=2022.0.1
-pyppeteer<2,>=1.0.2
+playwright<2,>=1.29.1
 svgtrace<2024,>=2022

@@ -116,7 +116,6 @@ required)
 - SVG tracing lib doesn't require potrace/ pypotrace which can be challenging to
 set up on Windows
 - SVG tracing using imageTracerJs.py (https://github.com/jankovicsandras/imagetracerjs)
-is pretty good (requires pyppeteer: https://github.com/miyakogi/pyppeteer)
 
 ### Disadvantages of this solution
 

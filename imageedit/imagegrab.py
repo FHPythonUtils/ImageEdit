@@ -1,37 +1,14 @@
 """Author FredHappyface 2019-2022
 
-Uses pyppeteer to leverage a headless version of Chromium
+Uses playwright to leverage a headless version of Chromium
 """
 from __future__ import annotations
 
-import asyncio
 import os
 
+from install_playwright import install
 from PIL import Image
-
-# 843427/	2021-02-02T11:07:25.313Z	-
-os.environ["PYPPETEER_CHROMIUM_REVISION"] = "843427"
-
-from pyppeteer import launch
-
-
-async def doGrabWebpage(url, resolution, evalJs):
-	"""Go to a URL, with a browser with a set resolution and run some js then take a screenshot."""
-	browser = await launch(
-		options={
-			"args": [
-				"--no-sandbox",
-				"--disable-web-security",
-			]
-		}
-	)
-	page = await browser.newPage()
-	await page.setViewport({"width": resolution[0], "height": resolution[1]})
-	await page.goto(url)
-	if evalJs is not None:
-		await page.evaluate(evalJs)
-	await page.screenshot({"path": "temp.png"})
-	await browser.close()
+from playwright.sync_api import sync_playwright
 
 
 def grabWebpage(url: str, resolution: tuple[int, int] = (800, 600), evalJs=None):
@@ -45,7 +22,18 @@ def grabWebpage(url: str, resolution: tuple[int, int] = (800, 600), evalJs=None)
 	Returns:
 		PIL.Image.Image: A PIL Image
 	"""
-	asyncio.get_event_loop().run_until_complete(doGrabWebpage(url, resolution, evalJs))
+	with sync_playwright() as p:
+		install(p.chromium)
+		browser = p.chromium.launch()
+
+		page = browser.new_page()
+		page.set_viewport_size({"width": resolution[0], "height": resolution[1]})
+		page.goto(url)
+		if evalJs is not None:
+			page.evaluate(evalJs)
+		page.screenshot(path="temp.png")
+		browser.close()
+
 	image = Image.open("temp.png")
 	try:
 		os.remove("temp.png")

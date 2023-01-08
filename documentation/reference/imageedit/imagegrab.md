@@ -1,36 +1,17 @@
 # Imagegrab
 
+[Imageedit Index](../README.md#imageedit-index) /
+[Imageedit](./index.md#imageedit) /
+Imagegrab
+
 > Auto-generated documentation for [imageedit.imagegrab](../../../imageedit/imagegrab.py) module.
 
-Author FredHappyface 2019-2022
-
-- [Imageedit](../README.md#imageedit-index) / [Modules](../MODULES.md#imageedit-modules) / [Imageedit](index.md#imageedit) / Imagegrab
-    - [doGrabWebpage](#dograbwebpage)
-    - [grabWebpage](#grabwebpage)
-
-Uses pyppeteer to leverage a headless version of Chromium
-
-## doGrabWebpage
-
-[[find in source code]](../../../imageedit/imagegrab.py#L18)
-
-```python
-async def doGrabWebpage(url, resolution, evalJs):
-```
-
-Go to a URL, with a browser with a set resolution and run some js then take a screenshot.
+- [Imagegrab](#imagegrab)
+  - [grabWebpage](#grabwebpage)
 
 ## grabWebpage
 
-[[find in source code]](../../../imageedit/imagegrab.py#L37)
-
-```python
-def grabWebpage(
-    url: str,
-    resolution: tuple[int, int] = (800, 600),
-    evalJs=None,
-):
-```
+[Show source in imagegrab.py:14](../../../imageedit/imagegrab.py#L14)
 
 Take a screenshot of a webpage
 
@@ -43,3 +24,12 @@ Take a screenshot of a webpage
 #### Returns
 
 - `PIL.Image.Image` - A PIL Image
+
+#### Signature
+
+```python
+def grabWebpage(url: str, resolution: tuple[int, int] = (800, 600), evalJs=None):
+    ...
+```
+
+

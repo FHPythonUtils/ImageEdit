@@ -1,37 +1,28 @@
 # Effects
 
+[Imageedit Index](../README.md#imageedit-index) /
+[Imageedit](./index.md#imageedit) /
+Effects
+
 > Auto-generated documentation for [imageedit.effects](../../../imageedit/effects.py) module.
 
-Apply high level effects to images such as shadows and convert to black and white.
-
-- [Imageedit](../README.md#imageedit-index) / [Modules](../MODULES.md#imageedit-modules) / [Imageedit](index.md#imageedit) / Effects
-    - [addDropShadowComplex](#adddropshadowcomplex)
-    - [addDropShadowSimple](#adddropshadowsimple)
-    - [addText](#addtext)
-    - [applySwatch](#applyswatch)
-    - [blend](#blend)
-    - [convertBlackAndWhite](#convertblackandwhite)
-    - [doConvertBlackAndWhiteBGFG](#doconvertblackandwhitebgfg)
-    - [doConvertBlackAndWhiteFilter](#doconvertblackandwhitefilter)
-    - [pixelate](#pixelate)
-    - [removeBG](#removebg)
-    - [roundCorners](#roundcorners)
-    - [roundCornersAntiAlias](#roundcornersantialias)
+- [Effects](#effects)
+  - [addDropShadowComplex](#adddropshadowcomplex)
+  - [addDropShadowSimple](#adddropshadowsimple)
+  - [addText](#addtext)
+  - [applySwatch](#applyswatch)
+  - [blend](#blend)
+  - [convertBlackAndWhite](#convertblackandwhite)
+  - [doConvertBlackAndWhiteBGFG](#doconvertblackandwhitebgfg)
+  - [doConvertBlackAndWhiteFilter](#doconvertblackandwhitefilter)
+  - [pixelate](#pixelate)
+  - [removeBG](#removebg)
+  - [roundCorners](#roundcorners)
+  - [roundCornersAntiAlias](#roundcornersantialias)
 
 ## addDropShadowComplex
 
-[[find in source code]](../../../imageedit/effects.py#L62)
-
-```python
-def addDropShadowComplex(
-    image: Image.Image,
-    iterations: int,
-    border: int,
-    offset: list[int],
-    backgroundColour: str,
-    shadowColour: str,
-) -> Image.Image:
-```
+[Show source in effects.py:64](../../../imageedit/effects.py#L64)
 
 From https://en.wikibooks.org/wiki/Python_Imaging_Library/Drop_Shadows.
 
@@ -48,13 +39,25 @@ offset (list[int, int]): Offset of the shadow as [x,y]
 
 - `Image.Image` - A PIL Image
 
-## addDropShadowSimple
-
-[[find in source code]](../../../imageedit/effects.py#L48)
+#### Signature
 
 ```python
-def addDropShadowSimple(image: Image.Image, offset: list[int]) -> Image.Image:
+def addDropShadowComplex(
+    image: Image.Image,
+    iterations: int,
+    border: int,
+    offset: list[int],
+    backgroundColour: str,
+    shadowColour: str,
+) -> Image.Image:
+    ...
 ```
+
+
+
+## addDropShadowSimple
+
+[Show source in effects.py:50](../../../imageedit/effects.py#L50)
 
 Add a simple drop shadow.
 
@@ -67,15 +70,21 @@ offset (list[int, int]): Offset of the shadow as [x,y]
 
 - `Image.Image` - A PIL Image
 
-## addText
-
-[[find in source code]](../../../imageedit/effects.py#L203)
+#### Signature
 
 ```python
-def addText(image: Image.Image, text: str) -> Image.Image:
+def addDropShadowSimple(image: Image.Image, offset: list[int]) -> Image.Image:
+    ...
 ```
 
-Add text to an image such that the resultant image is in the form [img]|text. The text is in fira code and has a maximum length of 16 chars
+
+
+## addText
+
+[Show source in effects.py:205](../../../imageedit/effects.py#L205)
+
+Add text to an image such that the resultant image is in the form [img]|text.
+The text is in fira code and has a maximum length of 16 chars
 (text longer than this is truncated with "...")
 
 #### Arguments
@@ -87,13 +96,18 @@ Add text to an image such that the resultant image is in the form [img]|text. Th
 
 - `Image.Image` - Image with text
 
-## applySwatch
-
-[[find in source code]](../../../imageedit/effects.py#L283)
+#### Signature
 
 ```python
-def applySwatch(image, swatchFile):
+def addText(image: Image.Image, text: str) -> Image.Image:
+    ...
 ```
+
+
+
+## applySwatch
+
+[Show source in effects.py:286](../../../imageedit/effects.py#L286)
 
 Apply a swatch to the image using colourswatch.
 
@@ -106,18 +120,18 @@ Apply a swatch to the image using colourswatch.
 
 - `Image` - quantized image
 
-## blend
-
-[[find in source code]](../../../imageedit/effects.py#L230)
+#### Signature
 
 ```python
-def blend(
-    background: Image.Image,
-    foreground: Image.Image,
-    blendType: BlendType,
-    opacity: float = 1,
-) -> Image.Image:
+def applySwatch(image, swatchFile):
+    ...
 ```
+
+
+
+## blend
+
+[Show source in effects.py:233](../../../imageedit/effects.py#L233)
 
 Blend layers using numpy array.
 
@@ -164,13 +178,23 @@ DESTOUT
 DESTATOP
 SRCATOP
 
-## convertBlackAndWhite
-
-[[find in source code]](../../../imageedit/effects.py#L122)
+#### Signature
 
 ```python
-def convertBlackAndWhite(image: Image.Image, mode: str = 'filter-darker'):
+def blend(
+    background: Image.Image,
+    foreground: Image.Image,
+    blendType: BlendType,
+    opacity: float = 1,
+) -> Image.Image:
+    ...
 ```
+
+
+
+## convertBlackAndWhite
+
+[Show source in effects.py:124](../../../imageedit/effects.py#L124)
 
 Convert a PIL Image to black and white from a colour image.
 
@@ -191,13 +215,18 @@ them to black. non edges are white. Defaults to "filter-darker".
 
 - `Image.Image` - The black and white image
 
-## doConvertBlackAndWhiteBGFG
-
-[[find in source code]](../../../imageedit/effects.py#L177)
+#### Signature
 
 ```python
-def doConvertBlackAndWhiteBGFG(image, mode):
+def convertBlackAndWhite(image: Image.Image, mode: str = "filter-darker"):
+    ...
 ```
+
+
+
+## doConvertBlackAndWhiteBGFG
+
+[Show source in effects.py:179](../../../imageedit/effects.py#L179)
 
 Low level function
 
@@ -215,13 +244,18 @@ foreground sets the second most dominant color to black.
 
 - `Image.Image` - The black and white image
 
-## doConvertBlackAndWhiteFilter
-
-[[find in source code]](../../../imageedit/effects.py#L151)
+#### Signature
 
 ```python
-def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str):
+def doConvertBlackAndWhiteBGFG(image, mode):
+    ...
 ```
+
+
+
+## doConvertBlackAndWhiteFilter
+
+[Show source in effects.py:153](../../../imageedit/effects.py#L153)
 
 Low level function
 
@@ -239,13 +273,18 @@ than the average black and pixels that are lighter than the average black.
 
 - `Image.Image` - The black and white image
 
-## pixelate
-
-[[find in source code]](../../../imageedit/effects.py#L301)
+#### Signature
 
 ```python
-def pixelate(image: Image.Image, pixelSize: int = 4):
+def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str):
+    ...
 ```
+
+
+
+## pixelate
+
+[Show source in effects.py:304](../../../imageedit/effects.py#L304)
 
 Apply a pixelate effect to an image. This might be used to create a retro effect.
 
@@ -261,13 +300,18 @@ Defaults to 4.
 
 - `Image` - pixelated image
 
-## removeBG
-
-[[find in source code]](../../../imageedit/effects.py#L320)
+#### Signature
 
 ```python
-def removeBG(image: Image.Image):
+def pixelate(image: Image.Image, pixelSize: int = 4):
+    ...
 ```
+
+
+
+## removeBG
+
+[Show source in effects.py:323](../../../imageedit/effects.py#L323)
 
 Remove the background from an image or a layeredimage.
 
@@ -280,13 +324,18 @@ image
 
 - `Image` - image without bg
 
-## roundCorners
-
-[[find in source code]](../../../imageedit/effects.py#L19)
+#### Signature
 
 ```python
-def roundCorners(image: Image.Image, radius: int | str) -> Image.Image:
+def removeBG(image: Image.Image):
+    ...
 ```
+
+
+
+## roundCorners
+
+[Show source in effects.py:19](../../../imageedit/effects.py#L19)
 
 Round the corners by a number of pixels. May be preferable to use
 
@@ -303,13 +352,18 @@ pixel: int, percent: "val%", scale: "valx"
 
 - `Image.Image` - A PIL Image
 
-## roundCornersAntiAlias
-
-[[find in source code]](../../../imageedit/effects.py#L105)
+#### Signature
 
 ```python
-def roundCornersAntiAlias(image: Image.Image, radius: int) -> Image.Image:
+def roundCorners(image: Image.Image, radius: int | str) -> Image.Image:
+    ...
 ```
+
+
+
+## roundCornersAntiAlias
+
+[Show source in effects.py:107](../../../imageedit/effects.py#L107)
 
 Round Corners taking a radius int as an arg and do antialias.
 
@@ -321,3 +375,12 @@ Round Corners taking a radius int as an arg and do antialias.
 #### Returns
 
 - `Image.Image` - Image
+
+#### Signature
+
+```python
+def roundCornersAntiAlias(image: Image.Image, radius: int) -> Image.Image:
+    ...
+```
+
+

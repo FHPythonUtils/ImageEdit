@@ -1,28 +1,22 @@
 # Transform
 
+[Imageedit Index](../README.md#imageedit-index) /
+[Imageedit](./index.md#imageedit) /
+Transform
+
 > Auto-generated documentation for [imageedit.transform](../../../imageedit/transform.py) module.
 
-Apply a transformations such as crop and resize.
-
-- [Imageedit](../README.md#imageedit-index) / [Modules](../MODULES.md#imageedit-modules) / [Imageedit](index.md#imageedit) / Transform
-    - [cropCentre](#cropcentre)
-    - [expand](#expand)
-    - [findAndReplace](#findandreplace)
-    - [removePadding](#removepadding)
-    - [resize](#resize)
-    - [resizeSquare](#resizesquare)
+- [Transform](#transform)
+  - [cropCentre](#cropcentre)
+  - [expand](#expand)
+  - [findAndReplace](#findandreplace)
+  - [removePadding](#removepadding)
+  - [resize](#resize)
+  - [resizeSquare](#resizesquare)
 
 ## cropCentre
 
-[[find in source code]](../../../imageedit/transform.py#L13)
-
-```python
-def cropCentre(
-    image: Image.Image,
-    width: int | str,
-    height: int | str,
-) -> Image.Image:
-```
+[Show source in transform.py:13](../../../imageedit/transform.py#L13)
 
 Crops the centre part of the image with a width and height.
 
@@ -39,13 +33,18 @@ pixel: int, percent: "val%", scale: "valx"
 
 - `Image.Image` - A PIL Image
 
-## expand
-
-[[find in source code]](../../../imageedit/transform.py#L38)
+#### Signature
 
 ```python
-def expand(image: Image.Image, padding: int | str) -> Image.Image:
+def cropCentre(image: Image.Image, width: int | str, height: int | str) -> Image.Image:
+    ...
 ```
+
+
+
+## expand
+
+[Show source in transform.py:38](../../../imageedit/transform.py#L38)
 
 Uncrops the image with a padding. padding can be one of the following:
 pixel: int, percent: "val%", scale: "valx"
@@ -59,19 +58,18 @@ pixel: int, percent: "val%", scale: "valx"
 
 - `Image.Image` - A PIL Image
 
-## findAndReplace
-
-[[find in source code]](../../../imageedit/transform.py#L113)
+#### Signature
 
 ```python
-def findAndReplace(
-    image: Image.Image,
-    find: Iterable[int],
-    replace: Iterable[int],
-    noMatch: Iterable[int] | None = None,
-    threshold: int = 5,
-) -> Image.Image:
+def expand(image: Image.Image, padding: int | str) -> Image.Image:
+    ...
 ```
+
+
+
+## findAndReplace
+
+[Show source in transform.py:115](../../../imageedit/transform.py#L115)
 
 Find and replace colour in PIL Image.
 
@@ -89,13 +87,24 @@ Default is 5
 
 - `Image.Image` - The result
 
-## removePadding
-
-[[find in source code]](../../../imageedit/transform.py#L100)
+#### Signature
 
 ```python
-def removePadding(image: Image.Image, padding: int) -> Image.Image:
+def findAndReplace(
+    image: Image.Image,
+    find: Iterable[int],
+    replace: Iterable[int],
+    noMatch: Iterable[int] | None = None,
+    threshold: int = 5,
+) -> Image.Image:
+    ...
 ```
+
+
+
+## removePadding
+
+[Show source in transform.py:102](../../../imageedit/transform.py#L102)
 
 Take an image and preforms a centre crop and removes the padding.
 
@@ -108,19 +117,21 @@ Take an image and preforms a centre crop and removes the padding.
 
 - `Image.Image` - Image
 
-## resize
-
-[[find in source code]](../../../imageedit/transform.py#L68)
+#### Signature
 
 ```python
-def resize(
-    image: Image.Image,
-    width: int | str,
-    height: int | str,
-) -> Image.Image:
+def removePadding(image: Image.Image, padding: int) -> Image.Image:
+    ...
 ```
 
-Resize an image with desired dimensions. This is most suitable for resizing non square images where a factor would not be sufficient.
+
+
+## resize
+
+[Show source in transform.py:68](../../../imageedit/transform.py#L68)
+
+Resize an image with desired dimensions. This is most suitable for resizing non
+square images where a factor would not be sufficient.
 width, height can be one of the following:
 pixel: int, percent: "val%", scale: "valx"
 
@@ -134,15 +145,21 @@ pixel: int, percent: "val%", scale: "valx"
 
 - `Image.Image` - Image
 
-## resizeSquare
-
-[[find in source code]](../../../imageedit/transform.py#L85)
+#### Signature
 
 ```python
-def resizeSquare(image: Image.Image, size: int | str) -> Image.Image:
+def resize(image: Image.Image, width: int | str, height: int | str) -> Image.Image:
+    ...
 ```
 
-Resize a square image. Or make a non square image square (will stretch if input image is non-square)
+
+
+## resizeSquare
+
+[Show source in transform.py:86](../../../imageedit/transform.py#L86)
+
+Resize a square image. Or make a non square image square (will stretch if
+input image is non-square)
 size can be one of the following:
 pixel: int, percent: "val%", scale: "valx"
 
@@ -154,3 +171,12 @@ pixel: int, percent: "val%", scale: "valx"
 #### Returns
 
 - `Image.Image` - Image
+
+#### Signature
+
+```python
+def resizeSquare(image: Image.Image, size: int | str) -> Image.Image:
+    ...
+```
+
+

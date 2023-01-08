@@ -3,6 +3,11 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2023 - 2023/01/08
+
+- Add tox config
+- Use playwright and install_playwright in-place of pyppeteer
+
 ## 2022.0.2 - 2022/05/02
 
 - Code quality improvements

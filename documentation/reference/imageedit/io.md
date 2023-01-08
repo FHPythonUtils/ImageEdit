@@ -1,39 +1,50 @@
 # Io
 
+[Imageedit Index](../README.md#imageedit-index) /
+[Imageedit](./index.md#imageedit) /
+Io
+
 > Auto-generated documentation for [imageedit.io](../../../imageedit/io.py) module.
-
-Author FredHappyface 2019-2022.
-
-- [Imageedit](../README.md#imageedit-index) / [Modules](../MODULES.md#imageedit-modules) / [Imageedit](index.md#imageedit) / Io
-    - [checkExists](#checkexists)
-    - [combine](#combine)
-    - [getImageDesc](#getimagedesc)
-    - [getPixelDimens](#getpixeldimens)
-    - [getSortedColours](#getsortedcolours)
-    - [openImage](#openimage)
-    - [openImagesInDir](#openimagesindir)
-    - [reduceColours](#reducecolours)
-    - [saveImage](#saveimage)
-
-Lib containing various image editing operations
 
 #### Attributes
 
-- `FILE_EXTS` - fmt: off: `['bmp', 'dib', 'eps', 'gif', 'ico', 'im', 'jpeg...`
+- `FILE_EXTS` - fmt: off: `['bmp', 'dib', 'eps', 'gif', 'ico', 'im', 'jpeg', 'jpg', 'j2k', 'j2p', 'j2xjfif', 'msp', 'pcx', 'png', 'pbm', 'pgm', 'ppm', 'pnm', 'sgi', 'spi', 'tga', 'tiff', 'webp', 'xbm', 'blp', 'cur', 'dcx', 'dds', 'fli', 'flc', 'fpx', 'ftex', 'gbr', 'gd', 'imt', 'pcd', 'xpm']`
+
+
+- [Io](#io)
+  - [checkExists](#checkexists)
+  - [combine](#combine)
+  - [getContrastRatio](#getcontrastratio)
+  - [getImageDesc](#getimagedesc)
+  - [getPixelDimens](#getpixeldimens)
+  - [getSortedColours](#getsortedcolours)
+  - [openImage](#openimage)
+  - [openImagesInDir](#openimagesindir)
+  - [reduceColours](#reducecolours)
+  - [saveImage](#saveimage)
 
 ## checkExists
 
-[[find in source code]](../../../imageedit/io.py#L177)
-
-```python
-def checkExists(file):
-```
+[Show source in io.py:178](../../../imageedit/io.py#L178)
 
 Throw an error and abort if the path does not exist.
 
+#### Signature
+
+```python
+def checkExists(file):
+    ...
+```
+
+
+
 ## combine
 
-[[find in source code]](../../../imageedit/io.py#L158)
+[Show source in io.py:159](../../../imageedit/io.py#L159)
+
+Combine two images with alpha.
+
+#### Signature
 
 ```python
 def combine(
@@ -44,19 +55,32 @@ def combine(
     foregroundAlpha=1.0,
     backgroundAlpha=1.0,
 ):
+    ...
 ```
 
-Combine two images with alpha.
+
+
+## getContrastRatio
+
+[Show source in io.py:185](../../../imageedit/io.py#L185)
+
+Get the contrast ratio of an image
+
+#### Signature
+
+```python
+def getContrastRatio(image: Image.Image) -> float:
+    ...
+```
+
+
 
 ## getImageDesc
 
-[[find in source code]](../../../imageedit/io.py#L110)
+[Show source in io.py:110](../../../imageedit/io.py#L110)
 
-```python
-def getImageDesc(image: Image.Image) -> str:
-```
-
-Get an image description returns [icon/mask]. Likely more useful for my specific use case than in the general lib.
+Get an image description returns [icon/mask]. Likely more useful for my specific
+use case than in the general lib.
 
 #### Arguments
 
@@ -66,13 +90,18 @@ Get an image description returns [icon/mask]. Likely more useful for my specific
 
 - `str` - description of image
 
-## getPixelDimens
-
-[[find in source code]](../../../imageedit/io.py#L30)
+#### Signature
 
 ```python
-def getPixelDimens(image: Image.Image, dimens: list[int | str]) -> list[int]:
+def getImageDesc(image: Image.Image) -> str:
+    ...
 ```
+
+
+
+## getPixelDimens
+
+[Show source in io.py:30](../../../imageedit/io.py#L30)
 
 Get the pixel dimensions for an image from one of the following.
 
@@ -87,15 +116,18 @@ pixel (no calculation): int, percent: "val%", scale: "valx"
 
 - `list[int]` - outDimens in pixels
 
-## getSortedColours
-
-[[find in source code]](../../../imageedit/io.py#L127)
+#### Signature
 
 ```python
-def getSortedColours(
-    image: Image.Image,
-) -> list[tuple[int, tuple[int, int, int, int]]]:
+def getPixelDimens(image: Image.Image, dimens: list[int | str]) -> list[int]:
+    ...
 ```
+
+
+
+## getSortedColours
+
+[Show source in io.py:128](../../../imageedit/io.py#L128)
 
 Get the list of colours in an image sorted by 'popularity'.
 
@@ -107,13 +139,18 @@ Get the list of colours in an image sorted by 'popularity'.
 
 - `(colour_count,` *colour)[]* - list of tuples in the form pixel_count, colour
 
-## openImage
-
-[[find in source code]](../../../imageedit/io.py#L75)
+#### Signature
 
 ```python
-def openImage(file: str, mode: str | None = None) -> Image.Image:
+def getSortedColours(image: Image.Image) -> list[tuple[int, tuple[int, int, int, int]]]:
+    ...
 ```
+
+
+
+## openImage
+
+[Show source in io.py:75](../../../imageedit/io.py#L75)
 
 Open a single image and returns an image object.
 
@@ -128,16 +165,18 @@ Use full file path or file path relative to /lib
 
 - `Image.Image` - Image
 
-## openImagesInDir
-
-[[find in source code]](../../../imageedit/io.py#L58)
+#### Signature
 
 ```python
-def openImagesInDir(
-    dirGlob: str,
-    mode: str | None = None,
-) -> list[tuple[str, Image.Image]]:
+def openImage(file: str, mode: str | None = None) -> Image.Image:
+    ...
 ```
+
+
+
+## openImagesInDir
+
+[Show source in io.py:58](../../../imageedit/io.py#L58)
 
 Open all images in a directory and returns them in a list along with filepath.
 
@@ -150,13 +189,20 @@ Open all images in a directory and returns them in a list along with filepath.
 
 - `PIL.Image.Image` - Image
 
-## reduceColours
-
-[[find in source code]](../../../imageedit/io.py#L143)
+#### Signature
 
 ```python
-def reduceColours(image: Image.Image, mode: str = 'optimised'):
+def openImagesInDir(
+    dirGlob: str, mode: str | None = None
+) -> list[tuple[str, Image.Image]]:
+    ...
 ```
+
+
+
+## reduceColours
+
+[Show source in io.py:144](../../../imageedit/io.py#L144)
 
 Reduces the number of colours in an image. Modes "logo", "optimised".
 
@@ -170,13 +216,18 @@ Reduces the number of colours in an image. Modes "logo", "optimised".
 
 - `PIL.Image.Image` - A PIL Image
 
-## saveImage
-
-[[find in source code]](../../../imageedit/io.py#L95)
+#### Signature
 
 ```python
-def saveImage(fileName, image, optimise=True):
+def reduceColours(image: Image.Image, mode: str = "optimised"):
+    ...
 ```
+
+
+
+## saveImage
+
+[Show source in io.py:95](../../../imageedit/io.py#L95)
 
 Save a single image.
 
@@ -187,3 +238,12 @@ Use full file path or file path relative to /lib. Pass in the image object
 - `fileName` *string* - full file path or file path relative to /lib
 - `image` *PIL.Image.Image* - A PIL Image
 - `optimise` *bool, optional* - Optimise the image?. Defaults to True.
+
+#### Signature
+
+```python
+def saveImage(fileName, image, optimise=True):
+    ...
+```
+
+

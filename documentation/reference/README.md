@@ -1,10 +1,9 @@
-# Imageedit Modules
+# Imageedit Index
 
-> Auto-generated documentation modules index.
+> Auto-generated documentation index.
 
-Full list of [Imageedit](README.md#imageedit-index) project modules.
+A full list of `Imageedit` project modules.
 
-- [Imageedit Index](README.md#imageedit-index)
 - [Imageedit](imageedit/index.md#imageedit)
     - [Effects](imageedit/effects.md#effects)
     - [Imagegrab](imageedit/imagegrab.md#imagegrab)
