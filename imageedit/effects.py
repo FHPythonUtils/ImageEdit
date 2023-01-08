@@ -36,11 +36,13 @@ def roundCorners(image: Image.Image, radius: int | str) -> Image.Image:
 	draw.ellipse((0, 0, radius * 2, radius * 2), "#ffffffff")
 	alpha = Image.new("RGBA", image.size, "#ffffffff")
 	background = Image.new("RGBA", image.size, "#00000000")
-	w, h = image.size
+	width, height = image.size
 	alpha.paste(circle.crop((0, 0, radius, radius)), (0, 0))
-	alpha.paste(circle.crop((0, radius, radius, radius * 2)), (0, h - radius))
-	alpha.paste(circle.crop((radius, 0, radius * 2, radius)), (w - radius, 0))
-	alpha.paste(circle.crop((radius, radius, radius * 2, radius * 2)), (w - radius, h - radius))
+	alpha.paste(circle.crop((0, radius, radius, radius * 2)), (0, height - radius))
+	alpha.paste(circle.crop((radius, 0, radius * 2, radius)), (width - radius, 0))
+	alpha.paste(
+		circle.crop((radius, radius, radius * 2, radius * 2)), (width - radius, height - radius)
+	)
 	background.paste(image, (0, 0), alpha.convert("RGBA"))
 	return background
 
@@ -201,7 +203,8 @@ def doConvertBlackAndWhiteBGFG(image, mode):
 
 
 def addText(image: Image.Image, text: str) -> Image.Image:
-	"""Add text to an image such that the resultant image is in the form [img]|text. The text is in fira code and has a maximum length of 16 chars
+	"""Add text to an image such that the resultant image is in the form [img]|text.
+	The text is in fira code and has a maximum length of 16 chars
 	(text longer than this is truncated with "...")
 
 	Args:

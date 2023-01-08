@@ -40,12 +40,12 @@ xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 	- [Advantages of this solution](#advantages-of-this-solution)
 	- [Disadvantages of this solution](#disadvantages-of-this-solution)
 - [How to use out of the box](#how-to-use-out-of-the-box)
-	- [get_pwa_screenshots.py](#get_pwa_screenshotspy)
-	- [make_phone_screenshots.py](#make_phone_screenshotspy)
-	- [make_proj_icons.py](#make_proj_iconspy)
-	- [make_pwa_images.py](#make_pwa_imagespy)
-	- [make_retro.py](#make_retropy)
-	- [read_write_layered.py](#read_write_layeredpy)
+	- [get\_pwa\_screenshots.py](#get_pwa_screenshotspy)
+	- [make\_phone\_screenshots.py](#make_phone_screenshotspy)
+	- [make\_proj\_icons.py](#make_proj_iconspy)
+	- [make\_pwa\_images.py](#make_pwa_imagespy)
+	- [make\_retro.py](#make_retropy)
+	- [read\_write\_layered.py](#read_write_layeredpy)
 	- [round.py](#roundpy)
 - [Documentation](#documentation)
 - [Install With PIP](#install-with-pip)
@@ -63,6 +63,8 @@ xcf to ora and png. Unfortunately, visibility of xcf is currently ignored :(
 - [How to run](#how-to-run)
 	- [Windows](#windows)
 	- [Linux/ MacOS](#linux-macos)
+- [Building](#building)
+- [Testing](#testing)
 - [Download Project](#download-project)
 	- [Clone](#clone)
 		- [Using The Command Line](#using-the-command-line)
@@ -214,8 +216,8 @@ Head to https://pypi.org/project/imageedit/ for more info
 
 ### Built for
 
-This program has been written for Python versions 3.7 - 3.10 and has been tested with both 3.7 and
-3.10
+This program has been written for Python versions 3.8 - 3.11 and has been tested with both 3.8 and
+3.11
 
 ## Install Python on Windows
 
@@ -274,6 +276,36 @@ version.
 
 - File
 	`python3.x [file]` or `./[file]`
+
+## Building
+
+This project uses https://github.com/FHPythonUtils/FHMake to automate most of the building. This
+command generates the documentation, updates the requirements.txt and builds the library artefacts
+
+Note the functionality provided by fhmake can be approximated by the following
+
+```sh
+handsdown  --cleanup -o documentation/reference
+poetry export -f requirements.txt --output requirements.txt
+poetry export -f requirements.txt --with dev --output requirements_optional.txt
+poetry build
+```
+
+`fhmake audit` can be run to perform additional checks
+
+## Testing
+
+For testing with the version of python used by poetry use
+
+```sh
+poetry run pytest
+```
+
+Alternatively use `tox` to run tests over python 3.8 - 3.11
+
+```sh
+tox
+```
 
 ## Download Project
 

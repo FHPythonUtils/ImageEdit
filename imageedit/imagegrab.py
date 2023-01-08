@@ -5,7 +5,7 @@ Uses pyppeteer to leverage a headless version of Chromium
 from __future__ import annotations
 
 import asyncio
-import  os
+import os
 
 from PIL import Image
 
@@ -50,7 +50,5 @@ def grabWebpage(url: str, resolution: tuple[int, int] = (800, 600), evalJs=None)
 	try:
 		os.remove("temp.png")
 	except PermissionError:
-		print(
-			"WARNING: Unable to clean up, manually remove temp.png from project root or ignore"
-		)
+		print("WARNING: Unable to clean up, manually remove temp.png from project root or ignore")
 	return image

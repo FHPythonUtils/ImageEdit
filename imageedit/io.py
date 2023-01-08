@@ -108,7 +108,8 @@ def saveImage(fileName, image, optimise=True):
 
 
 def getImageDesc(image: Image.Image) -> str:
-	"""Get an image description returns [icon/mask]. Likely more useful for my specific use case than in the general lib.
+	"""Get an image description returns [icon/mask]. Likely more useful for my specific
+	use case than in the general lib.
 
 	Args:
 		image (PIL.Image.Image): Image
@@ -182,8 +183,8 @@ def checkExists(file):
 
 
 def getContrastRatio(image: Image.Image) -> float:
-	"""Get the contrast ratio of an image """
+	"""Get the contrast ratio of an image"""
 	grayImage = ImageOps.grayscale(image)
 	stats = ImageStat.Stat(grayImage)
 	low, high = stats.extrema[0]
-	return (high/ low) *2
+	return (high / low) * 2
