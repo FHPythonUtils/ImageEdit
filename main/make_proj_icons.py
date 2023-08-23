@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Author FredHappyface 2019-2022
 
 Make GitHub project icons, does a bit more than round.py. At the moment, I quite

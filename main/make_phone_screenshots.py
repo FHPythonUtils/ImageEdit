@@ -24,8 +24,8 @@ if __name__ == "__main__":  # pragma: no cover
 	coverImages = io.openImagesInDir(f"{THISDIR}/input/*-playstore")
 	if len(coverImages) > 0:
 		_, srcImage = coverImages[0]
-		coverImage = Image.new("RGBA", (1024, 500), srcImage.getpixel((0, 0)))
-		coverImage.paste(srcImage, (256, -6))
+		coverImage = Image.new("RGBA", (1024, 500), srcImage.getpixel((511, 511)))
+		coverImage.paste(srcImage, (192, -60))
 		io.saveImage(
 			OUTPUT_DIR + "featureGraphic.png",
 			coverImage,
@@ -48,10 +48,10 @@ if __name__ == "__main__":  # pragma: no cover
 						Image.new(
 							"RGBA",
 							(OVERLAY.width, OVERLAY.height),
-							screenshot.getpixel((50, 100)),  # "#aa37d7"
+							"#0fa3a2", # screenshot.getpixel((50, 100))
 						),
 					),
-					Layer("screenshot", screenshot, offsets=(540, 810)),
+					Layer("screenshot", effects.resize(screenshot, "2x", "2x"), offsets=(540, 720)),
 					Layer("overlay", OVERLAY),
 				]
 			).getFlattenLayers(),
