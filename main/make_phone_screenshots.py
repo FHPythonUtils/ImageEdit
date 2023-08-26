@@ -58,4 +58,4 @@ if __name__ == "__main__":  # pragma: no cover
 			"50%",
 			"50%",
 		)
-		io.saveImage(OUTPUT_DIR + fileName, composite, optimise=True)
+		io.saveImage(OUTPUT_DIR + fileName, composite)

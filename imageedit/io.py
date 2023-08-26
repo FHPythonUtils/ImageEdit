@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import glob
 import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -103,8 +104,8 @@ def saveImage(fileName, image, optimise=True):
 		optimise (bool, optional): Optimise the image?. Defaults to True.
 	"""
 	os.makedirs(Path(fileName).parent, exist_ok=True)
-	image = reduceColours(image) if optimise else image
-	image.save(fileName, optimize=optimise, quality=75)
+	image.save(fileName, optimize=optimise)
+	subprocess.run(f"pngquant {fileName} -o {fileName} --force")
 
 
 def getImageDesc(image: Image.Image) -> str:
@@ -187,4 +188,4 @@ def getContrastRatio(image: Image.Image) -> float:
 	grayImage = ImageOps.grayscale(image)
 	stats = ImageStat.Stat(grayImage)
 	low, high = stats.extrema[0]
-	return (high / low) * 2
+	return (high / (low or 1)) * 2

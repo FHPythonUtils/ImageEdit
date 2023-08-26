@@ -17,7 +17,7 @@ from imageedit import effects, io, transform
 if __name__ == "__main__":  # pragma: no cover
 
 	# Image in should be 512px
-	images = io.openImagesInDir(f"{THISDIR}/input/*", "logo")
+	images = io.openImagesInDir(f"{THISDIR}/input/*")
 	for imageRef in images:
 		fileName, squareImage = imageRef
 		fileNameParts = fileName.split(os.sep)
