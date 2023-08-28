@@ -48,10 +48,10 @@ if __name__ == "__main__":  # pragma: no cover
 						Image.new(
 							"RGBA",
 							(OVERLAY.width, OVERLAY.height),
-							"#0fa3a2", # screenshot.getpixel((50, 100))
+							"#ef5350", # screenshot.getpixel((50, 100))
 						),
 					),
-					Layer("screenshot", effects.resize(screenshot, "2x", "2x"), offsets=(540, 720)),
+					Layer("screenshot", effects.resize(screenshot, "1x", "1x"), offsets=(540, 720)),
 					Layer("overlay", OVERLAY),
 				]
 			).getFlattenLayers(),
