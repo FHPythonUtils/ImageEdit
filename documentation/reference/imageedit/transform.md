@@ -36,8 +36,9 @@ pixel: int, percent: "val%", scale: "valx"
 #### Signature
 
 ```python
-def cropCentre(image: Image.Image, width: int | str, height: int | str) -> Image.Image:
-    ...
+def cropCentre(
+    image: Image.Image, width: int | str, height: int | str
+) -> Image.Image: ...
 ```
 
 
@@ -61,8 +62,7 @@ pixel: int, percent: "val%", scale: "valx"
 #### Signature
 
 ```python
-def expand(image: Image.Image, padding: int | str) -> Image.Image:
-    ...
+def expand(image: Image.Image, padding: int | str) -> Image.Image: ...
 ```
 
 
@@ -96,8 +96,7 @@ def findAndReplace(
     replace: Iterable[int],
     noMatch: Iterable[int] | None = None,
     threshold: int = 5,
-) -> Image.Image:
-    ...
+) -> Image.Image: ...
 ```
 
 
@@ -120,8 +119,7 @@ Take an image and preforms a centre crop and removes the padding.
 #### Signature
 
 ```python
-def removePadding(image: Image.Image, padding: int) -> Image.Image:
-    ...
+def removePadding(image: Image.Image, padding: int) -> Image.Image: ...
 ```
 
 
@@ -148,8 +146,7 @@ pixel: int, percent: "val%", scale: "valx"
 #### Signature
 
 ```python
-def resize(image: Image.Image, width: int | str, height: int | str) -> Image.Image:
-    ...
+def resize(image: Image.Image, width: int | str, height: int | str) -> Image.Image: ...
 ```
 
 
@@ -175,8 +172,5 @@ pixel: int, percent: "val%", scale: "valx"
 #### Signature
 
 ```python
-def resizeSquare(image: Image.Image, size: int | str) -> Image.Image:
-    ...
+def resizeSquare(image: Image.Image, size: int | str) -> Image.Image: ...
 ```
-
-

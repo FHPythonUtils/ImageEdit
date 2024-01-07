@@ -28,8 +28,5 @@ Take a screenshot of a webpage
 #### Signature
 
 ```python
-def grabWebpage(url: str, resolution: tuple[int, int] = (800, 600), evalJs=None):
-    ...
+def grabWebpage(url: str, resolution: tuple[int, int] = (800, 600), evalJs=None): ...
 ```
-
-

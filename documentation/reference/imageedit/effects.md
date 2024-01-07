@@ -49,8 +49,7 @@ def addDropShadowComplex(
     offset: list[int],
     backgroundColour: str,
     shadowColour: str,
-) -> Image.Image:
-    ...
+) -> Image.Image: ...
 ```
 
 
@@ -73,8 +72,7 @@ offset (list[int, int]): Offset of the shadow as [x,y]
 #### Signature
 
 ```python
-def addDropShadowSimple(image: Image.Image, offset: list[int]) -> Image.Image:
-    ...
+def addDropShadowSimple(image: Image.Image, offset: list[int]) -> Image.Image: ...
 ```
 
 
@@ -99,8 +97,7 @@ The text is in fira code and has a maximum length of 16 chars
 #### Signature
 
 ```python
-def addText(image: Image.Image, text: str) -> Image.Image:
-    ...
+def addText(image: Image.Image, text: str) -> Image.Image: ...
 ```
 
 
@@ -123,8 +120,7 @@ Apply a swatch to the image using colourswatch.
 #### Signature
 
 ```python
-def applySwatch(image, swatchFile):
-    ...
+def applySwatch(image, swatchFile): ...
 ```
 
 
@@ -186,8 +182,7 @@ def blend(
     foreground: Image.Image,
     blendType: BlendType,
     opacity: float = 1,
-) -> Image.Image:
-    ...
+) -> Image.Image: ...
 ```
 
 
@@ -218,8 +213,7 @@ them to black. non edges are white. Defaults to "filter-darker".
 #### Signature
 
 ```python
-def convertBlackAndWhite(image: Image.Image, mode: str = "filter-darker"):
-    ...
+def convertBlackAndWhite(image: Image.Image, mode: str = "filter-darker"): ...
 ```
 
 
@@ -247,8 +241,7 @@ foreground sets the second most dominant color to black.
 #### Signature
 
 ```python
-def doConvertBlackAndWhiteBGFG(image, mode):
-    ...
+def doConvertBlackAndWhiteBGFG(image, mode): ...
 ```
 
 
@@ -276,8 +269,7 @@ than the average black and pixels that are lighter than the average black.
 #### Signature
 
 ```python
-def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str):
-    ...
+def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str): ...
 ```
 
 
@@ -303,8 +295,7 @@ Defaults to 4.
 #### Signature
 
 ```python
-def pixelate(image: Image.Image, pixelSize: int = 4):
-    ...
+def pixelate(image: Image.Image, pixelSize: int = 4): ...
 ```
 
 
@@ -327,8 +318,7 @@ image
 #### Signature
 
 ```python
-def removeBG(image: Image.Image):
-    ...
+def removeBG(image: Image.Image): ...
 ```
 
 
@@ -355,8 +345,7 @@ pixel: int, percent: "val%", scale: "valx"
 #### Signature
 
 ```python
-def roundCorners(image: Image.Image, radius: int | str) -> Image.Image:
-    ...
+def roundCorners(image: Image.Image, radius: int | str) -> Image.Image: ...
 ```
 
 
@@ -379,8 +368,5 @@ Round Corners taking a radius int as an arg and do antialias.
 #### Signature
 
 ```python
-def roundCornersAntiAlias(image: Image.Image, radius: int) -> Image.Image:
-    ...
+def roundCornersAntiAlias(image: Image.Image, radius: int) -> Image.Image: ...
 ```
-
-
