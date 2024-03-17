@@ -1,4 +1,4 @@
-""" Read and write to an .ora image """
+"""Read and write to an .ora image"""
 
 from __future__ import annotations
 
@@ -19,12 +19,14 @@ if len(sys.argv) < 2:
 		layeredImage.getFlattenLayers(),
 	)
 	io.saveLayerImage(
-		PARENT + "/test/test_read_write_layered/ImageEdit.xcf (export).ora", layeredImage
+		PARENT + "/test/test_read_write_layered/ImageEdit.xcf (export).ora",
+		layeredImage,
 	)
 
 else:
 	layeredImage = io.openLayerImage(f"{THISDIR}/input/" + sys.argv[1])
 	io.saveImage(
-		f"{THISDIR}/input/" + sys.argv[1] + " (export).png", layeredImage.getFlattenLayers()
+		f"{THISDIR}/input/" + sys.argv[1] + " (export).png",
+		layeredImage.getFlattenLayers(),
 	)
 	io.saveLayerImage(f"{THISDIR}/input/" + sys.argv[1] + " (copy).ora", layeredImage)

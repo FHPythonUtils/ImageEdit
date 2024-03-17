@@ -2,6 +2,7 @@
 
 Uses playwright to leverage a headless version of Chromium
 """
+
 from __future__ import annotations
 
 import os
@@ -15,12 +16,15 @@ def grabWebpage(url: str, resolution: tuple[int, int] = (800, 600), evalJs=None)
 	"""Take a screenshot of a webpage
 
 	Args:
+	----
 		url (str): The url of the webpage in question
 		resolution ((int,int)), optional): Set the page resolution
 		evalJs (string): Javascript to run on the page
 
 	Returns:
+	-------
 		PIL.Image.Image: A PIL Image
+
 	"""
 	with sync_playwright() as p:
 		install(p.chromium)

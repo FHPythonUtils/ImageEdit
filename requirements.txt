@@ -1,7 +1,7 @@
-Pillow<10,>=9.1.0
-blendmodes<2024,>=2022
-colourswatch<2024,>=2022.0.1
-install-playwright<2,>=0.0.0
-layeredimage<2024,>=2022.0.1
-playwright<2,>=1.29.1
-svgtrace<2024,>=2022
+Pillow<11,>=10.2.0
+blendmodes<2026,>=2024.1
+colourswatch<2026,>=2024
+install-playwright<2,>=0.0.1
+layeredimage<2026,>=2024.2
+playwright<2,>=1.42.0
+svgtrace<2026,>=2024

@@ -1,7 +1,6 @@
 # Imageedit
 
-[Imageedit Index](../README.md#imageedit-index) /
-Imageedit
+[Imageedit Index](../README.md#imageedit-index) / Imageedit
 
 > Auto-generated documentation for [imageedit](../../../imageedit/__init__.py) module.
 

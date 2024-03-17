@@ -1,4 +1,5 @@
 """Apply high level effects to images such as shadows and convert to black and white."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -24,11 +25,14 @@ def roundCorners(image: Image.Image, radius: int | str) -> Image.Image:
 	pixel: int, percent: "val%", scale: "valx"
 
 	Args:
+	----
 		image (Image.Image): A PIL Image
 		radius (int,str): One of pixel, percent, scale
 
 	Returns:
+	-------
 		Image.Image: A PIL Image
+
 	"""
 	[radius] = getPixelDimens(image, [radius])
 	circle = Image.new("RGBA", (radius * 2, radius * 2), "#00000000")
@@ -41,7 +45,8 @@ def roundCorners(image: Image.Image, radius: int | str) -> Image.Image:
 	alpha.paste(circle.crop((0, radius, radius, radius * 2)), (0, height - radius))
 	alpha.paste(circle.crop((radius, 0, radius * 2, radius)), (width - radius, 0))
 	alpha.paste(
-		circle.crop((radius, radius, radius * 2, radius * 2)), (width - radius, height - radius)
+		circle.crop((radius, radius, radius * 2, radius * 2)),
+		(width - radius, height - radius),
 	)
 	background.paste(image, (0, 0), alpha.convert("RGBA"))
 	return background
@@ -51,11 +56,14 @@ def addDropShadowSimple(image: Image.Image, offset: list[int]) -> Image.Image:
 	"""Add a simple drop shadow.
 
 	Args:
+	----
 		image (Image.Image): Base image to give a drop shadow
 		offset (list[int, int]): Offset of the shadow as [x,y]
 
 	Returns:
+	-------
 		Image.Image: A PIL Image
+
 	"""
 	border = max(abs(x) for x in offset)
 	return addDropShadowComplex(image, 11, border, offset, "#ffffff00", "#00000055")
@@ -72,6 +80,7 @@ def addDropShadowComplex(
 	"""From https://en.wikibooks.org/wiki/Python_Imaging_Library/Drop_Shadows.
 
 	Args:
+	----
 		image (Image.Image): Base image to give a drop shadow
 		iterations (int): Number of times to apply the blur filter to the shadow
 		border (int): Border to give the image to leave space for the shadow
@@ -80,7 +89,9 @@ def addDropShadowComplex(
 		shadowColour (str): Colour of the drop shadow
 
 	Returns:
+	-------
 		Image.Image: A PIL Image
+
 	"""
 	originalSize = image.size
 	# Calculate the size of the intermediate image
@@ -108,11 +119,14 @@ def roundCornersAntiAlias(image: Image.Image, radius: int) -> Image.Image:
 	"""Round Corners taking a radius int as an arg and do antialias.
 
 	Args:
+	----
 		image (Image.Image): A PIL Image
 		radius (int): radius in px
 
 	Returns:
+	-------
 		Image.Image: Image
+
 	"""
 	factor = 2
 	imageTemp = resizeSquare(image, str(factor) + "x")
@@ -127,6 +141,7 @@ def convertBlackAndWhite(image: Image.Image, mode: str = "filter-darker"):
 	Some implementations use numpy but im not going to include the extra import
 
 	Args:
+	----
 		image (Image.Image): A PIL Image to act on
 		mode (str, optional): Any of ["filter-darker", "filter-lighter",
 		"background", "foreground", "edges"] Specify the mode for the function to use.
@@ -137,7 +152,9 @@ def convertBlackAndWhite(image: Image.Image, mode: str = "filter-darker"):
 		them to black. non edges are white. Defaults to "filter-darker".
 
 	Returns:
+	-------
 		Image.Image: The black and white image
+
 	"""
 	if mode in ["background", "foreground"]:
 		image = doConvertBlackAndWhiteBGFG(image, mode)
@@ -158,12 +175,15 @@ def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str):
 	that are lighter than the average black.
 
 	Args:
+	----
 		image (Image.Image): A PIL Image to act on
 		mode (str): filter-darker and lighter respectively make pixels darker
 		than the average black and pixels that are lighter than the average black.
 
 	Returns:
+	-------
 		Image.Image: The black and white image
+
 	"""
 	img = image.convert("L")
 	img.thumbnail((1, 1))
@@ -184,12 +204,15 @@ def doConvertBlackAndWhiteBGFG(image, mode):
 	second most dominant color to black.
 
 	Args:
+	----
 		image (Image.Image): A PIL Image to act on
 		mode (str): background sets the most dominant colour to white and
 		foreground sets the second most dominant color to black.
 
 	Returns:
+	-------
 		Image.Image: The black and white image
+
 	"""
 	if mode == "background":
 		image = findAndReplace(
@@ -208,11 +231,14 @@ def addText(image: Image.Image, text: str) -> Image.Image:
 	(text longer than this is truncated with "...")
 
 	Args:
+	----
 		image (Image.Image): A PIL Image to add text to
 		text (str): A string containing text to add to the image
 
 	Returns:
+	-------
 		Image.Image: Image with text
+
 	"""
 	if len(text) > 15:
 		text = text[:13] + ".."
@@ -224,18 +250,25 @@ def addText(image: Image.Image, text: str) -> Image.Image:
 	background = Image.new("RGBA", (width * 5, height), backgroundColour)
 	imageText = ImageDraw.Draw(background)
 	imageText.text(
-		(int(width * 0.9), int(height / 4)), "|" + text, font=font, fill=foregroundColour
+		(int(width * 0.9), int(height / 4)),
+		"|" + text,
+		font=font,
+		fill=foregroundColour,
 	)
 	background.paste(image.convert("RGBA"), (0, 0), image.convert("RGBA"))
 	return background
 
 
 def blend(
-	background: Image.Image, foreground: Image.Image, blendType: BlendType, opacity: float = 1
+	background: Image.Image,
+	foreground: Image.Image,
+	blendType: BlendType,
+	opacity: float = 1,
 ) -> Image.Image:
 	"""Blend layers using numpy array.
 
 	Args:
+	----
 		background (Image.Image): background layer
 		foreground (Image.Image): foreground layer (must be same size as background)
 		blendType (BlendType): The blendtype
@@ -274,6 +307,7 @@ def blend(
 	DESTOUT
 	DESTATOP
 	SRCATOP
+
 	"""
 	# We are just aliasing the blendLayers function and making the type checker happy
 	del foreground, blendType, opacity
@@ -287,11 +321,14 @@ def applySwatch(image, swatchFile):
 	"""Apply a swatch to the image using colourswatch.
 
 	Args:
+	----
 		image (Image.Image): The PIL Image
 		swatchFile (string): Path to the swatch file
 
 	Returns:
+	-------
 		Image: quantized image
+
 	"""
 	pal = Image.new("P", (1, 1))
 	pal.putpalette(openColourSwatch(swatchFile).toPILPalette())
@@ -305,6 +342,7 @@ def pixelate(image: Image.Image, pixelSize: int = 4):
 	"""Apply a pixelate effect to an image. This might be used to create a retro effect.
 
 	Args:
+	----
 		image (Image.Image): A pillow image
 		pixelSize (int, optional): X, Y pixels to merge. E.g. assuming image
 		dimensions of 256x256 and pixelSize of 4, an image with dimensions
@@ -312,7 +350,9 @@ def pixelate(image: Image.Image, pixelSize: int = 4):
 		Defaults to 4.
 
 	Returns:
+	-------
 		Image: pixelated image
+
 	"""
 	originalSize = image.size
 	width, height = int(image.size[0] / pixelSize), int(image.size[1] / pixelSize)
@@ -324,11 +364,14 @@ def removeBG(image: Image.Image):
 	"""Remove the background from an image or a layeredimage.
 
 	Args:
+	----
 		image (Image.Image|layeredimage.layeredimage.LayeredImage): An image or a layered
 		image
 
 	Returns:
+	-------
 		Image: image without bg
+
 	"""
 	if isinstance(image, Image.Image):
 		return findAndReplace(image, getSortedColours(image)[0][1], (0, 0, 0, 0))

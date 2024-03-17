@@ -15,7 +15,6 @@ sys.path.insert(0, str(Path(THISDIR).parent))
 from imageedit import imagegrab, io, transform
 
 if __name__ == "__main__":  # pragma: no cover
-
 	OUTPUT_DIR = f"{THISDIR}/output/pwascreenshots"
 	BASE_URL = "https://fhpwa.github.io"
 	PROJECTS = {

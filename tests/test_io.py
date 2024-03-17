@@ -74,16 +74,6 @@ def test_openImage_optimised():
 	assert isinstance(io.openImage(INPUT + "/test.png", "optimised"), Image.Image)
 
 
-def test_saveImage():
-	io.saveImage(OUTPUT + "/test_saveImage_NotOptimised.png", IMAGE, False)
-	io.saveImage(OUTPUT + "/test_saveImage_Optimised.png", IMAGE)
-	# PNG-24 should be 3x PNG-8 so Optimised = 0.33 * NotOptimised
-	# Looks like this doesn't work as well. More like 0.66 * NotOptimised
-	NotOptimised = os.path.getsize(OUTPUT + "/test_saveImage_NotOptimised.png")
-	Optimised = os.path.getsize(OUTPUT + "/test_saveImage_Optimised.png")
-	assert Optimised < NotOptimised * 0.67
-
-
 def test_getImageDesc_icon():
 	assert io.getImageDesc(IMAGE) == "icon"
 

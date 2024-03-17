@@ -1,4 +1,5 @@
 """Apply a transformations such as crop and resize."""
+
 from __future__ import annotations
 
 from typing import Iterable
@@ -17,12 +18,15 @@ def cropCentre(image: Image.Image, width: int | str, height: int | str) -> Image
 	pixel: int, percent: "val%", scale: "valx"
 
 	Args:
+	----
 		image (Image.Image): Input image
 		width (int,str): One of pixel, percent, scale
 		height (int,str): One of pixel, percent, scale
 
 	Returns:
+	-------
 		Image.Image: A PIL Image
+
 	"""
 	[width, height] = getPixelDimens(image, [width, height])
 	return image.crop(
@@ -40,11 +44,14 @@ def expand(image: Image.Image, padding: int | str) -> Image.Image:
 	pixel: int, percent: "val%", scale: "valx"
 
 	Args:
+	----
 		image (Image.Image): Input image
 		padding (int,str): One of pixel, percent, scale
 
 	Returns:
+	-------
 		Image.Image: A PIL Image
+
 	"""
 	[padding] = getPixelDimens(image, [padding])
 	fullWidth = image.size[0] + 2 * padding
@@ -72,12 +79,15 @@ def resize(image: Image.Image, width: int | str, height: int | str) -> Image.Ima
 	pixel: int, percent: "val%", scale: "valx"
 
 	Args:
+	----
 		image (Image.Image): A PIL Image
 		width (int,str): One of pixel, percent, scale
 		height (int,str): One of pixel, percent, scale
 
 	Returns:
+	-------
 		Image.Image: Image
+
 	"""
 	[width, height] = getPixelDimens(image, [width, height])
 	return image.resize((width, height), Image.Resampling.LANCZOS)
@@ -90,11 +100,14 @@ def resizeSquare(image: Image.Image, size: int | str) -> Image.Image:
 	pixel: int, percent: "val%", scale: "valx"
 
 	Args:
+	----
 		image (Image.Image): A PIL Image
 		size (int,str): One of pixel, percent, scale
 
 	Returns:
+	-------
 		Image.Image: Image
+
 	"""
 	return resize(image, size, size)
 
@@ -103,11 +116,14 @@ def removePadding(image: Image.Image, padding: int) -> Image.Image:
 	"""Take an image and preforms a centre crop and removes the padding.
 
 	Args:
+	----
 		image (Image.Image): Image
 		padding (int): padding in px
 
 	Returns:
+	-------
 		Image.Image: Image
+
 	"""
 	return image.crop((padding, padding, image.width - padding, image.height - padding))
 
@@ -122,6 +138,7 @@ def findAndReplace(
 	"""Find and replace colour in PIL Image.
 
 	Args:
+	----
 		image (Image.Image): The Image
 		find ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
 		replace ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
@@ -131,7 +148,9 @@ def findAndReplace(
 		Default is 5
 
 	Returns:
+	-------
 		Image.Image: The result
+
 	"""
 
 	def cmpTup(tupleA, tupleB):

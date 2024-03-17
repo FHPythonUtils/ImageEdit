@@ -2,6 +2,7 @@
 
 Make Images for PWAs
 """
+
 from __future__ import annotations
 
 import os
@@ -16,7 +17,6 @@ sys.path.insert(0, str(Path(THISDIR).parent))
 from imageedit import effects, io, transform
 
 if __name__ == "__main__":  # pragma: no cover
-
 	# Image in should be 512px
 	images = io.openImagesInDir(f"{THISDIR}/input/*")
 	for imageRef in images:
@@ -82,7 +82,8 @@ if __name__ == "__main__":  # pragma: no cover
 		# Android 6
 		swatch = effects.applySwatch(squareImage, f"{THISDIR}/resources/material-mini.gpl")
 		io.saveImage(
-			retroDir + "/android6.png", transform.resizeSquare(effects.removeBG(swatch), "0.5x")
+			retroDir + "/android6.png",
+			transform.resizeSquare(effects.removeBG(swatch), "0.5x"),
 		)
 		# Android 7
 		swatch = effects.applySwatch(roundImage, f"{THISDIR}/resources/material-mini.gpl")

@@ -2,6 +2,7 @@
 Author FredHappyface 2019-2022
 Make Images for PWAs
 """
+
 from __future__ import annotations
 
 import os
@@ -13,7 +14,6 @@ sys.path.insert(0, str(Path(THISDIR).parent))
 from imageedit import effects, imagetracer, io, transform
 
 if __name__ == "__main__":  # pragma: no cover
-
 	# Image in should be 512px
 	images = io.openImagesInDir(f"{THISDIR}/input/*")
 	for imageRef in images:
@@ -39,17 +39,22 @@ if __name__ == "__main__":  # pragma: no cover
 
 		# store-windows - Size 300px
 		io.saveImage(
-			f"{storeDir}/store-windows.png", transform.resizeSquare(squareImage, "0.5859375x")
+			f"{storeDir}/store-windows.png",
+			transform.resizeSquare(squareImage, "0.5859375x"),
 		)
 		# store-google-play - Size 512, png32
-		io.saveImage(f"{storeDir}/store-google-play.png", squareImage, False)
+		io.saveImage(f"{storeDir}/store-google-play.png", squareImage)
 		# store-ios - Size 180px
-		io.saveImage(f"{storeDir}/store-ios.png", transform.resizeSquare(squareImage, "0.3515625x"))
+		io.saveImage(
+			f"{storeDir}/store-ios.png",
+			transform.resizeSquare(squareImage, "0.3515625x"),
+		)
 
 		# store-google-play-raster - Drop shadow, radius 20% (102,51)
 		googlePlay = effects.addDropShadowSimple(squircleImage, [-10, 10])
 		io.saveImage(
-			f"{storeDir}/store-google-play-raster.png", transform.resizeSquare(googlePlay, "0.5x")
+			f"{storeDir}/store-google-play-raster.png",
+			transform.resizeSquare(googlePlay, "0.5x"),
 		)
 
 		# store-ios-raster - Radius 17.5% (90,45)
@@ -58,7 +63,8 @@ if __name__ == "__main__":  # pragma: no cover
 
 		# store-windows-raster
 		io.saveImage(
-			f"{storeDir}/store-windows-raster.png", transform.resizeSquare(squareImage, "0.5x")
+			f"{storeDir}/store-windows-raster.png",
+			transform.resizeSquare(squareImage, "0.5x"),
 		)
 		"""
 		PWA Images

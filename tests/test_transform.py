@@ -37,7 +37,8 @@ def test_uncrop():
 	Desired Output: An 'uncropped' image of a field
 	"""
 	io.saveImage(
-		OUTPUT + "/test_uncrop.png", transform.expand(io.openImage(INPUT + "/test_field.png"), 64)
+		OUTPUT + "/test_uncrop.png",
+		transform.expand(io.openImage(INPUT + "/test_field.png"), 64),
 	)
 
 

@@ -207,7 +207,8 @@ Desired Output: A circular image 512x512 pixels edges look smooth
 
 def test_roundCornersAntiAlias():
 	io.saveImage(
-		OUTPUT + "/test_roundCornersAntiAlias.png", effects.roundCornersAntiAlias(IMAGE, 256)
+		OUTPUT + "/test_roundCornersAntiAlias.png",
+		effects.roundCornersAntiAlias(IMAGE, 256),
 	)
 
 
