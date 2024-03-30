@@ -53,7 +53,7 @@ if __name__ == "__main__":  # pragma: no cover
 					),
 					Layer(
 						"screenshot",
-						effects.resize(screenshot, 750-80, 1678-190),
+						effects.resize(screenshot, 750 - 80, 1678 - 190),
 						offsets=(80, 190),
 					),
 					Layer("overlay", OVERLAY),

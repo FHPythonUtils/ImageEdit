@@ -188,12 +188,16 @@ def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str):
 	img = image.convert("L")
 	img.thumbnail((1, 1))
 	averageColour = img.getpixel((0, 0))
+
 	# Default tp "filter-lighter"
 	def threshold(pixel) -> int:
 		return 0 if pixel > averageColour else 255
+
 	if mode == "filter-darker":
+
 		def threshold(pixel) -> int:
 			return 0 if pixel < averageColour else 255
+
 	converted = image.convert("L").point(threshold, mode="1")
 	return converted.convert("RGBA")
 
