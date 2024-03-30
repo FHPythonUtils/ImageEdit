@@ -1,4 +1,4 @@
-"""Author FredHappyface 2019-2022.
+"""Author FredHappyface.
 
 Lib containing various image editing operations
 """
@@ -57,10 +57,7 @@ def getPixelDimens(image: Image.Image, dimens: list[int | str]) -> list[int]:
 		if isinstance(dimension, int):
 			outDimens.append(dimension)
 		elif isinstance(dimension, str):
-			if len(dimens) == 1:
-				size = min(image.size)
-			else:
-				size = image.size[index]
+			size = min(image.size) if len(dimens) == 1 else image.size[index]
 			if dimension[-1] == "%":
 				outDimens.append(int(size * int(dimension[:-1]) / 100))
 			if dimension[-1] == "x":
@@ -104,14 +101,10 @@ def openImage(file: str, mode: str | None = None) -> Image.Image:
 
 	"""
 	checkExists(file)
-	if mode is not None:
-		image = reduceColours(Image.open(file), mode)
-	else:
-		image = Image.open(file)
-	return image
+	return reduceColours(Image.open(file), mode) if mode is not None else Image.open(file)
 
 
-def saveImage(fileName, image):
+def saveImage(fileName, image) -> None:
 	"""Save a single image.
 
 	Use full file path or file path relative to /lib. Pass in the image object
@@ -204,7 +197,7 @@ def combine(
 	)
 
 
-def checkExists(file):
+def checkExists(file) -> None:
 	"""Throw an error and abort if the path does not exist."""
 	if not os.path.exists(file):
 		print(f"ERROR: {file} does not exist")
@@ -212,7 +205,7 @@ def checkExists(file):
 
 
 def getContrastRatio(image: Image.Image) -> float:
-	"""Get the contrast ratio of an image"""
+	"""Get the contrast ratio of an image."""
 	grayImage = ImageOps.grayscale(image)
 	stats = ImageStat.Stat(grayImage)
 	low, high = stats.extrema[0]

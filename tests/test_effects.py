@@ -1,5 +1,5 @@
 """
-Author FredHappyface 2019-2022
+Author FredHappyface
 
 Test imageedit.py with a single 512x512px image. Many of these tests need manual
 validation. Look at each test for a brief description of the desired outcome for
@@ -23,7 +23,7 @@ OUTPUT = f"{THISDIR}/test_effects/o"
 IMAGE = io.openImage(INPUT + "/test.png")
 
 
-def test_roundCornersPercent_0():
+def test_roundCornersPercent_0() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels
@@ -31,7 +31,7 @@ def test_roundCornersPercent_0():
 	io.saveImage(OUTPUT + "/test_roundCornersPercent_0.png", effects.roundCorners(IMAGE, "0%"))
 
 
-def test_roundCornersPercent_50():
+def test_roundCornersPercent_50() -> None:
 	"""
 	Manual Check
 	Desired Output: A circular image 512x512 pixels
@@ -39,7 +39,7 @@ def test_roundCornersPercent_50():
 	io.saveImage(OUTPUT + "/test_roundCornersPercent_50.png", effects.roundCorners(IMAGE, "50%"))
 
 
-def test_roundCorners_0():
+def test_roundCorners_0() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels
@@ -47,7 +47,7 @@ def test_roundCorners_0():
 	io.saveImage(OUTPUT + "/test_roundCorners_0.png", effects.roundCorners(IMAGE, 0))
 
 
-def test_roundCorners_256():
+def test_roundCorners_256() -> None:
 	"""
 	Manual Check
 	Desired Output: A circular image 512x512 pixels
@@ -55,7 +55,7 @@ def test_roundCorners_256():
 	io.saveImage(OUTPUT + "/test_roundCorners_256.png", effects.roundCorners(IMAGE, 256))
 
 
-def test_addDropShadowSimple_topLeft():
+def test_addDropShadowSimple_topLeft() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a shadow 50 px to the top
@@ -67,7 +67,7 @@ def test_addDropShadowSimple_topLeft():
 	)
 
 
-def test_addDropShadowSimple_topRight():
+def test_addDropShadowSimple_topRight() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a shadow 50 px to the top
@@ -79,7 +79,7 @@ def test_addDropShadowSimple_topRight():
 	)
 
 
-def test_addDropShadowSimple_bottomLeft():
+def test_addDropShadowSimple_bottomLeft() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a shadow 50 px to the bottom
@@ -91,7 +91,7 @@ def test_addDropShadowSimple_bottomLeft():
 	)
 
 
-def test_addDropShadowSimple_bottomRight():
+def test_addDropShadowSimple_bottomRight() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a shadow 50 px to the bottom
@@ -104,7 +104,7 @@ def test_addDropShadowSimple_bottomRight():
 
 
 # Default: Iterateffectsns 5, Border 50, BG Red, Shadow Black (, Offset 50, 50)
-def test_addDropShadowComplex_Iterateffectsns0():
+def test_addDropShadowComplex_Iterateffectsns0() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a black blocky shadow to the
@@ -116,7 +116,7 @@ def test_addDropShadowComplex_Iterateffectsns0():
 	)
 
 
-def test_addDropShadowComplex_Iterateffectsns100():
+def test_addDropShadowComplex_Iterateffectsns100() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a black smooth shadow to the
@@ -128,7 +128,7 @@ def test_addDropShadowComplex_Iterateffectsns100():
 	)
 
 
-def test_addDropShadowComplex_Border0():
+def test_addDropShadowComplex_Border0() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels shadow is not smooth at edge
@@ -139,7 +139,7 @@ def test_addDropShadowComplex_Border0():
 	)
 
 
-def test_addDropShadowComplex_Border100():
+def test_addDropShadowComplex_Border100() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a black shadow to the
@@ -151,7 +151,7 @@ def test_addDropShadowComplex_Border100():
 	)
 
 
-def test_addDropShadowComplex_BGBlue():
+def test_addDropShadowComplex_BGBlue() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a black shadow to the
@@ -163,7 +163,7 @@ def test_addDropShadowComplex_BGBlue():
 	)
 
 
-def test_addDropShadowComplex_BGGreen():
+def test_addDropShadowComplex_BGGreen() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a black shadow to the
@@ -175,7 +175,7 @@ def test_addDropShadowComplex_BGGreen():
 	)
 
 
-def test_addDropShadowComplex_ShadowBlue():
+def test_addDropShadowComplex_ShadowBlue() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a blue shadow to the
@@ -187,7 +187,7 @@ def test_addDropShadowComplex_ShadowBlue():
 	)
 
 
-def test_addDropShadowComplex_ShadowGreen():
+def test_addDropShadowComplex_ShadowGreen() -> None:
 	"""
 	Manual Check
 	Desired Output: A square image 512x512 pixels with a green shadow to the
@@ -205,7 +205,7 @@ Desired Output: A circular image 512x512 pixels edges look smooth
 """
 
 
-def test_roundCornersAntiAlias():
+def test_roundCornersAntiAlias() -> None:
 	io.saveImage(
 		OUTPUT + "/test_roundCornersAntiAlias.png",
 		effects.roundCornersAntiAlias(IMAGE, 256),
@@ -218,55 +218,55 @@ Desired Output: A circular image 512x512 pixels edges look smooth
 """
 
 
-def test_roundCornersPercentAntiAlias():
+def test_roundCornersPercentAntiAlias() -> None:
 	io.saveImage(
 		OUTPUT + "/test_roundCornersPercentAntiAlias.png",
 		effects.roundCornersAntiAlias(IMAGE, "50%"),
 	)
 
 
-def test_convertBlackAndWhite_background():
+def test_convertBlackAndWhite_background() -> None:
 	io.saveImage(
 		OUTPUT + "/test_convertBlackAndWhite_background.png",
 		effects.convertBlackAndWhite(IMAGE, "background"),
 	)
 
 
-def test_convertBlackAndWhite_foreground():
+def test_convertBlackAndWhite_foreground() -> None:
 	io.saveImage(
 		OUTPUT + "/test_convertBlackAndWhite_foreground.png",
 		effects.convertBlackAndWhite(IMAGE, "foreground"),
 	)
 
 
-def test_convertBlackAndWhite_filterLighter():
+def test_convertBlackAndWhite_filterLighter() -> None:
 	io.saveImage(
 		OUTPUT + "/test_convertBlackAndWhite_filter-lighter.png",
 		effects.convertBlackAndWhite(IMAGE, "filter-lighter"),
 	)
 
 
-def test_convertBlackAndWhite_filterDarker():
+def test_convertBlackAndWhite_filterDarker() -> None:
 	io.saveImage(
 		OUTPUT + "/test_convertBlackAndWhite_filter-darker.png",
 		effects.convertBlackAndWhite(IMAGE, "filter-darker"),
 	)
 
 
-def test_convertBlackAndWhite_edges():
+def test_convertBlackAndWhite_edges() -> None:
 	io.saveImage(
 		OUTPUT + "/test_convertBlackAndWhite_edges.png",
 		effects.convertBlackAndWhite(IMAGE, "edges"),
 	)
 
 
-def test_addText_under16():
+def test_addText_under16() -> None:
 	io.saveImage(OUTPUT + "/test_addText_under16.png", effects.addText(IMAGE, "01234"))
 
 
-def test_addText_16():
+def test_addText_16() -> None:
 	io.saveImage(OUTPUT + "/test_addText_16.png", effects.addText(IMAGE, "012345689ABCDEF"))
 
 
-def test_addText_over16():
+def test_addText_over16() -> None:
 	io.saveImage(OUTPUT + "/test_addText_over16.png", effects.addText(IMAGE, "012345689ABCDEFG"))

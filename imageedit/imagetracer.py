@@ -1,4 +1,4 @@
-"""Do a trace of an image on the filesystem using the svgtrace library"""
+"""Do a trace of an image on the filesystem using the svgtrace library."""
 
 from __future__ import annotations
 

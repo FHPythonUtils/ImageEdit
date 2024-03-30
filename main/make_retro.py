@@ -1,4 +1,4 @@
-"""Author FredHappyface 2019-2022
+"""Author FredHappyface.
 
 Make Images for PWAs
 """

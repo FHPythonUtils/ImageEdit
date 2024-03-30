@@ -41,7 +41,7 @@ def cropCentre(image: Image.Image, width: int | str, height: int | str) -> Image
 
 def expand(image: Image.Image, padding: int | str) -> Image.Image:
 	"""Uncrops the image with a padding. padding can be one of the following:
-	pixel: int, percent: "val%", scale: "valx"
+	pixel: int, percent: "val%", scale: "valx".
 
 	Args:
 	----
@@ -76,7 +76,7 @@ def resize(image: Image.Image, width: int | str, height: int | str) -> Image.Ima
 	"""Resize an image with desired dimensions. This is most suitable for resizing non
 	square images where a factor would not be sufficient.
 	width, height can be one of the following:
-	pixel: int, percent: "val%", scale: "valx"
+	pixel: int, percent: "val%", scale: "valx".
 
 	Args:
 	----
@@ -97,7 +97,7 @@ def resizeSquare(image: Image.Image, size: int | str) -> Image.Image:
 	"""Resize a square image. Or make a non square image square (will stretch if
 	input image is non-square)
 	size can be one of the following:
-	pixel: int, percent: "val%", scale: "valx"
+	pixel: int, percent: "val%", scale: "valx".
 
 	Args:
 	----
@@ -153,7 +153,7 @@ def findAndReplace(
 
 	"""
 
-	def cmpTup(tupleA, tupleB):
+	def cmpTup(tupleA, tupleB) -> bool:
 		for index, _ in enumerate(tupleA):
 			if (
 				tupleA[index] > tupleB[index] + threshold

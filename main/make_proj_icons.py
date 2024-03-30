@@ -1,4 +1,4 @@
-"""Author FredHappyface 2019-2022
+"""Author FredHappyface.
 
 Make GitHub project icons, does a bit more than round.py. At the moment, I quite
 fancy using images in a similar style to those used in the google play store.

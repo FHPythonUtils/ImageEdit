@@ -1,5 +1,5 @@
 """
-Author FredHappyface 2019-2022
+Author FredHappyface
 
 Test io.py with a single 512x512px image. Many of these tests need manual
 validation. Look at each test for a brief description of the desired outcome for
@@ -24,7 +24,7 @@ OUTPUT = f"{THISDIR}/test_io/o"
 IMAGE = io.openImage(INPUT + "/test.png")
 
 
-def test_reduceColours_optimised():
+def test_reduceColours_optimised() -> None:
 	"""
 	Won't be able to see difference but will be able to .getcolors with maxcolors 256
 	"""
@@ -36,7 +36,7 @@ def test_reduceColours_optimised():
 	)
 
 
-def test_reduceColours_logo():
+def test_reduceColours_logo() -> None:
 	"""
 	.getcolors with maxcolors 16
 	"""
@@ -46,43 +46,43 @@ def test_reduceColours_logo():
 	)
 
 
-def test_getPixelDimens_px():
+def test_getPixelDimens_px() -> None:
 	assert io.getPixelDimens(IMAGE, [256]), [256]
 
 
-def test_getPixelDimens_scale():
+def test_getPixelDimens_scale() -> None:
 	assert io.getPixelDimens(IMAGE, ["0.5x"]), [256]
 
 
-def test_getPixelDimens_percent():
+def test_getPixelDimens_percent() -> None:
 	assert io.getPixelDimens(IMAGE, ["50%"]), [256]
 
 
-def test_openImagesInDir():
+def test_openImagesInDir() -> None:
 	assert len(io.openImagesInDir(INPUT + "/*")) == 2
 
 
-def test_openImagesInDir_optimised():
+def test_openImagesInDir_optimised() -> None:
 	assert len(io.openImagesInDir(INPUT + "/*")) == 2
 
 
-def test_openImage():
+def test_openImage() -> None:
 	assert isinstance(io.openImage(INPUT + "/test.png"), Image.Image)
 
 
-def test_openImage_optimised():
+def test_openImage_optimised() -> None:
 	assert isinstance(io.openImage(INPUT + "/test.png", "optimised"), Image.Image)
 
 
-def test_getImageDesc_icon():
+def test_getImageDesc_icon() -> None:
 	assert io.getImageDesc(IMAGE) == "icon"
 
 
-def test_getImageDesc_mask():
+def test_getImageDesc_mask() -> None:
 	assert io.getImageDesc(transform.resizeSquare(IMAGE, 640)) == "mask"
 
 
-def test_getImageDesc_null():
+def test_getImageDesc_null() -> None:
 	assert io.getImageDesc(transform.resizeSquare(IMAGE, 256)) == "unknown"
 
 

@@ -1,4 +1,4 @@
-"""Author FredHappyface 2019-2022
+"""Author FredHappyface.
 
 Make Android screenshots look nice and create a cover image for google play store
 """
@@ -18,7 +18,7 @@ from imageedit import effects, io
 
 if __name__ == "__main__":  # pragma: no cover
 	OUTPUT_DIR = f"{THISDIR}/output/screenshots/"
-	OVERLAY = io.openImage(f"{THISDIR}/resources/pixel3aScreenshot.png")
+	OVERLAY = io.openImage(f"{THISDIR}/resources/pixel6Screenshot.png")
 
 	# Create cover image/ featureGraphic
 	coverImages = io.openImagesInDir(f"{THISDIR}/input/*-playstore")
@@ -48,13 +48,13 @@ if __name__ == "__main__":  # pragma: no cover
 						Image.new(
 							"RGBA",
 							(OVERLAY.width, OVERLAY.height),
-							"#ef5350",  # screenshot.getpixel((50, 100))
+							"#49a0a0",  # screenshot.getpixel((50, 100))
 						),
 					),
 					Layer(
 						"screenshot",
-						effects.resize(screenshot, "1x", "1x"),
-						offsets=(540, 720),
+						effects.resize(screenshot, 750-80, 1678-190),
+						offsets=(80, 190),
 					),
 					Layer("overlay", OVERLAY),
 				]

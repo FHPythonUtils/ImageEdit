@@ -1,4 +1,4 @@
-"""Read and write to an .ora image"""
+"""Read and write to an .ora image."""
 
 from __future__ import annotations
 

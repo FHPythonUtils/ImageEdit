@@ -18,7 +18,7 @@ THISDIR = str(Path(__file__).resolve().parent)
 
 
 def roundCorners(image: Image.Image, radius: int | str) -> Image.Image:
-	"""Round the corners by a number of pixels. May be preferable to use
+	"""Round the corners by a number of pixels. May be preferable to use.
 
 	roundCornersAntiAlias. Use with caution as it modifies the image param.
 	radius can be one of the following:
@@ -168,7 +168,7 @@ def convertBlackAndWhite(image: Image.Image, mode: str = "filter-darker"):
 
 
 def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str):
-	"""Low level function
+	"""Low level function.
 
 	Convert an image to black and white based on a filter: filter-darker and
 	lighter respectively make pixels darker than the average black and pixels
@@ -189,15 +189,17 @@ def doConvertBlackAndWhiteFilter(image: Image.Image, mode: str):
 	img.thumbnail((1, 1))
 	averageColour = img.getpixel((0, 0))
 	# Default tp "filter-lighter"
-	threshold = lambda pixel: 0 if pixel > averageColour else 255
+	def threshold(pixel) -> int:
+		return 0 if pixel > averageColour else 255
 	if mode == "filter-darker":
-		threshold = lambda pixel: 0 if pixel < averageColour else 255
+		def threshold(pixel) -> int:
+			return 0 if pixel < averageColour else 255
 	converted = image.convert("L").point(threshold, mode="1")
 	return converted.convert("RGBA")
 
 
 def doConvertBlackAndWhiteBGFG(image, mode):
-	"""Low level function
+	"""Low level function.
 
 	Convert an image to black and white based on the foreground/ background:
 	background sets the most dominant colour to white and foreground sets the
@@ -228,7 +230,7 @@ def doConvertBlackAndWhiteBGFG(image, mode):
 def addText(image: Image.Image, text: str) -> Image.Image:
 	"""Add text to an image such that the resultant image is in the form [img]|text.
 	The text is in fira code and has a maximum length of 16 chars
-	(text longer than this is truncated with "...")
+	(text longer than this is truncated with "...").
 
 	Args:
 	----

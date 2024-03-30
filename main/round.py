@@ -1,6 +1,6 @@
 """
-Author FredHappyface 2019-2022
-Round the corners of an image
+Author FredHappyface
+Round the corners of an image.
 """
 
 from __future__ import annotations
@@ -57,8 +57,5 @@ if __name__ == "__main__":  # pragma: no cover
 		else:
 			im = effects.roundCorners(im, int(im.width / 2))
 
-		if args.output is not None:
-			outFileName = args.output
-		else:
-			outFileName = args.image
+		outFileName = args.output if args.output is not None else args.image
 		io.saveImage(f"{THISDIR}/" + outFileName, im)

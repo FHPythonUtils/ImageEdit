@@ -55,6 +55,7 @@ ignore = [
 	"ISC001",
 	"N",  # pep8 naming
 	"PLR09",  # pylint refactor too many
+	"T201", # print
 	"TCH",  # type check blocks
 	"W191"  # ignore this to allow tabs
 ]

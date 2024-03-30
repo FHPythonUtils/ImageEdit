@@ -1,5 +1,5 @@
 """
-Author FredHappyface 2019-2022
+Author FredHappyface.
 
 Grab some screenshots for my pwas - obviously, you can set these to your own
 urls and set your own scripts

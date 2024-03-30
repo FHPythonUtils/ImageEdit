@@ -1,6 +1,6 @@
 """
-Author FredHappyface 2019-2022
-Make Images for PWAs
+Author FredHappyface
+Make Images for PWAs.
 """
 
 from __future__ import annotations

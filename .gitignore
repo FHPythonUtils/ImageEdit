@@ -2,6 +2,7 @@ temp.png
 poetry.lock
 package-lock.json
 requirements_optional.txt
+main/input/_*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,4 +1,4 @@
-"""Author FredHappyface 2019-2022
+"""Author FredHappyface.
 
 Uses playwright to leverage a headless version of Chromium
 """
@@ -13,7 +13,7 @@ from playwright.sync_api import sync_playwright
 
 
 def grabWebpage(url: str, resolution: tuple[int, int] = (800, 600), evalJs=None):
-	"""Take a screenshot of a webpage
+	"""Take a screenshot of a webpage.
 
 	Args:
 	----
