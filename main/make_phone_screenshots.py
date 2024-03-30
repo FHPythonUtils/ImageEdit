@@ -48,7 +48,7 @@ if __name__ == "__main__":  # pragma: no cover
 						Image.new(
 							"RGBA",
 							(OVERLAY.width, OVERLAY.height),
-							"#49a0a0",  # screenshot.getpixel((50, 100))
+							"#ef5350",  # screenshot.getpixel((50, 100))
 						),
 					),
 					Layer(
